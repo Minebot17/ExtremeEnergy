@@ -1,0 +1,10 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemHeavyIngot", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "f", "item": "ItemHeavyIngot" },
+		{ "type": "craft", "style": "c", "item": "ItemHeavyDust" }
+	],
+	"key": "ItemHeavyIngot, ItemHeavyDust"
+}

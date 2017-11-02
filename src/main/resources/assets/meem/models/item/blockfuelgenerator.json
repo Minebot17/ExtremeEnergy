@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "north": "meem:blocks/fg/fg_forward",
+    "south": "meem:blocks/fg/fg_back",
+    "west": "meem:blocks/fg/fg_side",
+    "east": "meem:blocks/fg/fg_side",
+    "up": "meem:blocks/fg/fg_top",
+    "down": "meem:blocks/fg/fg_down",
+    "particle": "meem:blocks/fg/fg_top"
+  }
+}

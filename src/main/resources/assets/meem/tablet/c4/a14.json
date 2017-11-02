@@ -1,0 +1,13 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemPlantModule", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "label", "text": "key1", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key2"},
+		{ "type": "label", "text": "key3", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key4"},
+		{ "type": "craft", "style": "w", "item": "ItemPlantModule" }
+	],
+	"key": "ItemPlantModule"
+}

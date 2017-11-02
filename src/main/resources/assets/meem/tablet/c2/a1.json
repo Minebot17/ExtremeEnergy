@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemChargeDetector", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "w", "item": "ItemChargeDetector" }
+	],
+	"key": "ItemChargeDetector"
+}

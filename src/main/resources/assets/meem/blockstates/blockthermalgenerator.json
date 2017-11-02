@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "normal": {"model": "meem:blockthermalgenerator" },
+    "active=false,facing=north": { "model": "meem:blockthermalgenerator" },
+    "active=false,facing=south": { "model": "meem:blockthermalgenerator", "y": 180 },
+    "active=false,facing=west":  { "model": "meem:blockthermalgenerator", "y": 270 },
+    "active=false,facing=east":  { "model": "meem:blockthermalgenerator", "y": 90 },
+
+    "active=true,facing=north": { "model": "meem:blockthermalgenerator_active" },
+    "active=true,facing=south": { "model": "meem:blockthermalgenerator_active", "y": 180 },
+    "active=true,facing=west":  { "model": "meem:blockthermalgenerator_active", "y": 270 },
+    "active=true,facing=east":  { "model": "meem:blockthermalgenerator_active", "y": 90 }
+  }
+}

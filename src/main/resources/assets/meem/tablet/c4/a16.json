@@ -1,0 +1,17 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemLavaModule", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "label", "text": "key1", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key2"},
+		{ "type": "label", "text": "key3", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key4"},
+		{ "type": "label", "text": "key5", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key6"},
+		{ "type": "label", "text": "key7", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key8"},
+		{ "type": "craft", "style": "w", "item": "ItemLavaModule" }
+	],
+	"key": "ItemLavaModule"
+}

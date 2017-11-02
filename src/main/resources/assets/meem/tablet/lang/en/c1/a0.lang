@@ -1,0 +1,3 @@
+Field Generator
+High voltage generator
+key0=This block generates a field of the specified radius and voltage. The larger the radius, the lower the voltage, from the specified. {"ItemLossReductionModule"Path_search_boards} can fix this. The more cards, the smaller the voltage drop. To create a field, you need to charge the generator, specify the frequency of the field and give the signal of a red stone. The minimum threshold of the maximum voltage - 150 units, and the radius - 10 blocks. When generating a field, all of the lost energy goes to {"chunks"chunk}. Caution: at high voltage, the field affects living organisms!

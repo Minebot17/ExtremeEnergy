@@ -1,0 +1,16 @@
+[
+{
+  "modid": "meem",
+  "name": "Extreme Energy",
+  "description": "Extreme Energy adds implants, many machines, new resources and energy in chunks",
+  "version": "1.0.1",
+  "mcversion": "1.11.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Minebot"],
+  "credits": "Utrit and forum.mcmodding.ru",
+  "logoFile": "/mod_meemlogo.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]

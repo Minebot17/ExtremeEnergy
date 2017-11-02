@@ -1,0 +1,3 @@
+Shock
+Electric Shock
+key0=This effect appears in the player after a strong {"chunks"lightning_strike}. The player receives a strong charge of electrons, which activate all the muscles in a chaotic order. At the beginning, the effect deals 6 damage and every second for 1 unit with a small repulsion. The repulsion force depends on the level of the effect. In the end, your condition improves slightly

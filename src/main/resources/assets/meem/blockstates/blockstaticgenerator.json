@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "normal": {"model": "meem:blockstaticgenerator" },
+    "active=false,facing=north": { "model": "meem:blockstaticgenerator" },
+    "active=false,facing=south": { "model": "meem:blockstaticgenerator", "y": 180 },
+    "active=false,facing=west":  { "model": "meem:blockstaticgenerator", "y": 270 },
+    "active=false,facing=east":  { "model": "meem:blockstaticgenerator", "y": 90 },
+
+    "active=true,facing=north": { "model": "meem:blockstaticgenerator_active" },
+    "active=true,facing=south": { "model": "meem:blockstaticgenerator_active", "y": 180 },
+    "active=true,facing=west":  { "model": "meem:blockstaticgenerator_active", "y": 270 },
+    "active=true,facing=east":  { "model": "meem:blockstaticgenerator_active", "y": 90 }
+  }
+}

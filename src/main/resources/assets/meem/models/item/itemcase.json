@@ -1,0 +1,6 @@
+{
+  "parent": "meem:item/baseitem",
+  "textures": {
+    "layer0": "meem:items/assembler/case"
+  }
+}

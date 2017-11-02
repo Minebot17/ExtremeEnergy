@@ -1,0 +1,3 @@
+Scanner
+Scanner
+key0=Module of visualization of the third level. Scans blocks around and displays them to you on the screen. The radius of the scan and the refresh rate can be adjusted. Also, the scanner has 3 modes: normal, flat and ore mode. In normal mode, the module scans everything according to the standard, in flat mode the scanning radius is equal to three blocks, and in ore mode, the module scans only the ores. The scanner consumes 75 RF in a tick

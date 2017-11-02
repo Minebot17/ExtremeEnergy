@@ -1,0 +1,4 @@
+Converter
+Field Converter
+key0=This block converts the energy of the field into energy and matter of another type. The conversion algorithm is specified by the {"modules"module}. In this machine, you can specify the radius and get information about the module state. You can put only 1 function module
+key1=Many modules affect players, so this influence can be made private by putting your {"ItemIdCard"ID_card} in the slot. You can lodge up to 5 cards

@@ -1,0 +1,17 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemShieldModule", "width": 0.3 },
+		{ "type": "label", "text": "key0" },
+		{ "type": "label", "text": "key1", "align": "c", "format": "bold" },
+		{ "type": "label", "text": ["key2", "key3", "key4", "key5", "key6" ]},
+		{ "type": "label", "text": "key7", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key8"},
+		{ "type": "label", "text": "key9", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key10"},
+		{ "type": "label", "text": "key11", "align": "c", "format": "bold" },
+		{ "type": "label", "text": "key12"},
+		{ "type": "craft", "style": "w", "item": "ItemShieldModule" }
+	],
+	"key": "ItemShieldModule"
+}

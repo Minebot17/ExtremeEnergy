@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemMotionEnergyModule", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "w", "item": "ItemMotionEnergyModule" }
+	],
+	"key": "ItemMotionEnergyModule"
+}

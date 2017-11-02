@@ -1,0 +1,4 @@
+Rod
+Lightning Rod
+key0=Lightning Rod - multi-block construction. This is the basis of this structure. It takes some of the energy to the ground, while the other part of it save. The maximum capacity of the block is 1000000 RF. With one zipper, the block receives from 50000 to 150000 RF. Lightning rod does not have a GUI, therefore it is necessary to output the energy by wires, connecting them on the sides of the block. By standard, the lightning rod protects against lightning in a radius of 3 blocks
+key1=This is a special rod for increasing the range of the lightning rod. Each given unit, placed above the lightning rod and connected to it, adds 1 block to the lightning capture radius

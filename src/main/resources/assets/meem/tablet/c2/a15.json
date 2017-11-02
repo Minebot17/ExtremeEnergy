@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemIronCylinder", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "a", "item": "ItemIronCylinder" }
+	],
+	"key": "ItemIronCylinder"
+}

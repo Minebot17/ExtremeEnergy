@@ -1,0 +1,3 @@
+Transmitter
+Field Transmitter
+key0=This block transmit the field to a different frequency, with the specified radius. In the first input field it is necessary to specify from what frequency to transmit, and in the second field to which. This block also cuts the voltage depending on the radius. To work, he needs a signal of red stone

@@ -1,0 +1,11 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "BlockFieldConverter", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "image", "url": "image0.png", "width": 0.25, "height": 0.13 },
+		{ "type": "label", "text": "key1"},
+		{ "type": "craft", "style": "w", "item": "BlockFieldConverter" }
+	],
+	"key": "BlockFieldConverter"
+}

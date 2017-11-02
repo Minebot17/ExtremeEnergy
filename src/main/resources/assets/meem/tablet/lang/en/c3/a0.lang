@@ -1,0 +1,14 @@
+Atmosphere
+The charge of the atmosphere
+key0=Each chunk in each world has its own charge. The amount of charge can affect not only the player, and the different events that happen in the world. Some events are due to a large amount of charge, some because of the weather, and some due to the actions of the player
+key1=What can increase the charge of the chunk?
+key2=1. Lightning strikes from the clouds nearby
+key3=2. Energy leaks
+key4=3. Actions of some {"modules"modules}
+key5=4. Overheating machines
+key6=That can reduce the charge of the chunk?
+key7=1. Lightning between the blocks or entities coming from the chunk
+key8=2. Consumption charge the player
+key9=3. {"BlockEarthingElectrode"Grounding}
+key10=4. Overflow chunk a charge (the default chunk can have a charge of up to 10000000 RF)
+key11=Chunk gets rid of energy in many ways: starting from discharges between blocks, ending with a huge discharge into the player. And the more charge in the chunk, the more dangerous the events, so the player should carefully monitor the charge of chunks in his house. If the charge is very small, then due to the difference in potentials between the sky and the ground, lightning will strike. To prevent this, keep the charge on an average level or use a {"BlockLightningRod"lightning_rod}

@@ -1,0 +1,11 @@
+Sensor
+Charge Sensor
+key0=This block produces a signal of red stone depending on the charge of the {"chunks"chunk} in which it is located and from the conditions specified by the player. The player can change the mode and the bound of the sensor. Energy block is not required. Description of all modes:
+key1=Normal
+key2=In normal mode, the block outputs a redstone signal only if the chunk charge has exceeded the specified bound
+key3=Inverted
+key4=In this mode, the block outputs a red dot signal only if the charge of the chunk is below the specified bound
+key5=Analog
+key6=In this mode, the signal strength depends on the charge of the chunk. The closer the charge to the bound, the stronger the signal
+key7=On/Off
+key8=Always give a signal and never give it

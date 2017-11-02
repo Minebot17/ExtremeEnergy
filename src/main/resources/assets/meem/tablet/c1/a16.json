@@ -1,0 +1,11 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "BlockLightningRod", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "w", "item": "BlockLightningRod" },
+		{ "type": "label", "text": "key1"},
+		{ "type": "craft", "style": "w", "item": "BlockMetalPillar" },
+	],
+	"key": "BlockLightningRod, BlockMetalPillar"
+}
