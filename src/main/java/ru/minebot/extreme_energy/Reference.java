@@ -134,6 +134,7 @@ public class Reference {
         HTF("htf", "BlockHighTemperatureFurnace"),
         HPC("hpc", "BlockHighPressureCrusher"),
         HPA("hpa", "BlockHighPrecisionAssembler"),
+        HAS("has", "BlockHighAutomatedSawmill"),
         FT("ft", "BlockFieldTransmitter"),
         FTr("ftr", "BlockFieldTransducer"),
         SG("sg", "BlockStaticGenerator"),

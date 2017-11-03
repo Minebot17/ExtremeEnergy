@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "normal": {"model": "meem:blockhighautomatedsawmill" },
+    "active=false,facing=north": { "model": "meem:blockhighautomatedsawmill" },
+    "active=false,facing=south": { "model": "meem:blockhighautomatedsawmill", "y": 180 },
+    "active=false,facing=west":  { "model": "meem:blockhighautomatedsawmill", "y": 270 },
+    "active=false,facing=east":  { "model": "meem:blockhighautomatedsawmill", "y": 90 },
+
+    "active=true,facing=north": { "model": "meem:blockhighautomatedsawmill_active" },
+    "active=true,facing=south": { "model": "meem:blockhighautomatedsawmill_active", "y": 180 },
+    "active=true,facing=west":  { "model": "meem:blockhighautomatedsawmill_active", "y": 270 },
+    "active=true,facing=east":  { "model": "meem:blockhighautomatedsawmill_active", "y": 90 }
+  }
+}
