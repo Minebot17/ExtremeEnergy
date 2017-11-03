@@ -160,7 +160,7 @@ public class CommonEvents {
             }
             else if (charge < ModConfig.maxCapOfChunk && events.size() != 0)
                 data.map.put(new ChunkPos(e.player.getPosition()), charge - events.get(ModUtils.random.nextInt(events.size())).onEvent(e.player.world, e.player));
-            else if (charge < ModConfig.maxCapOfChunk) {
+            else if (charge >= ModConfig.maxCapOfChunk) {
                 OverloadEvent(e.player);
                 data.map.put(new ChunkPos(e.player.getPosition()), 2000000);
             }
