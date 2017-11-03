@@ -160,7 +160,7 @@ public class CommonEvents {
             }
             else if (charge < ModConfig.maxCapOfChunk && events.size() != 0)
                 data.map.put(new ChunkPos(e.player.getPosition()), charge - events.get(ModUtils.random.nextInt(events.size())).onEvent(e.player.world, e.player));
-            else {
+            else if (charge < ModConfig.maxCapOfChunk) {
                 OverloadEvent(e.player);
                 data.map.put(new ChunkPos(e.player.getPosition()), 2000000);
             }
@@ -193,6 +193,9 @@ public class CommonEvents {
             IImplant cap = player.getCapability(ImplantProvider.IMPLANT, null);
             ImplantData data = cap.getImplant();
             boolean toClient = false;
+
+            if (!cap.hasImplant())
+                return;
 
             if (e.getSource() == DamageSource.FALL) {
                 List<ItemStack> impModules = ModUtils.getModules(data);
@@ -227,7 +230,7 @@ public class CommonEvents {
 
             int countEnergy = 0;
             int countHeavy = 0;
-            if (data != null && !new ItemStack(data.core).isEmpty()) {
+            if (!new ItemStack(data.core).isEmpty()) {
                 int power = data.core.getInteger("power");
                 if (power == 0){
                     power = 1;

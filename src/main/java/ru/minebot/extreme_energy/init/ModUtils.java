@@ -259,10 +259,7 @@ public class ModUtils {
     }
 
     public static List<ItemStack> getCoreModules(ImplantData data) {
-        if (data != null && data.core != null && data.core.hasKey("tag") && data.core.getCompoundTag("tag").hasKey(ExtremeEnergy.NBT_CATEGORY))
-            return getItems(data.core.getCompoundTag("tag").getCompoundTag(ExtremeEnergy.NBT_CATEGORY));
-        else
-            return Collections.emptyList();
+        return getItems(data.core.getCompoundTag("tag").getCompoundTag(ExtremeEnergy.NBT_CATEGORY));
     }
 
     public static ImplantData setModules(ImplantData data, List<ItemStack> modules){
