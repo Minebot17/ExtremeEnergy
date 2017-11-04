@@ -4,15 +4,11 @@ import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
-import mezz.jei.gui.GuiHelper;
-import mezz.jei.gui.TickTimer;
-import mezz.jei.gui.elements.DrawableAnimated;
 import mezz.jei.gui.elements.DrawableResource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import ru.minebot.extreme_energy.recipes.assembler.AssemblerRecipes;
-import ru.minebot.extreme_energy.recipes.assembler.FullRecipeAssembler;
+import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -68,7 +64,7 @@ public class AssemblerCategory implements IRecipeCategory {
     }
 
     public static List<AssemblerWrapper> getRecipes(){
-        List<FullRecipeAssembler> r = AssemblerRecipes.recipesList;
+        List<AssemblerRecipes.FullRecipeAssembler> r = AssemblerRecipes.recipesList;
         List<AssemblerWrapper> recipes = new ArrayList<>();
         for (int i = 0; i < r.size(); i++)
             recipes.add(new AssemblerWrapper(r.get(i)));

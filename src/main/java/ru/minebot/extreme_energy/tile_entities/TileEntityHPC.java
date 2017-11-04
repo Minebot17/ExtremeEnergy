@@ -3,7 +3,7 @@ package ru.minebot.extreme_energy.tile_entities;
 import net.minecraft.item.ItemStack;
 import ru.minebot.extreme_energy.init.ModItems;
 import ru.minebot.extreme_energy.items.modules.ItemVoltageModule;
-import ru.minebot.extreme_energy.recipes.crusher.CrusherRecipes;
+import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 
 public class TileEntityHPC extends TileEntityProcessingBlock {
 

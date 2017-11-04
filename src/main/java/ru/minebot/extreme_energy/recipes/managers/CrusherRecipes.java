@@ -1,4 +1,4 @@
-package ru.minebot.extreme_energy.recipes.crusher;
+package ru.minebot.extreme_energy.recipes.managers;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -7,8 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import ru.minebot.extreme_energy.init.ModItems;
-import ru.minebot.extreme_energy.recipes.assembler.DoubleItem;
-import ru.minebot.extreme_energy.recipes.assembler.FullRecipeAssembler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -183,6 +181,69 @@ public class CrusherRecipes {
                 return recipe.getOutput().getCount();
         }
         return -1;
+    }
+
+    private static class RecipeCrusherString {
+        private String nameFirst;
+        private String nameSecond;
+        private int count;
+        private int energy;
+
+        public RecipeCrusherString(String nameFirst, String nameSecond, int energy){
+            this(nameFirst, nameSecond, energy, 1);
+        }
+
+        public RecipeCrusherString(String nameFirst, String nameSecond, int energy, int count){
+            this.nameFirst = nameFirst;
+            this.nameSecond = nameSecond;
+            this.energy = energy;
+            this.count = count;
+        }
+
+        public String getNameFirst(){ return nameFirst; }
+        public String getNameSecond(){ return nameSecond; }
+        public int getEnergy(){ return energy; }
+        public int getCount(){ return count; }
+    }
+
+    private static class RecipeCrusher {
+        private String name;
+        private ItemStack stack;
+        private int energy;
+
+        public RecipeCrusher(String name, ItemStack stack, int energy){
+            this.name = name;
+            this.stack = stack;
+            this.energy = energy;
+        }
+
+        public String getName(){ return name; }
+        public ItemStack getStack(){ return stack; }
+        public int getEnergy(){ return energy; }
+    }
+
+    public static class FullRecipeCrusher {
+        protected Item input;
+        protected ItemStack output;
+        protected int energy;
+
+        public FullRecipeCrusher(Item input, ItemStack output, int energy){
+            this.input = input;
+            this.output = output;
+            this.energy = energy;
+        }
+
+        public Item getInput(){
+            return input;
+        }
+
+        public ItemStack getOutput(){
+            return output;
+        }
+
+        public int getEnergy(){
+            return energy;
+        }
     }
 }
 

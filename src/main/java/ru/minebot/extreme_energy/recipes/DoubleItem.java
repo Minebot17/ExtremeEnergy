@@ -1,4 +1,4 @@
-package ru.minebot.extreme_energy.recipes.assembler;
+package ru.minebot.extreme_energy.recipes;
 
 import net.minecraft.item.Item;
 

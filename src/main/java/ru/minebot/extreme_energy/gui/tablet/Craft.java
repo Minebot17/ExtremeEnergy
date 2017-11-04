@@ -1,9 +1,6 @@
 package ru.minebot.extreme_energy.gui.tablet;
 
 import com.google.gson.JsonObject;
-import net.minecraft.block.Block;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -23,8 +20,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import ru.minebot.extreme_energy.recipes.assembler.AssemblerRecipes;
-import ru.minebot.extreme_energy.recipes.crusher.CrusherRecipes;
+import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
+import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 
 import java.util.*;
 

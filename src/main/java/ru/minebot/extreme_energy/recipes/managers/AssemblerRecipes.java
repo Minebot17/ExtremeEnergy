@@ -1,4 +1,4 @@
-package ru.minebot.extreme_energy.recipes.assembler;
+package ru.minebot.extreme_energy.recipes.managers;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -7,11 +7,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import ru.minebot.extreme_energy.init.ModBlocks;
 import ru.minebot.extreme_energy.init.ModItems;
+import ru.minebot.extreme_energy.recipes.DoubleItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class AssemblerRecipes {
 
@@ -22,11 +22,11 @@ public class AssemblerRecipes {
     protected static HashMap<DoubleItem, Integer> energy;
 
     public static void init() throws Exception {
-        recipes = new HashMap<DoubleItem, ItemStack>();
-        halfDictionary = new ArrayList<RecipeAssembler>();
-        possibleOres = new ArrayList<RecipeAssemblerString>();
-        energy = new HashMap<DoubleItem, Integer>();
-        recipesList = new ArrayList<FullRecipeAssembler>();
+        recipes = new HashMap<>();
+        halfDictionary = new ArrayList<>();
+        possibleOres = new ArrayList<>();
+        energy = new HashMap<>();
+        recipesList = new ArrayList<>();
 
         halfDictionaryRecipes();
         halfDictionaryToRecipes();
@@ -138,5 +138,67 @@ public class AssemblerRecipes {
             }
         }
         return result;
+    }
+
+    private static class RecipeAssembler {
+        private String nameFirst;
+        private Item itemSecond;
+        private ItemStack stack;
+        private int energy;
+
+        public RecipeAssembler(String nameFirst, Item itemSecond, ItemStack stack, int energy){
+            this.nameFirst = nameFirst;
+            this.itemSecond = itemSecond;
+            this.energy = energy;
+            this.stack = stack;
+        }
+
+        public String getNameFirst(){ return nameFirst; }
+        public Item getItemSecond(){ return itemSecond; }
+        public ItemStack getStack(){ return stack; }
+        public int getEnergy(){ return energy; }
+    }
+
+    private static class RecipeAssemblerString {
+        private String nameFirst;
+        private String nameSecond;
+        private ItemStack stack;
+        private int energy;
+
+        public RecipeAssemblerString(String nameFirst, String nameSecond, ItemStack stack, int energy){
+            this.nameFirst = nameFirst;
+            this.nameSecond = nameSecond;
+            this.energy = energy;
+            this.stack = stack;
+        }
+
+        public String getNameFirst(){ return nameFirst; }
+        public String getNameSecond(){ return nameSecond; }
+        public ItemStack getStack(){ return stack; }
+        public int getEnergy(){ return energy; }
+    }
+
+    public static class FullRecipeAssembler {
+        protected DoubleItem input;
+        protected ItemStack output;
+        protected int energy;
+
+        public FullRecipeAssembler(DoubleItem input, ItemStack output, int energy){
+            this.input = input;
+            this.output = output;
+            this.energy = energy;
+        }
+
+        public DoubleItem getInput(){
+            return input;
+        }
+
+        public ItemStack getOutput(){
+            return output;
+        }
+
+        public int getEnergy(){
+            return energy;
+        }
     }
 }

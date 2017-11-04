@@ -25,8 +25,8 @@ import ru.minebot.extreme_energy.network.NetworkWrapper;
 import ru.minebot.extreme_energy.network.PacketRegister;
 import ru.minebot.extreme_energy.proxy.CommonProxy;
 import ru.minebot.extreme_energy.recipes.ModCrafts;
-import ru.minebot.extreme_energy.recipes.assembler.AssemblerRecipes;
-import ru.minebot.extreme_energy.recipes.crusher.CrusherRecipes;
+import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
+import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 
 // Hello, coder. Author - Minebot
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies= RedstoneFlux.VERSION_GROUP)

@@ -11,11 +11,7 @@ import mezz.jei.gui.elements.DrawableResource;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import ru.minebot.extreme_energy.integration.jei.assembler.AssemblerWrapper;
-import ru.minebot.extreme_energy.recipes.assembler.AssemblerRecipes;
-import ru.minebot.extreme_energy.recipes.assembler.FullRecipeAssembler;
-import ru.minebot.extreme_energy.recipes.crusher.CrusherRecipes;
-import ru.minebot.extreme_energy.recipes.crusher.FullRecipeCrusher;
+import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -84,7 +80,7 @@ public class CrusherCategory implements IRecipeCategory {
     }
 
     public static List<CrusherWrapper> getRecipes(){
-        List<FullRecipeCrusher> r = CrusherRecipes.recipesList;
+        List<CrusherRecipes.FullRecipeCrusher> r = CrusherRecipes.recipesList;
         List<CrusherWrapper> recipes = new ArrayList<>();
         for (int i = 0; i < r.size(); i++)
             recipes.add(new CrusherWrapper(r.get(i)));

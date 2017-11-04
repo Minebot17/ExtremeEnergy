@@ -4,17 +4,16 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import ru.minebot.extreme_energy.recipes.assembler.FullRecipeAssembler;
+import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 public class AssemblerWrapper implements IRecipeWrapper {
-    private FullRecipeAssembler recipe;
+    private AssemblerRecipes.FullRecipeAssembler recipe;
 
-    public AssemblerWrapper(FullRecipeAssembler recipe){
+    public AssemblerWrapper(AssemblerRecipes.FullRecipeAssembler recipe){
         this.recipe = recipe;
     }
 

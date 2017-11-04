@@ -4,17 +4,16 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import ru.minebot.extreme_energy.recipes.assembler.FullRecipeAssembler;
-import ru.minebot.extreme_energy.recipes.crusher.FullRecipeCrusher;
+import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class CrusherWrapper implements IRecipeWrapper {
-    private FullRecipeCrusher recipe;
+    private CrusherRecipes.FullRecipeCrusher recipe;
 
-    public CrusherWrapper(FullRecipeCrusher recipe){
+    public CrusherWrapper(CrusherRecipes.FullRecipeCrusher recipe){
         this.recipe = recipe;
     }
 

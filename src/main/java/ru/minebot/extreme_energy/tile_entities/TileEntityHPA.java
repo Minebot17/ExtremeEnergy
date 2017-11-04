@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import ru.minebot.extreme_energy.init.ModItems;
 import ru.minebot.extreme_energy.items.assembler.ItemElectricalCarver;
 import ru.minebot.extreme_energy.items.modules.ItemVoltageModule;
-import ru.minebot.extreme_energy.recipes.assembler.AssemblerRecipes;
+import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
 
 public class TileEntityHPA extends TileEntityProcessingBlock {
 
