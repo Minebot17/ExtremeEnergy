@@ -29,6 +29,7 @@ public class ModBlocks {
             htf,
             hpc,
             hpa,
+            has,
             fc,
             ft,
             sg,
@@ -60,6 +61,7 @@ public class ModBlocks {
         htf = new BlockHTF();
         hpc = new BlockHPC();
         hpa = new BlockHPA();
+        has = new BlockHAS();
         fc = new BlockFC();
         ft = new BlockFT();
         sg = new BlockSG();
@@ -90,6 +92,7 @@ public class ModBlocks {
         registerBlock(htf);
         registerBlock(hpc);
         registerBlock(hpa);
+        registerBlock(has);
         registerBlock(fc);
         registerBlock(ft);
         registerBlock(sg);
@@ -120,6 +123,7 @@ public class ModBlocks {
         registerRender(htf);
         registerRender(hpc);
         registerRender(hpa);
+        registerRender(has);
         registerRender(fc);
         registerRender(ft);
         registerRender(sg);

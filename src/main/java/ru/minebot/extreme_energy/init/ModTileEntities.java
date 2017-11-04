@@ -23,5 +23,6 @@ public class ModTileEntities {
         GameRegistry.registerTileEntity(TileEntityNR.class, "tile_entity_NR");
         GameRegistry.registerTileEntity(TileEntityLightningRod.class, "tile_entity_LR");
         GameRegistry.registerTileEntity(EnergySenderCable.class, "tile_entity_cable");
+        GameRegistry.registerTileEntity(TileEntityHAS.class, "tile_entity_HAS");
     }
 }

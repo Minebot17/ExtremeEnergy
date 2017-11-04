@@ -16,15 +16,15 @@ import ru.minebot.extreme_energy.Reference;
 import ru.minebot.extreme_energy.energy.IFieldCreatorEnergy;
 import ru.minebot.extreme_energy.energy.IFieldReceiverEnergy;
 import ru.minebot.extreme_energy.init.ModGuiHandler;
-import ru.minebot.extreme_energy.tile_entities.TileEntityHTF;
+import ru.minebot.extreme_energy.tile_entities.TileEntityHAS;
 
 import javax.annotation.Nullable;
 
-public class BlockHTF extends BlockFaceActive implements ITileEntityProvider {
+public class BlockHAS  extends BlockFaceActive implements ITileEntityProvider {
 
-    public BlockHTF(){
-        setUnlocalizedName(Reference.ExtremeEnergyBlocks.HTF.getUnlocalizedName());
-        setRegistryName(Reference.ExtremeEnergyBlocks.HTF.getRegistryName());
+    public BlockHAS(){
+        setUnlocalizedName(Reference.ExtremeEnergyBlocks.HAS.getUnlocalizedName());
+        setRegistryName(Reference.ExtremeEnergyBlocks.HAS.getRegistryName());
         setHardness(5);
         setCreativeTab(ExtremeEnergy.tabExtremeEnergy);
         setHarvestLevel("pickaxe", 2);
@@ -33,12 +33,12 @@ public class BlockHTF extends BlockFaceActive implements ITileEntityProvider {
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityHTF();
+        return new TileEntityHAS();
     }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState blockstate) {
-        TileEntityHTF te = (TileEntityHTF) world.getTileEntity(pos);
+        TileEntityHAS te = (TileEntityHAS) world.getTileEntity(pos);
         if (te.getLink() != null) {
             IFieldCreatorEnergy creator = ((IFieldCreatorEnergy) world.getTileEntity(te.getLink()));
             creator.brokeLink(te.getPos());
@@ -54,14 +54,14 @@ public class BlockHTF extends BlockFaceActive implements ITileEntityProvider {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
         ((IFieldReceiverEnergy)worldIn.getTileEntity(pos)).applyCreatorsAround();
         if (stack.hasDisplayName()) {
-            ((TileEntityHTF) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
+            ((TileEntityHAS) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
         }
     }
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote) {
-            playerIn.openGui(ExtremeEnergy.instance, ModGuiHandler.HTF_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.openGui(ExtremeEnergy.instance, ModGuiHandler.HAS_GUI, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }

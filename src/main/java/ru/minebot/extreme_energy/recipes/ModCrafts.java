@@ -26,6 +26,7 @@ public class ModCrafts {
         addShapedRecipe(new ResourceLocation("meem:nr"), null, new ItemStack(ModBlocks.nr), "CHC", "VBV", "CHC", 'C', ModItems.copperIngot, 'B', ModItems.bigCrystal, 'V', ModItems.heatModule, 'H', ModItems.reinforcedHeavyPlate);
         //</editor-fold>
         //<editor-fold desc="Basic">
+        addShapedRecipe(new ResourceLocation("meem:has"), null, new ItemStack(ModBlocks.has), "CAC", "RMR", "CHC", 'C', ModItems.copperIngot, 'M', ModItems.crystal, 'A', ModItems.antenna, 'R', ModItems.electricCarver, 'H', ModItems.heavyIngot);
         addShapedRecipe(new ResourceLocation("meem:hpa"), null, new ItemStack(ModBlocks.hpa), "CCC", "CSC", "HHH", 'C', ModItems.copperIngot, 'S', ModItems.smallCrystal, 'H', ModItems.heavyIngot);
         addShapedRecipe(new ResourceLocation("meem:hvg"), null, new ItemStack(ModBlocks.hvg), "HAH", "PMP", "VJV", 'A', ModItems.antenna, 'M', ModItems.crystal, 'H', ModItems.heavyIngot, 'P', ModItems.processor, 'V', ModItems.voltageModule, 'J', ModItems.heavyPlate);
         addShapedRecipe(new ResourceLocation("meem:htf"), null, new ItemStack(ModBlocks.htf), "CAC", "RMR", "CHC", 'C', ModItems.copperIngot, 'M', ModItems.crystal, 'H', ModItems.heavyIngot, 'R', ModItems.ironRod, 'A', ModItems.antenna);

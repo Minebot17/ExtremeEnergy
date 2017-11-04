@@ -27,6 +27,7 @@ import ru.minebot.extreme_energy.proxy.CommonProxy;
 import ru.minebot.extreme_energy.recipes.ModCrafts;
 import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
 import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
+import ru.minebot.extreme_energy.recipes.managers.SawmillRecipes;
 
 // Hello, coder. Author - Minebot
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies= RedstoneFlux.VERSION_GROUP)
@@ -54,6 +55,7 @@ public class ExtremeEnergy {
         ModEntitiesRegister.register();
         CrusherRecipes.init();
         AssemblerRecipes.init();
+        SawmillRecipes.init();
         proxy.preInit(event);
     }
 

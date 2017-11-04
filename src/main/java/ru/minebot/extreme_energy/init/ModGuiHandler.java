@@ -45,6 +45,7 @@ public class ModGuiHandler implements IGuiHandler {
     public static final int NUCLEAR_ENERGY_MODULE_GUI = 24;
     public static final int MARKER_SCREEN = 25;
     public static final int ENERGYBALANCER_GUI = 26;
+    public static final int HAS_GUI = 27;
 
     @Nullable
     @Override
@@ -92,6 +93,8 @@ public class ModGuiHandler implements IGuiHandler {
             return new NuclearEnergyModuleContainer(player.inventory, player.inventory.getCurrentItem());
         else if (ID == ENERGYBALANCER_GUI)
             return new EnergyBalancerContainer(player.inventory, new InventoryEnergyBalancer(world, player.inventory.getCurrentItem()));
+        else if (ID == HAS_GUI)
+            return new HasContainer(player, player.inventory, (TileEntityHAS) world.getTileEntity(pos));
 
         return null;
     }
@@ -179,6 +182,8 @@ public class ModGuiHandler implements IGuiHandler {
         }
         else if (ID == ENERGYBALANCER_GUI)
             return new EnergyBalancerGui(world, player.inventory, player.inventory.getCurrentItem());
+        else if (ID == HAS_GUI)
+            return new HasGui(player, player.inventory, (TileEntityHAS) world.getTileEntity(pos));
 
         return null;
     }

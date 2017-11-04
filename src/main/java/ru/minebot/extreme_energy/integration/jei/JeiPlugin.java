@@ -7,6 +7,7 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import ru.minebot.extreme_energy.gui.HasGui;
 import ru.minebot.extreme_energy.gui.HpaGui;
 import ru.minebot.extreme_energy.gui.HpcGui;
 import ru.minebot.extreme_energy.gui.containers.HpaContainer;
@@ -14,6 +15,7 @@ import ru.minebot.extreme_energy.init.ModBlocks;
 import ru.minebot.extreme_energy.init.ModItems;
 import ru.minebot.extreme_energy.integration.jei.assembler.AssemblerCategory;
 import ru.minebot.extreme_energy.integration.jei.crusher.CrusherCategory;
+import ru.minebot.extreme_energy.integration.jei.sawmill.SawmillCategory;
 import ru.minebot.extreme_energy.items.ItemCalifornium;
 
 @JEIPlugin
@@ -33,6 +35,7 @@ public class JeiPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration iRecipeCategoryRegistration) {
         iRecipeCategoryRegistration.addRecipeCategories(new AssemblerCategory());
         iRecipeCategoryRegistration.addRecipeCategories(new CrusherCategory());
+        iRecipeCategoryRegistration.addRecipeCategories(new SawmillCategory());
     }
 
     @Override
@@ -45,11 +48,13 @@ public class JeiPlugin implements IModPlugin {
         iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.htf)), "minecraft.smelting");
         iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.hpa)), "meem.assembler");
         iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.hpc)), "meem.crusher");
+        iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.has)), "meem.sawmill");
         iModRegistry.addRecipes(AssemblerCategory.getRecipes(), "meem.assembler");
         iModRegistry.addRecipes(CrusherCategory.getRecipes(), "meem.crusher");
+        iModRegistry.addRecipes(SawmillCategory.getRecipes(), "meem.sawmill");
         iModRegistry.addRecipeClickArea(HpaGui.class, 69, 32, 29, 17, "meem.assembler");
         iModRegistry.addRecipeClickArea(HpcGui.class, 69, 25, 30, 41, "meem.crusher");
-        //iModRegistry.addIngredientInfo(ModItems.californium, ItemCalifornium.class, "Drops out after the explosion block (1-3 thing)");
+        iModRegistry.addRecipeClickArea(HasGui.class, 72, 30, 22, 22, "meem.sawmill");
     }
 
     @Override
