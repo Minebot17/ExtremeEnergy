@@ -15,8 +15,8 @@ public class HpaGui extends ReceiverGui<TileEntityHPA> {
     protected void drawBackground(float partialTicks, int mouseX, int mouseY) {
         if (te.isInvalid())
             te = (TileEntityHPA) te.getWorld().getTileEntity(te.getPos());
-        if (te.isBurn){
-            this.drawTexturedModalRect(69 + guiLeft, 32 + guiTop, 176, 0, te.burnPhase, 18); // 30 phase
+        if (te.isWork){
+            this.drawTexturedModalRect(69 + guiLeft, 32 + guiTop, 176, 0, te.workPhase, 18); // 30 phase
         }
     }
 

@@ -15,8 +15,8 @@ public class HpcGui extends ReceiverGui<TileEntityHPC> {
     protected void drawBackground(float partialTicks, int mouseX, int mouseY) {
         if (te.isInvalid())
             te = (TileEntityHPC) te.getWorld().getTileEntity(te.getPos());
-        if (te.isBurn){
-            this.drawTexturedModalRect(69 + guiLeft, 25 + guiTop, 176, 0, te.burnPhase + 1, 42); // 30 phase
+        if (te.isWork){
+            this.drawTexturedModalRect(69 + guiLeft, 25 + guiTop, 176, 0, te.workPhase + 1, 42); // 30 phase
         }
     }
 

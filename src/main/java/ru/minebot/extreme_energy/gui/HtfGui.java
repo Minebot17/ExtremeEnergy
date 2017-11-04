@@ -17,8 +17,8 @@ public class HtfGui extends ReceiverGui<TileEntityHTF> {
     protected void drawBackground(float partialTicks, int mouseX, int mouseY) {
         if (te.isInvalid())
             te = (TileEntityHTF) te.getWorld().getTileEntity(te.getPos());
-        if (te.isBurn){
-            this.drawTexturedModalRect(70 + guiLeft, 33 + guiTop, 176, 0, te.burnPhase + 1, 16);
+        if (te.isWork){
+            this.drawTexturedModalRect(70 + guiLeft, 33 + guiTop, 176, 0, te.workPhase + 1, 16);
         }
     }
 
