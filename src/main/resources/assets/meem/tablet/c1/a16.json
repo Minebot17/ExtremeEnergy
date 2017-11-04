@@ -5,7 +5,7 @@
 		{ "type": "label", "text": "key0"},
 		{ "type": "craft", "style": "w", "item": "BlockLightningRod" },
 		{ "type": "label", "text": "key1"},
-		{ "type": "craft", "style": "w", "item": "BlockMetalPillar" },
+		{ "type": "craft", "style": "w", "item": "BlockMetalPillar" }
 	],
 	"key": "BlockLightningRod, BlockMetalPillar"
 }

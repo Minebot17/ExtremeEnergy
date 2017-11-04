@@ -99,6 +99,7 @@ public class TabletRender {
                         try {
                             elements.add(Element.getElement((JsonObject) obj, i, j));
                         } catch (Exception e) {
+                            System.out.println("Error in " + i + " chapter " + j + " article!");
                             e.printStackTrace();
                         }
                     }

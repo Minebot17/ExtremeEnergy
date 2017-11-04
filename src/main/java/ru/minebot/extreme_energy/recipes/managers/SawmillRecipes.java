@@ -51,13 +51,6 @@ public class SawmillRecipes {
         putRecipe(Items.BOWL, new ItemStack(Blocks.PLANKS, 1), 2000);
         putRecipe(Items.SIGN, new ItemStack(Blocks.PLANKS, 2), 4000);
 
-        putRecipe(Item.getItemFromBlock(Blocks.OAK_DOOR), new ItemStack(Blocks.PLANKS, 1), 4000);
-        putRecipe(Item.getItemFromBlock(Blocks.SPRUCE_DOOR), new ItemStack(Blocks.PLANKS, 1), 4000);
-        putRecipe(Item.getItemFromBlock(Blocks.BIRCH_DOOR), new ItemStack(Blocks.PLANKS, 1), 4000);
-        putRecipe(Item.getItemFromBlock(Blocks.JUNGLE_DOOR), new ItemStack(Blocks.PLANKS, 1), 4000);
-        putRecipe(Item.getItemFromBlock(Blocks.ACACIA_DOOR), new ItemStack(Blocks.PLANKS, 1), 4000);
-        putRecipe(Item.getItemFromBlock(Blocks.DARK_OAK_DOOR), new ItemStack(Blocks.PLANKS, 1), 4000);
-
         putRecipe(Item.getItemFromBlock(Blocks.OAK_FENCE), new ItemStack(Blocks.PLANKS, 1), 4000);
         putRecipe(Item.getItemFromBlock(Blocks.SPRUCE_FENCE), new ItemStack(Blocks.PLANKS, 1), 4000);
         putRecipe(Item.getItemFromBlock(Blocks.BIRCH_FENCE), new ItemStack(Blocks.PLANKS, 1), 4000);

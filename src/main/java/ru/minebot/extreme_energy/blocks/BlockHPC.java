@@ -17,7 +17,6 @@ import ru.minebot.extreme_energy.energy.IFieldCreatorEnergy;
 import ru.minebot.extreme_energy.energy.IFieldReceiverEnergy;
 import ru.minebot.extreme_energy.init.ModGuiHandler;
 import ru.minebot.extreme_energy.tile_entities.TileEntityHPC;
-import ru.minebot.extreme_energy.tile_entities.TileEntityHTF;
 
 import javax.annotation.Nullable;
 
@@ -39,7 +38,7 @@ public class BlockHPC extends BlockFaceActive implements ITileEntityProvider {
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState blockstate) {
-        TileEntityHTF te = (TileEntityHTF) world.getTileEntity(pos);
+        TileEntityHPC te = (TileEntityHPC) world.getTileEntity(pos);
         if (te.getLink() != null) {
             IFieldCreatorEnergy creator = ((IFieldCreatorEnergy) world.getTileEntity(te.getLink()));
             creator.brokeLink(te.getPos());
@@ -55,7 +54,7 @@ public class BlockHPC extends BlockFaceActive implements ITileEntityProvider {
         super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
         ((IFieldReceiverEnergy)worldIn.getTileEntity(pos)).applyCreatorsAround();
         if (stack.hasDisplayName()) {
-            ((TileEntityHTF) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
+            ((TileEntityHPC) worldIn.getTileEntity(pos)).setCustomName(stack.getDisplayName());
         }
     }
 
