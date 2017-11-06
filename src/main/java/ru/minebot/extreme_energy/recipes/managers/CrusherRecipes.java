@@ -123,7 +123,7 @@ public class CrusherRecipes {
         for (int i = 0; i < possibleOres.size(); i++)
             if (OreDictionary.doesOreNameExist(possibleOres.get(i).getNameFirst()) && OreDictionary.doesOreNameExist(possibleOres.get(i).getNameSecond())){
                 NonNullList<ItemStack> items = OreDictionary.getOres(possibleOres.get(i).getNameFirst());
-                if (items.size() != 0)
+                if (items.size() == 0)
                     break;
 
                 ItemStack out = OreDictionary.getOres(possibleOres.get(i).getNameSecond()).get(0);
