@@ -123,14 +123,17 @@ public class CrusherRecipes {
         for (int i = 0; i < possibleOres.size(); i++)
             if (OreDictionary.doesOreNameExist(possibleOres.get(i).getNameFirst()) && OreDictionary.doesOreNameExist(possibleOres.get(i).getNameSecond())){
                 NonNullList<ItemStack> items = OreDictionary.getOres(possibleOres.get(i).getNameFirst());
-                ItemStack out = OreDictionary.getOres(possibleOres.get(i).getNameSecond()).get(0);
-                out.setCount(possibleOres.get(i).getCount());
-                if (items.size() == 0 || out == null)
-                    throw new Exception("Invalid crusher recipes");
-                for (int j = 0; j < items.size(); j++) {
-                    recipes.put(items.get(j).getItem(), out);
-                    energy.put(items.get(j).getItem(), possibleOres.get(i).getEnergy());
+                try {
+                    ItemStack out = OreDictionary.getOres(possibleOres.get(i).getNameSecond()).get(0);
+                    out.setCount(possibleOres.get(i).getCount());
+                    if (items.size() == 0 || out == null)
+                        throw new Exception("Invalid crusher recipes");
+                    for (int j = 0; j < items.size(); j++) {
+                        recipes.put(items.get(j).getItem(), out);
+                        energy.put(items.get(j).getItem(), possibleOres.get(i).getEnergy());
+                    }
                 }
+                catch(IndexOutOfBoundsException e){e.printStackTrace();}
             }
     }
 
