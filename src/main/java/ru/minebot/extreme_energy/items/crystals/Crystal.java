@@ -30,7 +30,7 @@ public class Crystal extends Item {
         setUnlocalizedName(unlocName);
         setRegistryName(regName);
         setCreativeTab(ExtremeEnergy.tabExtremeEnergy);
-        setMaxStackSize(64);
+        setMaxStackSize(1);
         this.maxCharge = maxCharge;
         this.power = power + 1;
     }
@@ -42,14 +42,16 @@ public class Crystal extends Item {
                 EntityPlayer player = (EntityPlayer) entityIn;
                 ItemStack item = null;
                 for (int i = 0; i < player.inventory.getSizeInventory(); i++)
-                    if (player.inventory.getStackInSlot(i).getItem() instanceof IEnergyContainerItem)
-                        item = player.inventory.getStackInSlot(i);
-                boolean a = true;
-                if (item != null)
-                    if (((IEnergyContainerItem)item.getItem()).receiveEnergy(item, extract(stack, ((EntityPlayer) entityIn).inventory, itemSlot), false) != 0)
-                        a = false;
-                if (a) {
-                    extract(stack, ((EntityPlayer) entityIn).inventory, itemSlot);
+                    if (player.inventory.getStackInSlot(i).getItem() instanceof IEnergyContainerItem) {
+                        int maxReceive = ((IEnergyContainerItem)player.inventory.getStackInSlot(i).getItem()).receiveEnergy(player.inventory.getStackInSlot(i), getMaxExtract(), true);
+                        if (maxReceive != 0){
+                            item = player.inventory.getStackInSlot(i);
+                            ((IEnergyContainerItem)item.getItem()).receiveEnergy(item, extract(stack, (EntityPlayer) entityIn, itemSlot, maxReceive), false);
+                            break;
+                        }
+                    }
+                if (item == null) {
+                    extract(stack, (EntityPlayer) entityIn, itemSlot, getMaxExtract());
                     player.addPotionEffect(new PotionEffect(Potion.getPotionById(20), 10, power * 2));
                     player.addPotionEffect(new PotionEffect(Potion.getPotionById(1), 10, 1));
                 }
@@ -68,19 +70,19 @@ public class Crystal extends Item {
             tooltip.add(tag.getInteger("charge") + "/" + maxCharge + " RF");
     }
 
-    public int extract(ItemStack stack, IInventory inv, int slot){
+    public int extract(ItemStack stack, EntityPlayer entity, int slot, int maxExtract){
         NBTTagCompound tag = ModUtils.getNotNullCategory(stack);
         if (!tag.hasKey("charge"))
             tag.setInteger("charge", maxCharge);
-        tag.setInteger("charge", tag.getInteger("charge") - getMaxExtract());
+        tag.setInteger("charge", tag.getInteger("charge") - maxExtract);
         if (tag.getInteger("charge") < 1) {
-            inv.removeStackFromSlot(slot);
-            inv.setInventorySlotContents(slot, power == 1 ? new ItemStack(ModItems.smallCrystal) : power == 2 ? new ItemStack(ModItems.crystal) : new ItemStack(ModItems.bigCrystal));
+            entity.inventory.removeStackFromSlot(slot);
+            entity.addItemStackToInventory(power == 1 ? new ItemStack(ModItems.smallCrystal) : power == 2 ? new ItemStack(ModItems.crystal) : new ItemStack(ModItems.bigCrystal));
         }
-        return getMaxExtract();
+        return maxExtract;
     }
 
-    public int getMaxExtract(){ return power == 1 ? 500 : power == 2 ? 5000 : 50000; }
+    public int getMaxExtract(){ return power == 1 ? 100 : power == 2 ? 1000 : 10000; }
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {

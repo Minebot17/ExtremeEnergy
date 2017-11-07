@@ -51,8 +51,6 @@ public class TileEntityHVG extends FieldCreatorStandart implements IInventory, I
         if (world.getTotalWorldTime()%5==0 && !stack.isEmpty() && getEnergyStored() < getMaxEnergyStored()) {
             if (stack.getItem() instanceof  IEnergyContainerItem)
                 receiveEnergy(((IEnergyContainerItem) stack.getItem()).extractEnergy(stack, maxReceive, false), false);
-            else if (stack.getItem() instanceof Crystal)
-                receiveEnergy(((Crystal)stack.getItem()).extract(stack, this, 0), false);
         }
     }
 
