@@ -37,6 +37,10 @@ public class TileEntityEB extends EnergySender implements IModuleProvider, IInve
         active = true;
     }
 
+    public void setEnergy(int energy){
+        this.energy = energy;
+    }
+
     @Override
     public void update() {
         super.update();
