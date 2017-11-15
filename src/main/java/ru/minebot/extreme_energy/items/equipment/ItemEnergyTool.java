@@ -68,6 +68,8 @@ public class ItemEnergyTool extends ItemTool{
     }
 
     protected int getEffective(IBlockState block, int mode){
+        if (block == null)
+            return 3;
         String tool = block.getBlock().getHarvestTool(block);
         if (tool == null)
             return 3;
