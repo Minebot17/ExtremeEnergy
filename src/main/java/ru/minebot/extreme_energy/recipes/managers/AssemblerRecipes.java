@@ -78,7 +78,7 @@ public class AssemblerRecipes {
                 if (items.size() == 0 || out == null)
                     throw new Exception("Invalid assembler recipes");
                 for (int j = 0; j < items.size(); j++)
-                    putRecipe(items.get(j).getItem(), halfDictionary.get(i).getItemSecond(), out, halfDictionary.get(i).getEnergy());
+                    putRecipe(items.get(j), halfDictionary.get(i).getItemSecond(), out, halfDictionary.get(i).getEnergy());
             }
     }
 
@@ -91,8 +91,8 @@ public class AssemblerRecipes {
                 if (items1.size() == 0 || items1.size() == 0 || out == null)
                     throw new Exception("Invalid assembler recipes");
                 for (int n = 0; n < items1.size(); n++)
-                    for (int m = 0; m < items1.size(); m++)
-                        putRecipe(items1.get(n).getItem(), items2.get(m).getItem(), out, possibleOres.get(i).getEnergy());
+                    for (int m = 0; m < items2.size(); m++)
+                        putRecipe(items1.get(n), items2.get(m), out, possibleOres.get(i).getEnergy());
             }
     }
 
@@ -103,28 +103,39 @@ public class AssemblerRecipes {
         }
     }
 
-    protected static void putRecipe(Item item1, Item item2, ItemStack stack, int energy_){
+    protected static void putRecipe(ItemStack item1, ItemStack item2, ItemStack stack, int energy_){
         recipes.put(new DoubleItem(item1, item2), stack);
         energy.put(new DoubleItem(item1, item2), energy_);
     }
-
-    // Public methods
-    public static boolean hasRecipe(Item item1, Item item2){
-        return recipes.containsKey(new DoubleItem(item1, item2));
+    protected static void putRecipe(Item item1, Item item2, ItemStack stack, int energy_){
+        ItemStack itemStack1 = new ItemStack(item1);
+        ItemStack itemStack2 = new ItemStack(item2);
+        recipes.put(new DoubleItem(itemStack1, itemStack2), stack);
+        energy.put(new DoubleItem(itemStack1, itemStack2), energy_);
     }
 
-    public static ItemStack getOut(Item item1, Item item2){
-        ItemStack stack = recipes.get(new DoubleItem(item1, item2));
-        if (stack == null)
-            stack = recipes.get(new DoubleItem(item2, item1));
-        return stack != null ? stack : ItemStack.EMPTY;
+    public static ItemStack getOut(ItemStack item1, ItemStack item2){
+        ItemStack stack = ItemStack.EMPTY;
+        List<DoubleItem> stacks = new ArrayList<>(recipes.keySet());
+        for (DoubleItem itemStack : stacks)
+            if (ItemStack.areItemStacksEqual(itemStack.getItemFirst(), item1) && ItemStack.areItemStacksEqual(itemStack.getItemSecond(), item2) || ItemStack.areItemStacksEqual(itemStack.getItemSecond(), item1) && ItemStack.areItemStacksEqual(itemStack.getItemFirst(), item2)) {
+                stack = recipes.get(itemStack);
+                break;
+            }
+
+        return stack;
     }
 
-    public static int getEnergy(Item item1, Item item2){
-        try {
-            return hasRecipe(item1, item2) ? energy.get(new DoubleItem(item1, item2)) : energy.get(new DoubleItem(item2, item1));
-        }
-        catch (NullPointerException e){ return 0; }
+    public static int getEnergy(ItemStack item1, ItemStack item2){
+        int energy = 0;
+        List<DoubleItem> stacks = new ArrayList<>(AssemblerRecipes.energy.keySet());
+        for (DoubleItem itemStack : stacks)
+            if (ItemStack.areItemStacksEqual(itemStack.getItemFirst(), item1) && ItemStack.areItemStacksEqual(itemStack.getItemSecond(), item2) || ItemStack.areItemStacksEqual(itemStack.getItemSecond(), item1) && ItemStack.areItemStacksEqual(itemStack.getItemFirst(), item2)) {
+                energy = AssemblerRecipes.energy.get(itemStack);
+                break;
+            }
+
+        return energy;
     }
 
     public static List<List<ItemStack>> getElements(ItemStack stack){
@@ -132,8 +143,8 @@ public class AssemblerRecipes {
         for(FullRecipeAssembler recipe : recipesList){
             if (recipe.output.getItem() == stack.getItem()) {
                 List<ItemStack> list = new ArrayList<>();
-                list.add(new ItemStack(recipe.getInput().getItemFirst()));
-                list.add(new ItemStack(recipe.getInput().getItemSecond()));
+                list.add(recipe.getInput().getItemFirst());
+                list.add(recipe.getInput().getItemSecond());
                 result.add(list);
             }
         }
@@ -142,11 +153,15 @@ public class AssemblerRecipes {
 
     private static class RecipeAssembler {
         private String nameFirst;
-        private Item itemSecond;
+        private ItemStack itemSecond;
         private ItemStack stack;
         private int energy;
 
         public RecipeAssembler(String nameFirst, Item itemSecond, ItemStack stack, int energy){
+            this(nameFirst, new ItemStack(itemSecond), stack, energy);
+        }
+
+        public RecipeAssembler(String nameFirst, ItemStack itemSecond, ItemStack stack, int energy){
             this.nameFirst = nameFirst;
             this.itemSecond = itemSecond;
             this.energy = energy;
@@ -154,7 +169,7 @@ public class AssemblerRecipes {
         }
 
         public String getNameFirst(){ return nameFirst; }
-        public Item getItemSecond(){ return itemSecond; }
+        public ItemStack getItemSecond(){ return itemSecond; }
         public ItemStack getStack(){ return stack; }
         public int getEnergy(){ return energy; }
     }

@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import ru.minebot.extreme_energy.init.ModBlocks;
 
+import static ru.minebot.extreme_energy.init.ModConfig.*;
 import java.util.Random;
 
 public class WorldGen implements IWorldGenerator {
@@ -21,23 +22,23 @@ public class WorldGen implements IWorldGenerator {
     private WorldGenerator uraniumGen;
 
     public WorldGen(){
-        smallCristalGen = new WorldGenMinable(ModBlocks.smallCristalOre.getDefaultState(), 4);
-        cristalGen = new WorldGenMinable(ModBlocks.cristalOre.getDefaultState(), 3);
-        bigCristalGen = new WorldGenMinable(ModBlocks.bigCristalOre.getDefaultState(), 3);
+        smallCristalGen = new WorldGenMinable(ModBlocks.smallCristalOre.getDefaultState(), smallCristalOreSetting.count);
+        cristalGen = new WorldGenMinable(ModBlocks.cristalOre.getDefaultState(), cristalOreSetting.count);
+        bigCristalGen = new WorldGenMinable(ModBlocks.bigCristalOre.getDefaultState(), bigCristalOreSetting.count);
 
-        copperGen = new WorldGenMinable(ModBlocks.copperOre.getDefaultState(), 5);
-        uraniumGen = new WorldGenMinable(ModBlocks.uraniumOre.getDefaultState(), 3);
+        copperGen = new WorldGenMinable(ModBlocks.copperOre.getDefaultState(), copperOreSetting.count);
+        uraniumGen = new WorldGenMinable(ModBlocks.uraniumOre.getDefaultState(), uraniumOreSetting.count);
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (world.provider.getDimension() == 0){
-            runGenerator(smallCristalGen, world, random, chunkX, chunkZ, 50, 30, 60);
-            runGenerator(cristalGen, world, random, chunkX, chunkZ, 40, 15, 40);
-            runGenerator(bigCristalGen, world, random, chunkX, chunkZ, 20, 0, 15);
+        if (world.provider.getDimension() == 0 && enableGeneration){
+            runGenerator(smallCristalGen, world, random, chunkX, chunkZ, smallCristalOreSetting.chance, smallCristalOreSetting.minHeight, smallCristalOreSetting.maxHeight);
+            runGenerator(cristalGen, world, random, chunkX, chunkZ, cristalOreSetting.chance, cristalOreSetting.minHeight, cristalOreSetting.maxHeight);
+            runGenerator(bigCristalGen, world, random, chunkX, chunkZ, bigCristalOreSetting.chance, bigCristalOreSetting.minHeight, bigCristalOreSetting.maxHeight);
 
-            runGenerator(copperGen, world, random, chunkX, chunkZ, 50, 10, 50);
-            runGenerator(uraniumGen, world, random, chunkX, chunkZ, 40, 2, 30);
+            runGenerator(copperGen, world, random, chunkX, chunkZ, copperOreSetting.chance, copperOreSetting.minHeight, copperOreSetting.maxHeight);
+            runGenerator(uraniumGen, world, random, chunkX, chunkZ, uraniumOreSetting.chance, uraniumOreSetting.minHeight, uraniumOreSetting.maxHeight);
         }
     }
 

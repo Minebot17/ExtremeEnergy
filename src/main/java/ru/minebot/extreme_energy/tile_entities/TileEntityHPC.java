@@ -13,7 +13,7 @@ public class TileEntityHPC extends TileEntityProcessingBlock {
 
     @Override
     protected void onWorked() {
-        ItemStack out = CrusherRecipes.getOut(inventory[0].getItem()).copy();
+        ItemStack out = CrusherRecipes.getOut(inventory[0]).copy();
         int c1 = 0;
         int c2 = 0;
         if (isSlotValid(out, 1) && isSlotValid(out, 2)) {
@@ -58,7 +58,7 @@ public class TileEntityHPC extends TileEntityProcessingBlock {
         if (inventory[0].isEmpty())
             return false;
 
-        ItemStack itemstack = CrusherRecipes.getOut(inventory[0].getItem()).copy();
+        ItemStack itemstack = CrusherRecipes.getOut(inventory[0]).copy();
 
         if (itemstack.isEmpty())
         {
@@ -77,7 +77,7 @@ public class TileEntityHPC extends TileEntityProcessingBlock {
 
     @Override
     protected int getNeedEnergy() {
-        return CrusherRecipes.getEnergy(inventory[0].getItem());
+        return CrusherRecipes.getEnergy(inventory[0]);
     }
 
     protected boolean isSlotValid(ItemStack stack, int index){

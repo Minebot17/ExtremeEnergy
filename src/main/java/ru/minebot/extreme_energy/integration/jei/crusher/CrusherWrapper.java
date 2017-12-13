@@ -19,7 +19,7 @@ public class CrusherWrapper implements IRecipeWrapper {
 
     @Override
     public void getIngredients(IIngredients iIngredients) {
-        iIngredients.setInput(ItemStack.class, new ItemStack(recipe.getInput()));
+        iIngredients.setInput(ItemStack.class, recipe.getInput());
         iIngredients.setOutput(ItemStack.class, recipe.getOutput());
     }
 

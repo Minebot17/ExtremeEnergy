@@ -246,7 +246,7 @@ public class Craft extends Element implements IClickable{
             pages.text = Collections.singletonList(index + 1 + "/" + crafts.size());
 
             if (type == Type.CRUSHER) {
-                int count = CrusherRecipes.getCount(crafts.get(thisCraft).get(0).getItem());
+                int count = CrusherRecipes.getCount(crafts.get(thisCraft).get(0));
                 output.setCount(count);
             }
             else if (type == Type.WORKBENCH){

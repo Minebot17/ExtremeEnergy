@@ -11,14 +11,16 @@ import ru.minebot.extreme_energy.init.ModItems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.BiFunction;
 
 public class CrusherRecipes {
 
     public static List<FullRecipeCrusher> recipesList;
     protected static ArrayList<RecipeCrusherString> possibleOres;
     protected static ArrayList<RecipeCrusher> ores;
-    protected static HashMap<Item, ItemStack> recipes;
-    protected static HashMap<Item, Integer> energy;
+    protected static HashMap<ItemStack, ItemStack> recipes;
+    protected static HashMap<ItemStack, Integer> energy;
 
     public static void init() throws Exception {
         recipes = new HashMap<>();
@@ -113,8 +115,8 @@ public class CrusherRecipes {
                 if (items.size() == 0)
                     throw new Exception("Invalid crusher recipes");
                 for (int j = 0; j < items.size(); j++) {
-                    recipes.put(items.get(j).getItem(), ores.get(i).getStack());
-                    energy.put(items.get(j).getItem(), ores.get(i).getEnergy());
+                    recipes.put(items.get(j), ores.get(i).getStack());
+                    energy.put(items.get(j), ores.get(i).getEnergy());
                 }
             }
     }
@@ -135,39 +137,52 @@ public class CrusherRecipes {
                 if (items.size() == 0 || out == null)
                     throw new Exception("Invalid crusher recipes");
                 for (int j = 0; j < items.size(); j++) {
-                    recipes.put(items.get(j).getItem(), out);
-                    energy.put(items.get(j).getItem(), possibleOres.get(i).getEnergy());
+                    recipes.put(items.get(j), out);
+                    energy.put(items.get(j), possibleOres.get(i).getEnergy());
                 }
             }
     }
 
-    protected static void putRecipe(Item item, ItemStack stack, int energy_){
+    protected static void putRecipe(ItemStack item, ItemStack stack, int energy_){
         recipes.put(item, stack);
         energy.put(item, energy_);
     }
 
+    protected static void putRecipe(Item item, ItemStack stack, int energy_){
+        ItemStack itemStack = new ItemStack(item);
+        recipes.put(itemStack, stack);
+        energy.put(itemStack, energy_);
+    }
+
     protected static void constructRecipes(){
         Object[] items = recipes.keySet().toArray();
-        for (int i = 0; i < items.length; i++){
-            recipesList.add(new FullRecipeCrusher((Item)items[i], recipes.get(items[i]), energy.get(items[i])));
+        for (int i = 0; i < items.length; i++){ // i = 11
+            recipesList.add(new FullRecipeCrusher((ItemStack) items[i], recipes.get(items[i]), energy.get(items[i])));
         }
     }
 
-    // Public methods
-    public static boolean hasRecipe(Item item){
-        return recipes.containsKey(item);
+    public static ItemStack getOut(ItemStack item){
+        ItemStack stack = ItemStack.EMPTY;
+        List<ItemStack> stacks = new ArrayList<>(recipes.keySet());
+        for (ItemStack itemStack : stacks)
+            if (ItemStack.areItemStacksEqual(itemStack, item)){
+                stack = recipes.get(itemStack);
+                break;
+            }
+
+        return stack;
     }
 
-    public static ItemStack getOut(Item item){
-        ItemStack stack = recipes.get(item);
-        return stack != null ? stack : ItemStack.EMPTY;
-    }
+    public static int getEnergy(ItemStack item){
+        int energy = 0;
+        List<ItemStack> stacks = new ArrayList<>(CrusherRecipes.energy.keySet());
+        for (ItemStack itemStack : stacks)
+            if (ItemStack.areItemStacksEqual(itemStack, item)){
+                energy = CrusherRecipes.energy.get(itemStack);
+                break;
+            }
 
-    public static int getEnergy(Item item){
-        try {
-            return energy.get(item);
-        }
-        catch (NullPointerException e){ return 0; }
+        return energy;
     }
 
     public static List<List<ItemStack>> getElements(ItemStack stack){
@@ -175,14 +190,14 @@ public class CrusherRecipes {
         for(FullRecipeCrusher recipe : recipesList){
             if (recipe.output.getItem() == stack.getItem()) {
                 List<ItemStack> list = new ArrayList<>();
-                list.add(new ItemStack(recipe.getInput()));
+                list.add(recipe.getInput());
                 result.add(list);
             }
         }
         return result;
     }
 
-    public static int getCount(Item item){
+    public static int getCount(ItemStack item){
         for(FullRecipeCrusher recipe : recipesList){
             if (recipe.input == item)
                 return recipe.getOutput().getCount();
@@ -230,17 +245,17 @@ public class CrusherRecipes {
     }
 
     public static class FullRecipeCrusher {
-        protected Item input;
+        protected ItemStack input;
         protected ItemStack output;
         protected int energy;
 
-        public FullRecipeCrusher(Item input, ItemStack output, int energy){
+        public FullRecipeCrusher(ItemStack input, ItemStack output, int energy){
             this.input = input;
             this.output = output;
             this.energy = energy;
         }
 
-        public Item getInput(){
+        public ItemStack getInput(){
             return input;
         }
 

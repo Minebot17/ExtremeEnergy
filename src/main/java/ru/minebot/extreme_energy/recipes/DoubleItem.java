@@ -1,21 +1,24 @@
 package ru.minebot.extreme_energy.recipes;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class DoubleItem{
-    private Item i1;
-    private Item i2;
-    public DoubleItem(Item i1, Item i2){
+    private ItemStack i1;
+    private ItemStack i2;
+    public DoubleItem(ItemStack i1, ItemStack i2){
         this.i1 = i1;
         this.i2 = i2;
     }
-    public Item getItemFirst(){ return i1; }
-    public Item getItemSecond(){ return i2; }
+    public ItemStack getItemFirst(){ return i1; }
+    public ItemStack getItemSecond(){ return i2; }
 
     @Override
     public boolean equals(Object obj){
+        if (!(obj instanceof DoubleItem))
+            return false;
+
         DoubleItem item = (DoubleItem) obj;
-        if (i1.equals(item.getItemFirst()) || i2.equals(item.getItemSecond()))
+        if (ItemStack.areItemStacksEqual(i1, item.getItemFirst()) && ItemStack.areItemStacksEqual(i2, item.getItemSecond()) || ItemStack.areItemStacksEqual(i2, item.getItemFirst()) && ItemStack.areItemStacksEqual(i1, item.getItemSecond()))
             return true;
         return false;
     }

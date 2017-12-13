@@ -14,7 +14,7 @@ public class TileEntityHPA extends TileEntityProcessingBlock {
 
     @Override
     protected void onWorked() {
-        ItemStack out = AssemblerRecipes.getOut(inventory[0].getItem(), inventory[1].getItem()).copy();
+        ItemStack out = AssemblerRecipes.getOut(inventory[0], inventory[1]).copy();
 
         if (!(inventory[0].getItem() instanceof ItemElectricalCarver)) {
             if (inventory[0].getCount() == 1)
@@ -41,7 +41,7 @@ public class TileEntityHPA extends TileEntityProcessingBlock {
         if (inventory[0].isEmpty() || inventory[1].isEmpty())
             return false;
 
-        ItemStack itemstack = AssemblerRecipes.getOut(inventory[0].getItem(), inventory[1].getItem());
+        ItemStack itemstack = AssemblerRecipes.getOut(inventory[0], inventory[1]);
 
         if (itemstack.isEmpty()) {
             return false;
@@ -57,7 +57,7 @@ public class TileEntityHPA extends TileEntityProcessingBlock {
 
     @Override
     protected int getNeedEnergy() {
-        return AssemblerRecipes.getEnergy(inventory[0].getItem(), inventory[1].getItem());
+        return AssemblerRecipes.getEnergy(inventory[0], inventory[1]);
     }
 
     @Override

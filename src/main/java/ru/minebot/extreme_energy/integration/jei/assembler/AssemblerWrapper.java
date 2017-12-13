@@ -20,8 +20,8 @@ public class AssemblerWrapper implements IRecipeWrapper {
     @Override
     public void getIngredients(IIngredients iIngredients) {
         List<ItemStack> inp = new ArrayList<>();
-        inp.add(new ItemStack(recipe.getInput().getItemFirst()));
-        inp.add(new ItemStack(recipe.getInput().getItemSecond()));
+        inp.add(recipe.getInput().getItemFirst());
+        inp.add(recipe.getInput().getItemSecond());
         iIngredients.setInputs(ItemStack.class, inp);
         iIngredients.setOutput(ItemStack.class, recipe.getOutput());
     }

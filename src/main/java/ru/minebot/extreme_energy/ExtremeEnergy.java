@@ -50,18 +50,18 @@ public class ExtremeEnergy {
         ModItems.init();
         ModItems.register();
         ModTileEntities.init();
-        ModCrafts.register();
         OreDictionaryRegisters.register();
         ModEntitiesRegister.register();
-        CrusherRecipes.init();
-        AssemblerRecipes.init();
-        SawmillRecipes.init();
         proxy.preInit(event);
     }
 
     @EventHandler
-    public void Init(FMLInitializationEvent event){
+    public void Init(FMLInitializationEvent event) throws Exception {
         proxy.init(event);
+        ModCrafts.register();
+        CrusherRecipes.init();
+        AssemblerRecipes.init();
+        SawmillRecipes.init();
         CapabilityManager.INSTANCE.register(IImplant.class, new ImplantStorage(), ImplantHandler.class);
         GameRegistry.registerWorldGenerator(new WorldGen(), 0);
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new ModGuiHandler());
