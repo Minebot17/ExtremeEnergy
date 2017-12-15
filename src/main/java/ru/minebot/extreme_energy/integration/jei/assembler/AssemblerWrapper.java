@@ -10,18 +10,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 public class AssemblerWrapper implements IRecipeWrapper {
     private AssemblerRecipes.FullRecipeAssembler recipe;
+    private List<ItemStack> inp;
+    private List<String> tooltip;
 
     public AssemblerWrapper(AssemblerRecipes.FullRecipeAssembler recipe){
         this.recipe = recipe;
+        inp = Lists.newArrayList(recipe.getInput().getItemFirst(), recipe.getInput().getItemSecond());
+        tooltip = Lists.newArrayList(recipe.getEnergy()+" RF");
     }
 
     @Override
     public void getIngredients(IIngredients iIngredients) {
-        List<ItemStack> inp = new ArrayList<>();
-        inp.add(recipe.getInput().getItemFirst());
-        inp.add(recipe.getInput().getItemSecond());
         iIngredients.setInputs(ItemStack.class, inp);
         iIngredients.setOutput(ItemStack.class, recipe.getOutput());
     }
@@ -33,13 +36,15 @@ public class AssemblerWrapper implements IRecipeWrapper {
 
     @Override
     public List<String> getTooltipStrings(int mouseX, int mouseY) {
-        List<String> list = new ArrayList<>();
-        list.add(recipe.getEnergy()+" RF");
-        return mouseX > 38 && mouseX < 75 && mouseY > 18 && mouseY < 38 ? list : Collections.emptyList();
+        return mouseX > 38 && mouseX < 75 && mouseY > 18 && mouseY < 38 ? tooltip : Collections.emptyList();
     }
 
     @Override
     public boolean handleClick(Minecraft minecraft, int i, int i1, int i2) {
         return false;
     }
+    
+    public AssemblerRecipes.FullRecipeAssembler getRecipe() {
+		return recipe;
+	}
 }
