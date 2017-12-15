@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 public class CrusherWrapper implements IRecipeWrapper {
     private CrusherRecipes.FullRecipeCrusher recipe;
+    private List<String> tooltip;
 
     public CrusherWrapper(CrusherRecipes.FullRecipeCrusher recipe){
         this.recipe = recipe;
+        tooltip = Lists.newArrayList(recipe.getEnergy()+" RF");
     }
 
     @Override
@@ -30,13 +34,15 @@ public class CrusherWrapper implements IRecipeWrapper {
 
     @Override
     public List<String> getTooltipStrings(int mouseX, int mouseY) {
-        List<String> list = new ArrayList<>();
-        list.add(recipe.getEnergy()+" RF");
-        return mouseX > 22 && mouseX < 55 && mouseY > 15 && mouseY < 60 ? list : Collections.emptyList();
+        return mouseX > 22 && mouseX < 55 && mouseY > 15 && mouseY < 60 ? tooltip : Collections.emptyList();
     }
 
     @Override
     public boolean handleClick(Minecraft minecraft, int i, int i1, int i2) {
         return false;
     }
+
+    public CrusherRecipes.FullRecipeCrusher getRecipe() {
+		return recipe;
+	}
 }
