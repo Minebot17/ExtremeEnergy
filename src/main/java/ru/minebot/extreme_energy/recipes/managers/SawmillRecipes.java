@@ -168,7 +168,7 @@ public class SawmillRecipes {
         for(FullRecipeSawmill recipe : recipesList){
             if (recipe.output.getItem() == stack.getItem()) {
                 List<ItemStack> list = new ArrayList<>();
-                list.add(new ItemStack(recipe.getInput()));
+                list.add(recipe.getInput());
                 result.add(list);
             }
         }
@@ -233,8 +233,8 @@ public class SawmillRecipes {
             this.energy = energy;
         }
 
-        public Item getInput(){
-            return input;
+        public ItemStack getInput(){
+            return new ItemStack(input);
         }
         public ItemStack getOutput(){
             return output;

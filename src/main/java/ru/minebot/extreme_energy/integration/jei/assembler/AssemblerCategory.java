@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AssemblerCategory implements IRecipeCategory {
+public class AssemblerCategory implements IRecipeCategory<AssemblerWrapper> {
+
     @Override
     public String getUid() {
         return "meem.assembler";
@@ -33,8 +34,7 @@ public class AssemblerCategory implements IRecipeCategory {
 
     @Override
     public IDrawable getBackground() {
-        IDrawableStatic gui = new DrawableResource(new ResourceLocation("meem:textures/gui/jei/hpa.png"), 0, 0, 102, 26, 15, 0, 0, 0, 102, 26);
-        return gui;
+        return new DrawableResource(new ResourceLocation("meem:textures/gui/jei/hpa.png"), 0, 0, 102, 26, 15, 0, 0, 0, 102, 26);
     }
 
     @Nullable
@@ -49,18 +49,15 @@ public class AssemblerCategory implements IRecipeCategory {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout iRecipeLayout, IRecipeWrapper iRecipeWrapper, IIngredients iIngredients) {
+    public void setRecipe(IRecipeLayout iRecipeLayout, AssemblerWrapper recipe, IIngredients iIngredients) {
         IGuiItemStackGroup group = iRecipeLayout.getItemStacks();
         group.init(0, true, 0, 19);
         group.init(1, true, 20, 19);
         group.init(2, false, 80, 19);
 
-        List<List<ItemStack>> input = iIngredients.getInputs(ItemStack.class);
-        List<List<ItemStack>> output = iIngredients.getOutputs(ItemStack.class);
-
-        group.set(0, input.get(0));
-        group.set(1, input.get(1));
-        group.set(2, output.get(0));
+        group.set(0, recipe.getRecipe().getInput().getItemFirst());
+        group.set(1, recipe.getRecipe().getInput().getItemSecond());
+        group.set(2, recipe.getRecipe().getOutput());
     }
 
     public static List<AssemblerWrapper> getRecipes(){

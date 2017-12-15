@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SawmillCategory implements IRecipeCategory {
+public class SawmillCategory implements IRecipeCategory<SawmillWrapper> {
+
     @Override
     public String getUid() {
         return "meem.sawmill";
@@ -36,8 +37,7 @@ public class SawmillCategory implements IRecipeCategory {
 
     @Override
     public IDrawable getBackground() {
-        IDrawableStatic gui = new DrawableResource(new ResourceLocation("meem:textures/gui/jei/has.png"), 0, 0, 82, 26, 10, 0, 0, 0, 82, 26);
-        return gui;
+        return new DrawableResource(new ResourceLocation("meem:textures/gui/jei/has.png"), 0, 0, 82, 26, 10, 0, 0, 0, 82, 26);
     }
 
     @Nullable
@@ -52,19 +52,13 @@ public class SawmillCategory implements IRecipeCategory {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout iRecipeLayout, IRecipeWrapper iRecipeWrapper, IIngredients iIngredients) {
+    public void setRecipe(IRecipeLayout iRecipeLayout, SawmillWrapper recipe, IIngredients iIngredients) {
         IGuiItemStackGroup group = iRecipeLayout.getItemStacks();
         group.init(0, true, 0, 14);
         group.init(1, false, 60, 14);
 
-        List<List<ItemStack>> input = iIngredients.getInputs(ItemStack.class);
-        List<List<ItemStack>> output = iIngredients.getOutputs(ItemStack.class);
-
-        try {
-            group.set(0, input.get(0).get(0));
-            group.set(1, output.get(0).get(0));
-        }
-        catch (IndexOutOfBoundsException e){e.printStackTrace();}
+        group.set(0,recipe.getRecipe().getInput());
+        group.set(1, recipe.getRecipe().getOutput());
     }
 
     public static List<SawmillWrapper> getRecipes(){

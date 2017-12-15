@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CrusherCategory implements IRecipeCategory {
+public class CrusherCategory implements IRecipeCategory<CrusherWrapper> {
+
     @Override
     public String getUid() {
         return "meem.crusher";
@@ -36,8 +37,7 @@ public class CrusherCategory implements IRecipeCategory {
 
     @Override
     public IDrawable getBackground() {
-        IDrawableStatic gui = new DrawableResource(new ResourceLocation("meem:textures/gui/jei/hpc.png"), 0, 0, 82, 53, 10, 0, 0, 0, 82, 53);
-        return gui;
+        return new DrawableResource(new ResourceLocation("meem:textures/gui/jei/hpc.png"), 0, 0, 82, 53, 10, 0, 0, 0, 82, 53);
     }
 
     @Nullable
@@ -52,25 +52,23 @@ public class CrusherCategory implements IRecipeCategory {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout iRecipeLayout, IRecipeWrapper iRecipeWrapper, IIngredients iIngredients) {
+    public void setRecipe(IRecipeLayout iRecipeLayout, CrusherWrapper recipe, IIngredients iIngredients) {
         IGuiItemStackGroup group = iRecipeLayout.getItemStacks();
         group.init(0, true, 0, 28);
         group.init(1, false, 60, 14);
 
-        List<List<ItemStack>> input = iIngredients.getInputs(ItemStack.class);
-        List<List<ItemStack>> output = iIngredients.getOutputs(ItemStack.class);
+        ItemStack output = recipe.getRecipe().getOutput();
 
-        group.set(0, input.get(0).get(0));
+        group.set(0, recipe.getRecipe().getInput());
 
-        int out = output.get(0).get(0).getCount();
-        if (out == 1){
-            group.set(1, output.get(0).get(0));
-        }
+        int out = output.getCount();
+        if (out == 1)
+            group.set(1, output);
         else{
             group.init(2, false, 60, 41);
             int c = out/2;
-            ItemStack i1 = output.get(0).get(0).copy();
-            ItemStack i2 = output.get(0).get(0).copy();
+            ItemStack i1 = output.copy();
+            ItemStack i2 = output.copy();
             i1.setCount(c);
             i2.setCount(out - c);
 

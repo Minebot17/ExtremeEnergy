@@ -42,13 +42,13 @@ public class JeiPlugin implements IModPlugin {
     public void register(IModRegistry iModRegistry) {
         IIngredientBlacklist blacklist = iModRegistry.getJeiHelpers().getIngredientBlacklist();
         blacklist.addIngredientToBlacklist(new ItemStack(ModItems.fullInjector));
-        blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModBlocks.shield)));
-        blacklist.addIngredientToBlacklist(new ItemStack(Item.getItemFromBlock(ModBlocks.cableWithTile)));
+        blacklist.addIngredientToBlacklist(new ItemStack(ModBlocks.shield));
+        blacklist.addIngredientToBlacklist(new ItemStack(ModBlocks.cableWithTile));
 
-        iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.htf)), "minecraft.smelting");
-        iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.hpa)), "meem.assembler");
-        iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.hpc)), "meem.crusher");
-        iModRegistry.addRecipeCatalyst(new ItemStack(Item.getItemFromBlock(ModBlocks.has)), "meem.sawmill");
+        iModRegistry.addRecipeCatalyst(new ItemStack(ModBlocks.htf), "minecraft.smelting");
+        iModRegistry.addRecipeCatalyst(new ItemStack(ModBlocks.hpa), "meem.assembler");
+        iModRegistry.addRecipeCatalyst(new ItemStack(ModBlocks.hpc), "meem.crusher");
+        iModRegistry.addRecipeCatalyst(new ItemStack(ModBlocks.has), "meem.sawmill");
         iModRegistry.addRecipes(AssemblerCategory.getRecipes(), "meem.assembler");
         iModRegistry.addRecipes(CrusherCategory.getRecipes(), "meem.crusher");
         iModRegistry.addRecipes(SawmillCategory.getRecipes(), "meem.sawmill");
