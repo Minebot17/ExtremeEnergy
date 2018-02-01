@@ -83,6 +83,11 @@ public class CrusherRecipes {
         possibleOres.add(new RecipeCrusherString("ingotNickel", "dustNickel", 5000));
         possibleOres.add(new RecipeCrusherString("ingotElectrum", "dustElectrum", 5000));
         possibleOres.add(new RecipeCrusherString("ingotBronze", "dustBronze", 5000));
+        possibleOres.add(new RecipeCrusherString("ingotAluminum", "dustAluminum", 5000));
+        possibleOres.add(new RecipeCrusherString("ingotIridium", "dustIridium", 5000));
+        possibleOres.add(new RecipeCrusherString("ingotConstantan", "dustConstantan", 5000));
+        possibleOres.add(new RecipeCrusherString("ingotSignalum", "dustSignalum", 5000));
+        possibleOres.add(new RecipeCrusherString("ingotLumium", "dustLumium", 5000));
 
         possibleOres.add(new RecipeCrusherString("oreTin", "dustTin", 12000, 2));
         possibleOres.add(new RecipeCrusherString("oreSilver", "dustSilver", 12000, 2));
@@ -92,6 +97,11 @@ public class CrusherRecipes {
         possibleOres.add(new RecipeCrusherString("orePlatinum", "dustPlatinum", 12000, 2));
         possibleOres.add(new RecipeCrusherString("oreIridium", "dustIridium", 12000, 2));
         possibleOres.add(new RecipeCrusherString("oreMithril", "dustMithril", 12000, 2));
+        possibleOres.add(new RecipeCrusherString("oreAluminum", "dustAluminum", 12000, 2));
+        possibleOres.add(new RecipeCrusherString("oreConstantan", "dustConstantan", 12000, 2));
+        possibleOres.add(new RecipeCrusherString("oreIridium", "dustIridium", 12000, 2));
+        possibleOres.add(new RecipeCrusherString("oreSignalum", "dustSignalum", 12000, 2));
+        possibleOres.add(new RecipeCrusherString("oreLumium", "dustLumium", 12000, 2));
 
         //AE 2
         possibleOres.add(new RecipeCrusherString("oreCertusQuartz", "crystalCertusQuartz", 12000, 2));
