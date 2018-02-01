@@ -41,8 +41,8 @@ public class ModCrafts {
                 shaped(ModBlocks.nb, "IWI", "FFF", "IWI", 'I', Items.IRON_INGOT, 'F', ModItems.nuclearFuel, 'W', ModItems.copperWires),
                 shaped(ModBlocks.lightningRod, "XHX", "KMK", "HHH", 'X', Items.AIR, 'H', "ingotSteel", 'K', ModBlocks.cable, 'M', ModItems.crystal),
                 shaped(ModBlocks.metalPillar, "IKI", "IKI", "IKI", 'I', Items.IRON_INGOT, 'K', ModBlocks.cable),
-                shaped(new ItemStack(ModBlocks.cable, 6), "III", "WRW", "III", 'I', Items.IRON_INGOT, 'W', ModItems.copperWires, 'R', Items.REDSTONE),
-                shaped(new ItemStack(ModBlocks.cable, 3), "GGG", "RRR", "GGG", 'G', Blocks.GLASS, 'R', Items.REDSTONE),
+                shaped("meem:cable6", new ItemStack(ModBlocks.cable, 6), "III", "WRW", "III", 'I', Items.IRON_INGOT, 'W', ModItems.copperWires, 'R', Items.REDSTONE),
+                shaped("meem:cable3", new ItemStack(ModBlocks.cable, 3), "GGG", "RRR", "GGG", 'G', Blocks.GLASS, 'R', Items.REDSTONE),
                 shaped(ModBlocks.heavyMetal, "HHX", "HHX", "XXX", 'X', Items.AIR, 'H', "ingotSteel"),
                 shaped(ModBlocks.copper, "CCC", "CCC", "CCC", 'C', "ingotCopper"),
                 shaped(ModItems.baseImplant, "SHS", "VUV", "HHH", 'H', "ingotSteel", 'V', ModItems.voltageModule, 'S', ModItems.smallCrystal, 'U', ModItems.smallCapacitor),
@@ -103,9 +103,9 @@ public class ModCrafts {
                 shapeless(new ItemStack(ModItems.copperNugget, 9), getItem(ModItems.copperIngot)),
                 shapeless(new ItemStack(ModItems.copperIngot, 9), getItem(ModBlocks.copper)),
                 shapeless(new ItemStack(ModItems.heavyIngot, 4), getItem(ModBlocks.heavyMetal)),
-                shapeless(new ItemStack(ModItems.smallCapacitor), getItem(ModItems.smallCapacitor)),
-                shapeless(new ItemStack(ModItems.capacitor), getItem(ModItems.capacitor)),
-                shapeless(new ItemStack(ModItems.bigCapacitor), getItem(ModItems.bigCapacitor))
+                shapeless("meem:nullableSmall" ,new ItemStack(ModItems.smallCapacitor), getItem(ModItems.smallCapacitor)),
+                shapeless("meem:nullableMedium" ,new ItemStack(ModItems.capacitor), getItem(ModItems.capacitor)),
+                shapeless("meem:nullableBig" ,new ItemStack(ModItems.bigCapacitor), getItem(ModItems.bigCapacitor))
         };
         // C - copper, H - heavy ingot, S - small crystal, M - crystal, B - big crystal, K - cable
         //<editor-fold desc="Smelt">
@@ -118,7 +118,7 @@ public class ModCrafts {
         //</editor-fold>
         ForgeRegistries.RECIPES.register(new FullInjectorRecipe().setRegistryName(new ResourceLocation("meem:fullinjectorrecipe")));
         for (IRecipe recipe : oreDictRecipes)
-            ForgeRegistries.RECIPES.register(recipe.setRegistryName(new ResourceLocation("meem", recipe.getRecipeOutput().getUnlocalizedName())));
+            ForgeRegistries.RECIPES.register(recipe.getRegistryName() == null ? recipe.setRegistryName(new ResourceLocation("meem", recipe.getRecipeOutput().getUnlocalizedName())) : recipe);
     }
 
     private static Ingredient getItem(Item item){
@@ -133,12 +133,20 @@ public class ModCrafts {
         return new ShapedOreRecipe(null, result, objs);
     }
 
+    private static IRecipe shaped(String rgName, ItemStack result, Object... objs){
+        return new ShapedOreRecipe(null, result, objs).setRegistryName(new ResourceLocation(rgName));
+    }
+
     private static IRecipe shaped(Block result, Object... objs){
         return new ShapedOreRecipe(null, result, objs);
     }
 
     private static IRecipe shaped(Item result, Object... objs){
         return new ShapedOreRecipe(null, result, objs);
+    }
+
+    private static IRecipe shapeless(String registerName, ItemStack result, Object... objs){
+        return new ShapelessOreRecipe(null, result, objs).setRegistryName(new ResourceLocation(registerName));
     }
 
     private static IRecipe shapeless(ItemStack result, Object... objs){
