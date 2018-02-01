@@ -68,7 +68,7 @@ public class CrusherRecipes {
         putRecipe(Item.getItemFromBlock(Blocks.NETHERRACK), new ItemStack(Blocks.GRAVEL), 2000);
         putRecipe(Item.getItemFromBlock(Blocks.MAGMA), new ItemStack(Items.MAGMA_CREAM, 4), 2000);
         putRecipe(Items.BLAZE_ROD, new ItemStack(Items.BLAZE_POWDER, 4), 20000);
-        putRecipe(Items.NETHER_STAR, new ItemStack(ModItems.californium, 2), 100000);
+        putRecipe(Items.NETHER_STAR, new ItemStack(ModItems.californium, 6), 100000);
     }
 
     // Recipes to possibleOres

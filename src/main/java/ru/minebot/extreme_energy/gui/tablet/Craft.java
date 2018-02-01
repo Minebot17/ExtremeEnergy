@@ -15,9 +15,11 @@ import net.minecraft.util.math.Vec2f;
 import static org.lwjgl.opengl.GL11.*;
 
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
@@ -355,14 +357,9 @@ public class Craft extends Element implements IClickable{
         public List<List<ItemStack>> getItems(ItemStack result){
             if (index == 0){
                 List<List<Ingredient>> list = new ArrayList<>();
-                for(IRecipe recipe : CraftingManager.REGISTRY) {
-                    if (recipe.getRecipeOutput().getItem() == result.getItem()){
-                        if (recipe instanceof ShapedRecipes)
-                            list.add(((ShapedRecipes) recipe).recipeItems);
-                        else if (recipe instanceof ShapelessRecipes)
-                            list.add(((ShapelessRecipes) recipe).recipeItems);
-                    }
-                }
+                for(IRecipe recipe : CraftingManager.REGISTRY)
+                    if (recipe.getRecipeOutput().getItem() == result.getItem())
+                        list.add(recipe.getIngredients());
 
                 List<List<ItemStack>> items = new ArrayList<>();
                 for (int i = 0; i < list.size(); i++) {
