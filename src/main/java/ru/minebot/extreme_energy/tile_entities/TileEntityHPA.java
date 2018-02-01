@@ -2,6 +2,7 @@ package ru.minebot.extreme_energy.tile_entities;
 
 import net.minecraft.item.ItemStack;
 import ru.minebot.extreme_energy.init.ModItems;
+import ru.minebot.extreme_energy.init.ModUtils;
 import ru.minebot.extreme_energy.items.assembler.ItemElectricalCarver;
 import ru.minebot.extreme_energy.items.modules.ItemVoltageModule;
 import ru.minebot.extreme_energy.recipes.managers.AssemblerRecipes;
@@ -41,7 +42,7 @@ public class TileEntityHPA extends TileEntityProcessingBlock {
         if (inventory[0].isEmpty() || inventory[1].isEmpty())
             return false;
 
-        ItemStack itemstack = AssemblerRecipes.getOut(inventory[0], inventory[1]);
+        ItemStack itemstack = AssemblerRecipes.getOut(ModUtils.copyChangeCount(inventory[0]), ModUtils.copyChangeCount(inventory[1]));
 
         if (itemstack.isEmpty()) {
             return false;

@@ -369,6 +369,12 @@ public class ModUtils {
         }
     }
 
+    public static ItemStack copyChangeCount(ItemStack stack){
+        ItemStack copy = stack.copy();
+        copy.setCount(1);
+        return copy;
+    }
+
     public static void spawnParticles(World world, int type, float x, float y, float z, float xSpeed, float ySpeed, float zSpeed, int count){
         spawnParticles(world, type, x, y, z, xSpeed, ySpeed, zSpeed, count, 0, 0);
     }

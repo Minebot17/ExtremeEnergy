@@ -2,6 +2,7 @@ package ru.minebot.extreme_energy.tile_entities;
 
 import net.minecraft.item.ItemStack;
 import ru.minebot.extreme_energy.init.ModItems;
+import ru.minebot.extreme_energy.init.ModUtils;
 import ru.minebot.extreme_energy.items.modules.ItemVoltageModule;
 import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 
@@ -13,7 +14,7 @@ public class TileEntityHPC extends TileEntityProcessingBlock {
 
     @Override
     protected void onWorked() {
-        ItemStack out = CrusherRecipes.getOut(inventory[0]).copy();
+        ItemStack out = CrusherRecipes.getOut(ModUtils.copyChangeCount(inventory[0])).copy();
         int c1 = 0;
         int c2 = 0;
         if (isSlotValid(out, 1) && isSlotValid(out, 2)) {

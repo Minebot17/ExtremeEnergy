@@ -125,6 +125,10 @@ public class ModCrafts {
         addShapelessRecipe(new ResourceLocation("meem:copperNugget"), null, new ItemStack(ModItems.copperNugget, 9), getItem(ModItems.copperIngot));
         addShapelessRecipe(new ResourceLocation("meem:copperIngot"), null, new ItemStack(ModItems.copperIngot, 9), getItem(ModBlocks.copper));
         addShapelessRecipe(new ResourceLocation("meem:heavyIngot"), null, new ItemStack(ModItems.heavyIngot, 4), getItem(ModBlocks.heavyMetal));
+
+        addShapedRecipe(new ResourceLocation("meem:emptySmallCell"), null, new ItemStack(ModItems.smallCapacitor), getItem(ModItems.smallCapacitor));
+        addShapedRecipe(new ResourceLocation("meem:emptyCell"), null, new ItemStack(ModItems.capacitor), getItem(ModItems.capacitor));
+        addShapedRecipe(new ResourceLocation("meem:emptyBigCell"), null, new ItemStack(ModItems.bigCapacitor), getItem(ModItems.bigCapacitor));
         //</editor-fold>
         //</editor-fold>
         //<editor-fold desc="Smelt">
