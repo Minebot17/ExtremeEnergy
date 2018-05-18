@@ -18,7 +18,7 @@ public class ItemSunEnergyModule extends Module implements IGenerator{
             RayTraceResult ray = args.player.world.rayTraceBlocks(args.player.getPositionVector(), args.player.getPositionVector().addVector(0, 255f, 0));
             boolean isDay = args.player.world.isDaytime();
             boolean onSun = ray == null || ray.typeOfHit == RayTraceResult.Type.MISS;
-            return onSun ? (isDay ? 100 : 5) : 0;
+            return onSun ? (isDay ? 100 : 10) : 0;
         }
         return 0;
     }

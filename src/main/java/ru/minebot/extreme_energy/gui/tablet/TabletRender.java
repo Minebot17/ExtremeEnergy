@@ -12,6 +12,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.IResource;
@@ -162,13 +163,12 @@ public class TabletRender {
             ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
 
             glDisable(GL_DEPTH_TEST);
-            RenderHelper.enableStandardItemLighting();
+            RenderHelper.enableGUIStandardItemLighting();
             pitch = e.getInterpolatedPitch();
             if (e.getInterpolatedPitch() < 59)
                 glRotated(e.getInterpolatedPitch() - 60, 1, 0, 0);
             renderArms(); // TODO: fix resolution.getScaleFactor() == 1 size
             glScalef(resolution.getScaleFactor(), resolution.getScaleFactor(), 1);
-            //glEnable(GL_DEPTH_TEST);
             drawTablet(tes, resolution);
 
             drawElements(resolution);
@@ -197,7 +197,6 @@ public class TabletRender {
         GlStateManager.disableTexture2D();
         double frameSize = 1.95D;
 
-        //OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
         // Screen
         buf.begin(GL_POLYGON, DefaultVertexFormats.POSITION);
         buf.pos(-0.8D, -0.45D, -2D).endVertex();

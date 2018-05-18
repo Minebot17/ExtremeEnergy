@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+import ru.minebot.extreme_energy.ExtremeEnergy;
 import ru.minebot.extreme_energy.Reference;
 import ru.minebot.extreme_energy.gui.elements.moduleGui.IModuleGui;
 import ru.minebot.extreme_energy.gui.elements.moduleGui.PowerModuleGui;
@@ -51,26 +52,29 @@ public class ItemMapInfoModule extends Module implements IChip, IInfo {
 
     @Override
     public void renderScreen(ChipArgs args, Minecraft mc, Tessellator tes, BufferBuilder buf, ScaledResolution res) {
-        if (map == null || args.energy < 1000 || !args.isModuleActive)
-            return;
+        try {
+            if (map == null || args.energy < 1000 || !args.isModuleActive)
+                return;
 
-        if (vboID == 0)
-            vboID = glGenBuffers();
-        int x = res.getScaledWidth() / 3;
-        int y = res.getScaledHeight() - (res.getScaledHeight()) / 4;
-        float scale = 75f/map.radius;
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_LESS);
-        glDepthMask(true);
-        glPushMatrix();
-        glScaled(-scale, -scale, -scale);
-        glTranslated(-x/scale, -y/scale, 30);
-        glRotated(-mc.player.rotationPitch - 15, 1, 0, 0);
-        glRotated(mc.player.rotationYaw, 0, 1, 0);
-        map.render();
-        map.renderEffects(tes, tes.getBuffer());
-        glPopMatrix();
-        glDisable(GL_DEPTH_TEST);
+            if (vboID == 0)
+                vboID = glGenBuffers();
+            int x = res.getScaledWidth() / 3;
+            int y = res.getScaledHeight() - (res.getScaledHeight()) / 4;
+            float scale = 75f / map.radius;
+            glEnable(GL_DEPTH_TEST);
+            glDepthFunc(GL_LESS);
+            glDepthMask(true);
+            glPushMatrix();
+            glScaled(-scale, -scale, -scale);
+            glTranslated(-x / scale, -y / scale, 30);
+            glRotated(-mc.player.rotationPitch - 15, 1, 0, 0);
+            glRotated(mc.player.rotationYaw, 0, 1, 0);
+            map.render();
+            map.renderEffects(tes, tes.getBuffer());
+            glPopMatrix();
+            glDisable(GL_DEPTH_TEST);
+        }
+        catch (Exception ignore){}
     }
 
     @Override
@@ -84,29 +88,34 @@ public class ItemMapInfoModule extends Module implements IChip, IInfo {
 
     @Override
     public int onImplantWork(ChipArgs args) {
-        if (args.player.world.isRemote && args.energy > 1000) {
-            Minecraft mc = Minecraft.getMinecraft();
-            try {
-                mc.player.getPosition();
-            } catch (NullPointerException e) {
-                return 0;
+        try {
+            if (args.player.world.isRemote && args.energy > 1000) {
+                Minecraft mc = Minecraft.getMinecraft();
+                try {
+                    mc.player.getPosition();
+                } catch (NullPointerException e) {
+                    return 0;
+                }
+                if (map != null)
+                    map.handleEffects();
+                if (args.player.world.getTotalWorldTime() % updateFrequency == 0) {
+                    if (fluidRenderer == null)
+                        fluidRenderer = new BlockFluidRenderer(mc.getBlockColors());
+                    int mode = args.data.getInteger("mode");
+                    int radius = args.data.getInteger("radius");
+                    int update = args.data.getInteger("update");
+                    if (update == 0)
+                        args.data.setInteger("update", 5);
+                    else
+                        updateFrequency = update;
+                    map = new Map(Mode.values()[mode], radius, map != null ? map.lines : null);
+                }
             }
-            if (map != null)
-                map.handleEffects();
-            if (args.player.world.getTotalWorldTime() % updateFrequency == 0){
-                if (fluidRenderer == null)
-                    fluidRenderer = new BlockFluidRenderer(mc.getBlockColors());
-                int mode = args.data.getInteger("mode");
-                int radius = args.data.getInteger("radius");
-                int update = args.data.getInteger("update");
-                if (update == 0)
-                    args.data.setInteger("update", 5);
-                else
-                    updateFrequency = update;
-                map = new Map(Mode.values()[mode], radius, map != null ? map.lines : null);
-            }
+            return 50;
         }
-        return 50;
+        catch (Exception e){
+            return 0;
+        }
     }
 
     @Override
@@ -212,63 +221,42 @@ public class ItemMapInfoModule extends Module implements IChip, IInfo {
             result[2] = new ArrayList<>();
             int[] offset = new int[]{x,y,z};
             int[][] vertexData = new int[quads.size()][28];
-            boolean isOre = state.getBlock().getRegistryName().getResourcePath().contains("ore");
             for (int i = 0; i < quads.size(); i++) {
                 vertexData[i] = quads.get(i).getVertexData();
                 for (int j = 0; j < vertexData[i].length - 1; j += 7) {
                     for (int m = 0; m < 3; m++)
                         result[0].add(Float.intBitsToFloat(vertexData[i][j + m]) + offset[m]);
-                    if (!isOre)
-                        for (int m = 4; m < 6; m++)
-                            result[2].add(Float.intBitsToFloat(vertexData[i][j + m]));
-                    else {
-                        result[2].add(0f);
-                        result[2].add(0f);
-                    }
+                    for (int m = 4; m < 6; m++)
+                        result[2].add(Float.intBitsToFloat(vertexData[i][j + m]));
                 }
 
-                if (isOre){
-                    int level = state.getBlock().getHarvestLevel(state);
-                    level = level > 4 ? 4 : level;
-                    float color = 1 - level/4f;
-                    float dif = 1f;
-                    if (quads.get(i).shouldApplyDiffuseLighting())
-                        dif = net.minecraftforge.client.model.pipeline.LightUtil.diffuseLight(quads.get(i).getFace());
-                    for (int j = 0; j < 4; j++){
-                        result[1].add(1f * dif);
-                        result[1].add(color * dif);
-                        result[1].add(color * dif);
-                    }
-                }
-                else {
-                    if (quads.get(i).hasTintIndex()) {
-                        int k = mc.getBlockColors().colorMultiplier(state, mc.world, mc.player.getPosition().add(new BlockPos(x, y, z)), quads.get(i).getTintIndex());
+                if (quads.get(i).hasTintIndex()) {
+                    int k = mc.getBlockColors().colorMultiplier(state, mc.world, mc.player.getPosition().add(new BlockPos(x, y, z)), quads.get(i).getTintIndex());
 
-                        if (EntityRenderer.anaglyphEnable)
-                            k = TextureUtil.anaglyphColor(k);
+                    if (EntityRenderer.anaglyphEnable)
+                        k = TextureUtil.anaglyphColor(k);
 
-                        float f = (float) (k >> 16 & 255) / 255.0F;
-                        float f1 = (float) (k >> 8 & 255) / 255.0F;
-                        float f2 = (float) (k & 255) / 255.0F;
-                        if (quads.get(i).shouldApplyDiffuseLighting()) {
-                            float diffuse = net.minecraftforge.client.model.pipeline.LightUtil.diffuseLight(quads.get(i).getFace());
-                            f *= diffuse;
-                            f1 *= diffuse;
-                            f2 *= diffuse;
-                        }
-                        for (int j = 0; j < 4; j++) {
-                            result[1].add(f);
-                            result[1].add(f1);
-                            result[1].add(f2);
-                        }
-                    } else if (quads.get(i).shouldApplyDiffuseLighting()) {
+                    float f = (float) (k >> 16 & 255) / 255.0F;
+                    float f1 = (float) (k >> 8 & 255) / 255.0F;
+                    float f2 = (float) (k & 255) / 255.0F;
+                    if (quads.get(i).shouldApplyDiffuseLighting()) {
                         float diffuse = net.minecraftforge.client.model.pipeline.LightUtil.diffuseLight(quads.get(i).getFace());
-                        for (int j = 0; j < 12; j++)
-                            result[1].add(diffuse);
-                    } else {
-                        for (int j = 0; j < 12; j++)
-                            result[1].add(1f);
+                        f *= diffuse;
+                        f1 *= diffuse;
+                        f2 *= diffuse;
                     }
+                    for (int j = 0; j < 4; j++) {
+                        result[1].add(f);
+                        result[1].add(f1);
+                        result[1].add(f2);
+                    }
+                } else if (quads.get(i).shouldApplyDiffuseLighting()) {
+                    float diffuse = net.minecraftforge.client.model.pipeline.LightUtil.diffuseLight(quads.get(i).getFace());
+                    for (int j = 0; j < 12; j++)
+                        result[1].add(diffuse);
+                } else {
+                    for (int j = 0; j < 12; j++)
+                        result[1].add(1f);
                 }
             }
             return result;

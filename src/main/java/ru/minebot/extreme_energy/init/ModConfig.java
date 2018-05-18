@@ -35,32 +35,32 @@ public class ModConfig {
 
         enableGeneration = config.getBoolean("enableGeneration", "generation", true, getName("config.enableGeneration"), "config.enableGeneration.name");
         smallCristalOreSetting = new GenerationSetting("smallCristalOre",
-                4,1,10,
-                25,0,100,
+                3,1,10,
+                10,0,100,
                 30,0,100,
                 60,0,100
         );
         cristalOreSetting = new GenerationSetting("cristalOre",
                 3,1,10,
-                15,0,100,
+                5,0,100,
                 15,0,100,
                 40,0,100
         );
         bigCristalOreSetting = new GenerationSetting("bigCristalOre",
                 3,1,10,
-                5,0,100,
+                2,0,100,
                 0,0,100,
                 15,0,100
         );
         copperOreSetting = new GenerationSetting("copperOre",
-                5,1,10,
-                20,0,100,
+                3,1,10,
                 10,0,100,
+                20,0,100,
                 50,0,100
         );
         uraniumOreSetting = new GenerationSetting("uraniumOre",
                 3,1,10,
-                20,0,100,
+                15,0,100,
                 2,0,100,
                 30,0,100
         );

@@ -36,7 +36,7 @@ import ru.minebot.extreme_energy.network.packages.PacketSwordMeta;
 import ru.minebot.extreme_energy.other.ImplantData;
 
 public class ItemEnergySword extends Item {
-    public static int maxCap = 500000;
+    public static int maxCap = 1000000;
 
     public ItemEnergySword() {
         super();
@@ -134,7 +134,7 @@ public class ItemEnergySword extends Item {
         return false;
     }
 
-    final int powerToEnergy = 1000;
+    final int powerToEnergy = 5000;
     protected int getEnergyByPower(ItemStack stack){
         return ModUtils.getNotNullCategory(stack).getInteger("power") * powerToEnergy;
     }

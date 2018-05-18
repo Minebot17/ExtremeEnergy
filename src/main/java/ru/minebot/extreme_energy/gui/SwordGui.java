@@ -99,8 +99,8 @@ public class SwordGui extends GuiContainer {
             @Override
             public int onValueChanged(boolean isLeft, int value) {
                 value += isLeft ? -1 : 1;
-                if (value > 3)
-                    value = 3;
+                if (value > 6)
+                    value = 6;
                 if (value < 1)
                     value = 1;
                 data.setInteger("power", value);

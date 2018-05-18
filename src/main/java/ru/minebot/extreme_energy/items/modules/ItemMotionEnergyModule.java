@@ -22,9 +22,9 @@ public class ItemMotionEnergyModule extends Module implements IGenerator {
             args.data.setInteger("lastY", pos.getY());
             args.data.setInteger("lastZ", pos.getZ());
             if (args.player.isSprinting())
-                return 100;
+                return 200;
             if (!lastPos.equals(pos))
-                return 50;
+                return 100;
         }
         return 0;
     }

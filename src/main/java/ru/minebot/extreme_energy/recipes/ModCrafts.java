@@ -112,7 +112,7 @@ public class ModCrafts {
         addSmelting(ModBlocks.copperOre, new ItemStack(ModItems.copperIngot), 10);
         addSmelting(ModItems.copperDust, new ItemStack(ModItems.copperIngot), 10);
         addSmelting(ModItems.heavyDust, new ItemStack(ModItems.heavyIngot), 10);
-        addSmelting(Blocks.IRON_BLOCK, new ItemStack(ModItems.heavyIngot), 10);
+        addSmelting(Blocks.IRON_BLOCK, new ItemStack(ModItems.heavyIngot, 3), 10);
         addSmelting(ModItems.ironDust, new ItemStack(Items.IRON_INGOT), 10);
         addSmelting(ModItems.goldDust, new ItemStack(Items.GOLD_INGOT), 10);
         //</editor-fold>

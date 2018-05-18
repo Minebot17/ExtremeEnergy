@@ -30,8 +30,8 @@ public class ItemNuclearEnergyModule extends Module implements IGenerator {
                 int timer = args.data.getInteger("timer");
                 if (count != 0 && timer < 0) {
                     args.data.setInteger("californium", count - 1);
-                    args.data.setInteger("timer", 4000);
-                    timer = 40000;
+                    args.data.setInteger("timer", 60000);
+                    timer = 60000;
                 }
                 args.data.setInteger("timer", timer - 1);
                 return count == 0 ? 0 : 1000;
