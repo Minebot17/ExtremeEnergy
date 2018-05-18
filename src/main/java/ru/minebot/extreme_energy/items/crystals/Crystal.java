@@ -82,7 +82,7 @@ public class Crystal extends Item {
         return maxExtract;
     }
 
-    public int getMaxExtract(){ return power == 1 ? 100 : power == 2 ? 1000 : 10000; }
+    public int getMaxExtract(){ return power == 1 ? 250 : power == 2 ? 2000 : 20000; }
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {

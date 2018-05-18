@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 import ru.minebot.extreme_energy.capability.ImplantProvider;
 import ru.minebot.extreme_energy.energy.IFrequencyHandler;
 import ru.minebot.extreme_energy.gui.elements.Button;
@@ -183,6 +184,7 @@ public class ImplantsScreen extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
         super.drawScreen(mouseX, mouseY, partialTicks);
 
+        GL11.glEnable(GL11.GL_BLEND);
         guiLeft = (width - 256)/2;
         guiTop = (height - 256)/2;
 

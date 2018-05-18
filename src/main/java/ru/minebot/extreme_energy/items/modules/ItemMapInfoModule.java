@@ -69,8 +69,13 @@ public class ItemMapInfoModule extends Module implements IChip, IInfo {
             glTranslated(-x / scale, -y / scale, 30);
             glRotated(-mc.player.rotationPitch - 15, 1, 0, 0);
             glRotated(mc.player.rotationYaw, 0, 1, 0);
-            map.render();
-            map.renderEffects(tes, tes.getBuffer());
+            try {
+                map.render();
+                map.renderEffects(tes, tes.getBuffer());
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
             glPopMatrix();
             glDisable(GL_DEPTH_TEST);
         }

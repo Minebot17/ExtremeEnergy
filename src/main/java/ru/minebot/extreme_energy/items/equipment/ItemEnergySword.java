@@ -134,7 +134,7 @@ public class ItemEnergySword extends Item {
         return false;
     }
 
-    final int powerToEnergy = 5000;
+    final int powerToEnergy = 7500;
     protected int getEnergyByPower(ItemStack stack){
         return ModUtils.getNotNullCategory(stack).getInteger("power") * powerToEnergy;
     }
