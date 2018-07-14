@@ -276,7 +276,6 @@ public class Craft extends Element implements IClickable{
         glPopMatrix();
     }
 
-    @SideOnly(Side.CLIENT)
     private void drawHoveringText(float x, float y, ItemStack item){
         glDisable(GL_STENCIL_TEST);
         List<String> tooltip = item.getTooltip(mc.player, ITooltipFlag.TooltipFlags.NORMAL);

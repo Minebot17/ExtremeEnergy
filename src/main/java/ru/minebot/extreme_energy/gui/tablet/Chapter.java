@@ -18,7 +18,6 @@ public class Chapter {
         this.articles = articles;
     }
 
-    @SideOnly(Side.CLIENT)
     public String getName() {
         return I18n.format(name);
     }

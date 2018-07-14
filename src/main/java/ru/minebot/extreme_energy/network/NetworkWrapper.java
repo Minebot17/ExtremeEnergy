@@ -66,7 +66,6 @@ public class NetworkWrapper {
     }
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
     public void onClientPacket(FMLNetworkEvent.ClientCustomPacketEvent e)
     {
         if (!e.getPacket().channel().equals(name)) {

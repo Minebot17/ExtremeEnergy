@@ -7,7 +7,6 @@ import ru.minebot.extreme_energy.particles.ParticleCustomPortal;
 
 public class ModParticlesRegister {
 
-    @SideOnly(Side.CLIENT)
     public static void register(){
         Minecraft.getMinecraft().effectRenderer.registerParticle(ModConfig.portalParticleID, new ParticleCustomPortal.Factory());
     }

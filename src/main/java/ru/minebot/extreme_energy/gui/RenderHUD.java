@@ -60,7 +60,6 @@ public class RenderHUD {
     private int lastPosY;
 
     @SubscribeEvent
-    @SideOnly(Side.CLIENT)
     public void tickRender(TickEvent.RenderTickEvent e) {
         if (mc.currentScreen == null && mc.world != null && mc.isGuiEnabled()) {
             EntityPlayer player = Minecraft.getMinecraft().player;

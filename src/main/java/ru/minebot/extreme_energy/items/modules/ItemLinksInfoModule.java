@@ -46,7 +46,6 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
 
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void renderWorld(ChipArgs args, Minecraft mc, Tessellator tes, BufferBuilder buf, ScaledResolution res) {
         if (vertices.size() == 0 || args.energy < 1000)
@@ -73,7 +72,6 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
         }
     }
 
-    @SideOnly(Side.CLIENT)
     private void renderVertices(Vertex vertex, Vec3d eyes, Tessellator tes, BufferBuilder buf, float r, float g, float b){
         Vec3d from = new Vec3d(vertex.pos.getX()+0.5f, vertex.pos.getY()+0.5f, vertex.pos.getZ()+0.5f);
         double length = Math.sqrt(Math.pow(eyes.x - from.x, 2) + Math.pow(eyes.z - from.z, 2));
@@ -97,7 +95,6 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
 
     }
 
-    @SideOnly(Side.CLIENT)
     private void renderFields(World world, Vertex vertex, Tessellator tes, BufferBuilder buf, float r, float g, float b){
         if (world == null)
             return;
@@ -146,7 +143,6 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
                 renderFields(world, vertex1, tes, buf, r, g, b);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public int onImplantWork(ChipArgs args) {
         if (args.energy > 1000 && args.player.world.isRemote && args.player.world.getTotalWorldTime()%20==0){
@@ -169,7 +165,6 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
         return 6;
     }
 
-    @SideOnly(Side.CLIENT)
     private List<Vertex> getVertexes(World world, BlockPos pos, List<Vertex> result){
         TileEntity te = world.getTileEntity(pos);
         List<BlockPos> links = ((IFieldCreatorEnergy) te).getLinks();

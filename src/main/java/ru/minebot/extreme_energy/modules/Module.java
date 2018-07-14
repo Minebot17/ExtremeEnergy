@@ -31,7 +31,6 @@ public abstract class Module extends Item implements IModuleTier {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         tooltip.add(ModUtils.getDescription(stack.getItem()));
         if (!(this instanceof ModuleAddValue))

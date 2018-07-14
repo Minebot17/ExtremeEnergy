@@ -389,7 +389,6 @@ public class ImplantsScreen extends GuiScreen {
         frequencyField.updateCursorCounter();
     }
 
-    @SideOnly(Side.CLIENT)
     protected void markDirty(){
         NBTTagList list = new NBTTagList();
         for (int i = 0; i < stacks.size(); ++i) {

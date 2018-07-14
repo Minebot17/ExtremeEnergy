@@ -42,12 +42,10 @@ public class BlockShield extends Block {
         return false;
     }
 
-    @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 
-    @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         return blockAccess.getBlockState(pos.offset(side)).getBlock() != this;
     }

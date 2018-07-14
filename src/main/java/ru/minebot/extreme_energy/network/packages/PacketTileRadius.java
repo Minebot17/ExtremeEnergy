@@ -18,7 +18,6 @@ public class PacketTileRadius extends AbstractPacket {
 
     public PacketTileRadius(){}
 
-    @SideOnly(Side.CLIENT)
     public PacketTileRadius(BlockPos pos){
         this.pos = pos;
         IRadiusHandler handler = (IRadiusHandler) Minecraft.getMinecraft().world.getTileEntity(pos);

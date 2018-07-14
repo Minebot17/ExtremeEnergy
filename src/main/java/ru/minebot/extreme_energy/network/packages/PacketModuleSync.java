@@ -25,7 +25,6 @@ public class PacketModuleSync extends AbstractPacket {
 
     public PacketModuleSync(){}
 
-    @SideOnly(Side.CLIENT)
     public PacketModuleSync(boolean stock){
         IImplant cap = Minecraft.getMinecraft().player.getCapability(ImplantProvider.IMPLANT, null);
         if (cap.hasImplant()){

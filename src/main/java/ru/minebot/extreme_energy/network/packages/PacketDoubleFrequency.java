@@ -20,7 +20,6 @@ public class PacketDoubleFrequency extends AbstractPacket {
 
     public PacketDoubleFrequency(){}
 
-    @SideOnly(Side.CLIENT)
     public PacketDoubleFrequency(BlockPos pos){
         this.pos = pos;
         FieldTransmitterStandart transmitterStandart = (FieldTransmitterStandart) Minecraft.getMinecraft().world.getTileEntity(pos);

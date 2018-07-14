@@ -31,7 +31,6 @@ public class ParticleCustomPortal extends ParticlePortal {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public static class Factory implements IParticleFactory {
         public Particle createParticle(int particleID, World worldIn, double xIn, double yIn, double zIn, double xSpeedIn, double ySpeedIn, double zSpeedIn, int... p_178902_15_) {
             return new ParticleCustomPortal(worldIn, new Vec3d(xIn, yIn, zIn), new Vec3d(xSpeedIn, ySpeedIn, zSpeedIn));

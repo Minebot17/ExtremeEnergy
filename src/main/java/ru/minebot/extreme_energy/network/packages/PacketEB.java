@@ -17,7 +17,6 @@ public class PacketEB extends AbstractPacket {
 
     public PacketEB(){}
 
-    @SideOnly(Side.CLIENT)
     public PacketEB(BlockPos pos){
         this.pos = pos;
         TileEntityEB te = (TileEntityEB) Minecraft.getMinecraft().world.getTileEntity(pos);

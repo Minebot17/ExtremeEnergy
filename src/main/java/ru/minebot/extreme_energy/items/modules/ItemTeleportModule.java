@@ -46,7 +46,6 @@ public class ItemTeleportModule extends ModuleFunctional implements IChip, ISwor
         super(Reference.ExtremeEnergyItems.MODULETELEPORT.getUnlocalizedName(), Reference.ExtremeEnergyItems.MODULETELEPORT.getRegistryName());
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void firstUpdate(FuncArgs args){
         if (args.world.isRemote){

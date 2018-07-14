@@ -37,7 +37,6 @@ public class ItemFullInjector extends Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         if (stack.hasTagCompound()){
             NBTTagList list = ModUtils.getNotNullCategory(stack).getTagList("Items", 10);

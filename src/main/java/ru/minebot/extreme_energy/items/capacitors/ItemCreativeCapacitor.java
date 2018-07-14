@@ -24,7 +24,6 @@ public class ItemCreativeCapacitor extends Capacitor {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn){
         tooltip.add("over9000/over9000+1 RF");
     }

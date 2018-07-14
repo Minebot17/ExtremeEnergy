@@ -100,7 +100,6 @@ public class ItemChargeDetector extends Item {
         return array.length+1;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         tooltip.add(ModUtils.getDescription(stack.getItem()));

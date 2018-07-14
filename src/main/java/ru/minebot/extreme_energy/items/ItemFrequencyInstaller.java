@@ -53,7 +53,6 @@ public class ItemFrequencyInstaller extends Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         if (Minecraft.getMinecraft().player != null && !Minecraft.getMinecraft().player.isCreative()){
             NBTTagCompound tag = ModUtils.getNotNullCategory(stack);

@@ -17,7 +17,6 @@ public class PacketSG extends AbstractPacket {
 
     public PacketSG(){}
 
-    @SideOnly(Side.CLIENT)
     public PacketSG(BlockPos pos){
         this.pos = pos;
         TileEntitySG te = (TileEntitySG) Minecraft.getMinecraft().world.getTileEntity(pos);

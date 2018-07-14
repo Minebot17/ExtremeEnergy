@@ -38,7 +38,6 @@ public class ItemIdCard extends Item{
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         NBTTagCompound tag = ModUtils.getNotNullCategory(stack);
         tooltip.add("ID: " + tag.getInteger("id"));

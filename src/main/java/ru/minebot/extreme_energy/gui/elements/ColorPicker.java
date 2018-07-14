@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemPotion;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Point;
 

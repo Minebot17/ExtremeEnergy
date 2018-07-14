@@ -62,7 +62,6 @@ public class TabletRender {
     protected static float pitch;
     protected static float mouseY;
 
-    @SideOnly(Side.CLIENT)
     public static void init(){
         Minecraft.getMinecraft().gameSettings.fboEnable = true;
         boolean small = mc.fontRenderer.getUnicodeFlag();
@@ -117,7 +116,6 @@ public class TabletRender {
         scene = new ChaptersScene(chapters);
     }
 
-    @SideOnly(Side.CLIENT)
     public static void setArticle(int chapter, int article){
         if (chapter == -1)
             scene = new ChaptersScene(chapters);
@@ -128,7 +126,6 @@ public class TabletRender {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public static void setArticle(String key){
         for (int i = 0; i < chapters.size(); i++)
             for (int j= 0; j < chapters.get(i).getArticles().size(); j++)
@@ -140,7 +137,6 @@ public class TabletRender {
                 }
     }
 
-    @SideOnly(Side.CLIENT)
     public static void returnArticle(){
         if (articleBuffer.size() != 0) {
             Integer[] index = articleBuffer.pop();
@@ -153,7 +149,6 @@ public class TabletRender {
         return langMap.get(chapter).get(article);
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderItem(RenderSpecificHandEvent e){
         if (e.getItemStack().getItem() == ModItems.tablet && e.getHand() == EnumHand.MAIN_HAND){
@@ -190,7 +185,6 @@ public class TabletRender {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     private void drawTablet(Tessellator tes, ScaledResolution resolution){
         BufferBuilder buf = tes.getBuffer();
         glPushMatrix();
@@ -271,7 +265,6 @@ public class TabletRender {
         glPopMatrix();
     }
 
-    @SideOnly(Side.CLIENT)
     private void renderArms(){
         Render<AbstractClientPlayer> R = mc.getRenderManager().getEntityRenderObject(mc.player);
         RenderPlayer render = (RenderPlayer)R;
@@ -284,7 +277,6 @@ public class TabletRender {
         glPopMatrix();
     }
 
-    @SideOnly(Side.CLIENT)
     private void drawElements(ScaledResolution resolution){
         float x = (1.4f * (2f*Mouse.getX() - Display.getWidth()))/(Display.getHeight()*resolution.getScaleFactor()) + 0.8f;
         float y = 2.8f*(Display.getHeight() - Mouse.getY() - 0.36f*Display.getHeight()/resolution.getScaleFactor())/(Display.getHeight()*resolution.getScaleFactor());
@@ -295,7 +287,6 @@ public class TabletRender {
         glTranslated(0.8f, -0.45f, 1.999);
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void keyEvent(InputEvent.KeyInputEvent e){
         if (isUngrabed){
@@ -307,7 +298,6 @@ public class TabletRender {
     private int lastPosY;
     private boolean isMouseDown;
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void mouse(MouseEvent e){
         if (isUngrabed){
@@ -330,7 +320,6 @@ public class TabletRender {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void playerTick(TickEvent.PlayerTickEvent e){
         if (mc.getLanguageManager().getCurrentLanguage() != language)

@@ -147,7 +147,6 @@ public class BlockCable extends Block{
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
@@ -208,7 +207,6 @@ public class BlockCable extends Block{
         return FULL_BLOCK_AABB;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         tooltip.add(ModUtils.getDescription(stack.getItem()));

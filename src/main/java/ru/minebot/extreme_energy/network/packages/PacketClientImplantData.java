@@ -29,7 +29,6 @@ public class PacketClientImplantData extends AbstractPacket {
 
     public PacketClientImplantData(){}
 
-    @SideOnly(Side.CLIENT)
     public PacketClientImplantData(boolean setArmor) {
         IImplant cap = Minecraft.getMinecraft().player.getCapability(ImplantProvider.IMPLANT, null);
         if (cap.hasImplant()){

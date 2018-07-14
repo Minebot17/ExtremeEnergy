@@ -165,7 +165,6 @@ public class ArmorSettingsScreen extends GuiScreen {
         return false;
     }
 
-    @SideOnly(Side.CLIENT)
     protected void markDirty(){
         mc.player.getCapability(ImplantProvider.IMPLANT, null).setImplant(data);
         NetworkWrapper.instance.sendToServer(new PacketClientImplantData(true));

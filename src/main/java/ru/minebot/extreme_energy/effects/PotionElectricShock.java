@@ -49,7 +49,6 @@ public class PotionElectricShock extends Potion{
 
 
     @Override
-    @SideOnly(Side.CLIENT)
     public int getStatusIconIndex() {
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("meem:textures/potions.png"));
         return super.getStatusIconIndex();

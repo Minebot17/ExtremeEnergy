@@ -404,7 +404,6 @@ public class ModUtils {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     public static void drawString(String text, float x, float y, int color, Element.Align align){
         FontRenderer font = Minecraft.getMinecraft().fontRenderer;
         float localX = align == Element.Align.LEFT ? x : align == Element.Align.CENTER ? x - font.getStringWidth(text)/2f : x - font.getStringWidth(text);
@@ -412,7 +411,6 @@ public class ModUtils {
         font.drawString(text, localX, localY, color, false);
     }
 
-    @SideOnly(Side.CLIENT)
     public static Entity getMouseOver(float partialTicks, float dist, boolean canBeCollided)
     {
         Minecraft mc = Minecraft.getMinecraft();
@@ -513,12 +511,10 @@ public class ModUtils {
         return null;
     }
 
-    @SideOnly(Side.CLIENT)
     public static RayTraceResult getBlocksRay(){
         return Minecraft.getMinecraft().player.rayTrace(128, Minecraft.getMinecraft().getRenderPartialTicks());
     }
 
-    @SideOnly(Side.CLIENT)
     public static int getEntityRay(){
         Entity entity = ModUtils.getMouseOver(Minecraft.getMinecraft().getRenderPartialTicks(), 128, false);
         return entity == null ? 0 : entity.getEntityId();
@@ -543,7 +539,6 @@ public class ModUtils {
             "ru"
     };
 
-    @SideOnly(Side.CLIENT)
     public static List<String> getLines(Language language, int chapter, int article) throws IOException{
         Minecraft mc = Minecraft.getMinecraft();
         String lang = language.getLanguageCode().split("_")[0];

@@ -33,7 +33,6 @@ public class ItemGrenade extends Item {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         tooltip.add(ModUtils.getDescription(stack.getItem()));
     }
