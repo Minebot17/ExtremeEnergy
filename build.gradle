@@ -39,7 +39,7 @@ minecraft {
 
 dependencies {
 		compile files('src/libs/jei_1.12.1-4.7.8.95.jar')
-		compile files('src/libs/RedstoneFlux-1.12-2.0.1.2-universal.jar')
+		compile files('src/libs/RedstoneFlux-1.12-2.1.0.6-universal.jar')
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -80,4 +80,11 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+apply plugin: 'idea'
+idea {
+	module {
+		inheritOutputDirs=true
+	}
 }

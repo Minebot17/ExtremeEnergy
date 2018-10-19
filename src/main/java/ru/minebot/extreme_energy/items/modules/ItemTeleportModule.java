@@ -33,7 +33,6 @@ import ru.minebot.extreme_energy.modules.*;
 import ru.minebot.extreme_energy.network.NetworkWrapper;
 import ru.minebot.extreme_energy.network.packages.PacketFrequencyTeleport;
 import ru.minebot.extreme_energy.network.packages.PacketPlaySound;
-import ru.minebot.extreme_energy.network.packages.PacketSpawnParticle;
 import ru.minebot.extreme_energy.other.ChargeSaveData;
 
 import java.util.HashMap;
@@ -49,32 +48,37 @@ public class ItemTeleportModule extends ModuleFunctional implements IChip, ISwor
     @Override
     public void firstUpdate(FuncArgs args){
         if (args.world.isRemote){
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            if (ModUtils.inRadius(args.pos, player.getPosition(), 64)) {
-                int radius = args.radius > ModConfig.maxTeleportRadius ? ModConfig.maxTeleportRadius : args.radius;
-                if (ModUtils.inRadius(args.pos, player.getPosition(), radius) && (args.isPublic || ModUtils.contains(args.cards, player.getUniqueID().hashCode()))) {
-                    Minecraft mc = Minecraft.getMinecraft();
-                    Vec3d pos = new Vec3d(
-                            mc.player.getPositionVector().x + (ModUtils.random.nextFloat()-0.5f),
-                            mc.player.getPositionVector().y + (ModUtils.random.nextFloat()-0.5f)*2f + 0.4f,
-                            mc.player.getPositionVector().z + (ModUtils.random.nextFloat()-0.5f)
-                    );
-                    Vec3d speed = new Vec3d(args.pos).addVector(0.5f, 0.5f, 0.5f).subtract(pos).normalize().scale(0.1f);
-                    mc.effectRenderer.spawnEffectParticle(ModConfig.portalParticleID, pos.x, pos.y, pos.z, speed.x, speed.y, speed.z);
+            firstUpdateClient(args);
+        }
+    }
 
-                    Integer cd = poses.computeIfAbsent(args.pos, k -> radius*25);
+    @SideOnly(Side.CLIENT)
+    private void firstUpdateClient(FuncArgs args){
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        if (ModUtils.inRadius(args.pos, player.getPosition(), 64)) {
+            int radius = args.radius > ModConfig.maxTeleportRadius ? ModConfig.maxTeleportRadius : args.radius;
+            if (ModUtils.inRadius(args.pos, player.getPosition(), radius) && (args.isPublic || ModUtils.contains(args.cards, player.getUniqueID().hashCode()))) {
+                Minecraft mc = Minecraft.getMinecraft();
+                Vec3d pos = new Vec3d(
+                        mc.player.getPositionVector().x + (ModUtils.random.nextFloat()-0.5f),
+                        mc.player.getPositionVector().y + (ModUtils.random.nextFloat()-0.5f)*2f + 0.4f,
+                        mc.player.getPositionVector().z + (ModUtils.random.nextFloat()-0.5f)
+                );
+                Vec3d speed = new Vec3d(args.pos).addVector(0.5f, 0.5f, 0.5f).subtract(pos).normalize().scale(0.1f);
+                mc.effectRenderer.spawnEffectParticle(ModConfig.portalParticleID, pos.x, pos.y, pos.z, speed.x, speed.y, speed.z);
 
-                    if (cd <= 0) {
-                        poses.remove(args.pos);
-                        NetworkWrapper.instance.sendToServer(new PacketFrequencyTeleport(args.pos, args.frequency));
-                    } else {
-                        cd--;
-                        poses.replace(args.pos, cd);
-                    }
-                }
-                else if (poses.containsKey(args.pos))
+                Integer cd = poses.computeIfAbsent(args.pos, k -> radius*25);
+
+                if (cd <= 0) {
                     poses.remove(args.pos);
+                    NetworkWrapper.instance.sendToServer(new PacketFrequencyTeleport(args.pos, args.frequency));
+                } else {
+                    cd--;
+                    poses.replace(args.pos, cd);
+                }
             }
+            else if (poses.containsKey(args.pos))
+                poses.remove(args.pos);
         }
     }
 
@@ -109,19 +113,24 @@ public class ItemTeleportModule extends ModuleFunctional implements IChip, ISwor
                     NetworkWrapper.instance.sendToAllAround(new PacketPlaySound(SoundEvent.REGISTRY.getIDForObject(SoundEvents.ENTITY_ENDERMEN_TELEPORT), (float) particlePos.x, (float) particlePos.y, (float) particlePos.z), point);
                 }
                 else {
-                    Vec3d particlePos = args.player.getPositionVector();
-                    Vec3d vec = new Vec3d(result).subtract(particlePos).normalize().scale(0.1f);
-                    ParticleManager manager = Minecraft.getMinecraft().effectRenderer;
-                    for (int i = 0; i < 100; i++)
-                        manager.spawnEffectParticle(ModConfig.portalParticleID,
-                                particlePos.x+ModUtils.random.nextFloat()-0.5f,
-                                particlePos.y+ModUtils.random.nextFloat()*2f-1f,
-                                particlePos.z+ModUtils.random.nextFloat()-0.5f,
-                                vec.x, vec.y, vec.z
-                        );
+                    createParticles(args, result);
                 }
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void createParticles(ChipArgs args, BlockPos result){
+        Vec3d particlePos = args.player.getPositionVector();
+        Vec3d vec = new Vec3d(result).subtract(particlePos).normalize().scale(0.1f);
+        ParticleManager manager = Minecraft.getMinecraft().effectRenderer;
+        for (int i = 0; i < 100; i++)
+            manager.spawnEffectParticle(ModConfig.portalParticleID,
+                    particlePos.x+ModUtils.random.nextFloat()-0.5f,
+                    particlePos.y+ModUtils.random.nextFloat()*2f-1f,
+                    particlePos.z+ModUtils.random.nextFloat()-0.5f,
+                    vec.x, vec.y, vec.z
+            );
     }
 
     private boolean isCorrect(BlockPos result, BlockPos playerPos, double min, double max) {

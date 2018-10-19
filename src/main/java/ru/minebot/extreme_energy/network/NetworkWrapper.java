@@ -1,8 +1,8 @@
 package ru.minebot.extreme_energy.network;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
@@ -65,6 +65,7 @@ public class NetworkWrapper {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onClientPacket(FMLNetworkEvent.ClientCustomPacketEvent e)
     {
@@ -87,7 +88,7 @@ public class NetworkWrapper {
     {
         Class clazz = msg.getClass();
         if (!PACKET_TO_ID.containsKey(clazz)) {
-            Minecraft.getMinecraft().crashed(new CrashReport("Try to send unknow packet", new Throwable("Try to send unknow packet")));
+            System.out.println("Try to send unknow packet");
         }
         ByteBuf buf = msg.getOrCreateByteBuf();
         buf.writeShort(PACKET_TO_ID.get(clazz));

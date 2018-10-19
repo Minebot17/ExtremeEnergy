@@ -1,6 +1,7 @@
 package ru.minebot.extreme_energy;
 
 import cofh.redstoneflux.RedstoneFlux;
+import cofh.redstoneflux.RedstoneFluxProps;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -30,7 +31,7 @@ import ru.minebot.extreme_energy.recipes.managers.CrusherRecipes;
 import ru.minebot.extreme_energy.recipes.managers.SawmillRecipes;
 
 // Hello, coder. Author - Minebot
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies= RedstoneFlux.VERSION_GROUP)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS, dependencies = RedstoneFluxProps.VERSION_GROUP)
 public class ExtremeEnergy {
     public static final String NBT_CATEGORY = "meemCategory";
 

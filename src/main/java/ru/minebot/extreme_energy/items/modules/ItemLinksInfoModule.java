@@ -1,12 +1,12 @@
 package ru.minebot.extreme_energy.items.modules;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.BufferBuilder;
 import static org.lwjgl.opengl.GL11.*;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -41,11 +41,13 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
     }
 
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void renderScreen(ChipArgs args, Minecraft mc, Tessellator tes, BufferBuilder buf, ScaledResolution res) {
 
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void renderWorld(ChipArgs args, Minecraft mc, Tessellator tes, BufferBuilder buf, ScaledResolution res) {
         if (vertices.size() == 0 || args.energy < 1000)
@@ -72,6 +74,7 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void renderVertices(Vertex vertex, Vec3d eyes, Tessellator tes, BufferBuilder buf, float r, float g, float b){
         Vec3d from = new Vec3d(vertex.pos.getX()+0.5f, vertex.pos.getY()+0.5f, vertex.pos.getZ()+0.5f);
         double length = Math.sqrt(Math.pow(eyes.x - from.x, 2) + Math.pow(eyes.z - from.z, 2));
@@ -95,6 +98,7 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
 
     }
 
+    @SideOnly(Side.CLIENT)
     private void renderFields(World world, Vertex vertex, Tessellator tes, BufferBuilder buf, float r, float g, float b){
         if (world == null)
             return;
@@ -203,11 +207,13 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
             this.links = links;
         }
 
+        @SideOnly(Side.CLIENT)
         public void render(Tessellator tes, BufferBuilder buf, float r, float g, float b){
             type.render.invoke(tes, buf, r, g, b);
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private enum VertexType {
         CREATOR((tes, buf, r, g, b) -> {
             glPushMatrix();
@@ -247,6 +253,7 @@ public class ItemLinksInfoModule extends Module implements IChip, IInfo{
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private interface Action {
         void invoke(Tessellator tes, BufferBuilder buf, float r, float g, float b);
     }
