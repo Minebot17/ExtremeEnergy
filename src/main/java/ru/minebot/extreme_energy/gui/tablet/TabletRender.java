@@ -10,6 +10,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.RenderSpider;
@@ -153,9 +154,7 @@ public class TabletRender {
     public void renderItem(RenderSpecificHandEvent e){
         if (e.getItemStack().getItem() == ModItems.tablet && e.getHand() == EnumHand.MAIN_HAND){
             e.setCanceled(true);
-
             Tessellator tes = Tessellator.getInstance();
-            ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
 
             glDisable(GL_DEPTH_TEST);
             RenderHelper.enableGUIStandardItemLighting();
@@ -163,10 +162,12 @@ public class TabletRender {
             if (e.getInterpolatedPitch() < 59)
                 glRotated(e.getInterpolatedPitch() - 60, 1, 0, 0);
             renderArms(); // TODO: fix resolution.getScaleFactor() == 1 size
-            glScalef(resolution.getScaleFactor(), resolution.getScaleFactor(), 1);
-            drawTablet(tes, resolution);
+            glScalef(2, 2, 1);
+            glEnable(GL_LIGHTING);
+            RenderHelper.disableStandardItemLighting();
+            drawTablet(tes);
 
-            drawElements(resolution);
+            drawElements();
 
             if (Mouse.getY() > Display.getHeight() - Display.getHeight()/10 || mc.currentScreen != null) {
                 if (isUngrabed) {
@@ -185,7 +186,7 @@ public class TabletRender {
         }
     }
 
-    private void drawTablet(Tessellator tes, ScaledResolution resolution){
+    private void drawTablet(Tessellator tes){
         BufferBuilder buf = tes.getBuffer();
         glPushMatrix();
         GlStateManager.disableTexture2D();
@@ -277,9 +278,9 @@ public class TabletRender {
         glPopMatrix();
     }
 
-    private void drawElements(ScaledResolution resolution){
-        float x = (1.4f * (2f*Mouse.getX() - Display.getWidth()))/(Display.getHeight()*resolution.getScaleFactor()) + 0.8f;
-        float y = 2.8f*(Display.getHeight() - Mouse.getY() - 0.36f*Display.getHeight()/resolution.getScaleFactor())/(Display.getHeight()*resolution.getScaleFactor());
+    private void drawElements(){
+        float x = (1.4f * (2f*Mouse.getX() - Display.getWidth()))/(Display.getHeight()*2f) + 0.8f;
+        float y = 2.8f*(Display.getHeight() - Mouse.getY() - 0.36f*Display.getHeight()/2f)/(Display.getHeight()*2f);
         mouseY = y;
 
         glTranslated(-0.8f, 0.45f, -1.999);

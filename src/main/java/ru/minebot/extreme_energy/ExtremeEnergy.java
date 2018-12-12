@@ -1,6 +1,5 @@
 package ru.minebot.extreme_energy;
 
-import cofh.redstoneflux.RedstoneFlux;
 import cofh.redstoneflux.RedstoneFluxProps;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

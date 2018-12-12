@@ -76,6 +76,9 @@ public class Craft extends Element implements IClickable{
 
     @Override
     public void draw(Tessellator tes, BufferBuilder buf, float mouseX, float mouseY) {
+        if (crafts.size() == 0)
+            return;
+
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         this.isLeftHover = isHoverButton(true);
@@ -137,6 +140,8 @@ public class Craft extends Element implements IClickable{
 
     @Override
     public void postDraw(Tessellator tes, BufferBuilder buf, float mouseX, float mouseY){
+        if (crafts.size() == 0)
+            return;
         if (slotHover != -1){
             if (type.slots.length > slotHover) {
                 try {
@@ -157,6 +162,8 @@ public class Craft extends Element implements IClickable{
 
     @Override
     public void onMouseDown() {
+        if (crafts.size() == 0)
+            return;
         if (crafts.size() != 1) {
             if (isLeftHover) {
                 animation = false;
@@ -174,6 +181,8 @@ public class Craft extends Element implements IClickable{
 
     @Override
     public void onMouseUp() {
+        if (crafts.size() == 0)
+            return;
         if (crafts.size() != 1) {
             if (isLeftHover)
                 leftButton.onMouseUp();
@@ -184,6 +193,8 @@ public class Craft extends Element implements IClickable{
 
     @Override
     public void onMouseMove() {
+        if (crafts.size() == 0)
+            return;
         if (crafts.size() != 1) {
             if (isLeftHover)
                 leftButton.onMouseMove();
@@ -194,16 +205,20 @@ public class Craft extends Element implements IClickable{
 
     @Override
     public boolean isHover(float mouseX, float mouseY) {
+        if (crafts.size() == 0)
+            return false;
         float localX = align == Align.LEFT ? posX : align == Align.CENTER ? posX - type.width/2f : posX - type.width;
         return mouseX > localX && mouseX < localX + type.width && mouseY < posY && mouseY > posY - getHeight();
     }
 
     @Override
     public float getHeight() {
-        return type.height + (crafts.size() != 1 ? 0.1f : 0);
+        return crafts.size() == 0 ? 0 : (type.height + (crafts.size() != 1 ? 0.1f : 0));
     }
 
     private boolean isHoverButton(boolean left){
+        if (crafts.size() == 0)
+            return false;
         float labelWidth = font.getStringWidth("999/999")/(1f/Label.textSize);
         float posXLeft = align == Align.LEFT ? posX : align == Align.CENTER ? posX - labelWidth/2 - 0.1f : posX - labelWidth - 0.2f;
         float posXRight = align == Align.LEFT ? posX + 0.1f + labelWidth : align == Align.CENTER ? posX + labelWidth/2 : posX - 0.1f;
@@ -214,6 +229,9 @@ public class Craft extends Element implements IClickable{
     }
 
     private int isHoverSlot(){
+        if (crafts.size() == 0)
+            return -1;
+
         int i = 0;
         float localX = align == Align.LEFT ? posX : align == Align.CENTER ? posX - type.width/2f : posX - type.width;
         while (i < type.slots.length) {
@@ -243,6 +261,9 @@ public class Craft extends Element implements IClickable{
     }
 
     private void setPage(int index){
+        if (crafts.size() == 0)
+            return;
+
         if (index >= 0 && index < crafts.size()){
             thisCraft = index;
             pages.text = Collections.singletonList(index + 1 + "/" + crafts.size());
@@ -266,6 +287,9 @@ public class Craft extends Element implements IClickable{
     }
 
     private void renderItem(float x, float y, ItemStack item){
+        if (crafts.size() == 0)
+            return;
+
         glPushMatrix();
         glTranslated(0, 0, -0.00001f);
         glScalef(0.005f, -0.005f, 0.00001f);
@@ -277,6 +301,9 @@ public class Craft extends Element implements IClickable{
     }
 
     private void drawHoveringText(float x, float y, ItemStack item){
+        if (crafts.size() == 0)
+            return;
+
         glDisable(GL_STENCIL_TEST);
         List<String> tooltip = item.getTooltip(mc.player, ITooltipFlag.TooltipFlags.NORMAL);
         try {
