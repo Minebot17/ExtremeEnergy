@@ -223,6 +223,10 @@ config.maxTeleportRadius.name=Максимальный радиус телепо
 config.maxTeleportRadius=Определяет максимальный радиус для телепортации конвертером поля
 config.nuclearExplosionReactor.name=Ядерный взрыв после перегрева реактора
 config.nuclearExplosionReactor=Будет ли ядерный взрыв при перегреве ядерного реактора
+config.poweredCrystals.name=Заряженные кристаллы
+config.poweredCrystals=Будут ли кристаллы заряженны при выпадении из руды. Если false, то они будут стакатся и не будут наносить игроку урон
+config.randomChunkCharge.name=Рандомный заряд чанка
+config.randomChunkCharge=Если true, то заряд чанка будет полностью рандомно генерироватся, иначе он будет средний (по стандарту false, чтобы не было раздражающих молний по всей карте)
 
 config.bigCristalOre_BlockCount=Количество блоков красных кристаллов в жиле
 config.bigCristalOre_Chance=Шанс спавна жилы красного кристалла

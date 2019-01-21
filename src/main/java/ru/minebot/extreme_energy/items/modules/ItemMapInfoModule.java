@@ -58,8 +58,8 @@ public class ItemMapInfoModule extends Module implements IChip, IInfo {
 
             if (vboID == 0)
                 vboID = glGenBuffers();
-            int x = res.getScaledWidth() / 3;
-            int y = res.getScaledHeight() - (res.getScaledHeight()) / 4;
+            int x = mc.displayWidth/2 / 3;
+            int y = mc.displayHeight/2 - (mc.displayHeight/2) / 4;
             float scale = 75f / map.radius;
             glEnable(GL_DEPTH_TEST);
             glDepthFunc(GL_LESS);

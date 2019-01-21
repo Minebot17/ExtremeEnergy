@@ -33,6 +33,7 @@ public class ItemInjector extends Item{
             ImplantData data = cap.getImplant();
             if (data != null){
                 NetworkWrapper.instance.sendToServer(new PacketNotifyModule(false));
+                cap.removeImplant();
                 playerIn.inventory.removeStackFromSlot(playerIn.inventory.currentItem);
                 NBTTagCompound category = new NBTTagCompound();
                 NBTTagCompound tag = data.modules;
@@ -41,7 +42,6 @@ public class ItemInjector extends Item{
                 ItemStack implant = new ItemStack(data.type == 0 ? ModItems.baseImplant : data.type == 1 ? ModItems.advancedImplant : ModItems.extremeImplant);
                 implant.setTagCompound(category);
                 playerIn.inventory.addItemStackToInventory(implant);
-                cap.removeImplant();
             }
             else if (worldIn.isRemote)
                 ModUtils.sendModMessage(playerIn, "notHaveImplant");

@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import ru.minebot.extreme_energy.ExtremeEnergy;
 import ru.minebot.extreme_energy.Reference;
+import ru.minebot.extreme_energy.init.ModConfig;
 import ru.minebot.extreme_energy.init.ModItems;
 
 import java.util.Random;
@@ -23,7 +24,7 @@ public class BlockSmallCrystalOre extends Block {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
-        return ModItems.smallCrystalActive;
+        return ModConfig.poweredCrystals ? ModItems.smallCrystalActive : ModItems.smallCrystal;
     }
 
     @Override

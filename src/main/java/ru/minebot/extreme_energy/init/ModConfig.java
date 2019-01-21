@@ -12,6 +12,8 @@ public class ModConfig {
     public static int portalParticleID;
     public static boolean explodeMachines;
     public static boolean nuclearExplosionReactor;
+    public static boolean poweredCrystals;
+    public static boolean randomChunkCharge;
     public static int maxCapOfChunk = 10000000;
     public static int maxTeleportRadius;
 
@@ -30,8 +32,11 @@ public class ModConfig {
         portalParticleID = config.getInt("portalParticleID", "ids", 203, 1, 256, getName("config.portalParticleID"), "config.portalParticleID.name");
         explodeMachines = config.getBoolean("explodeMachines", "general", true, getName("config.explodeMachines"), "config.explodeMachines.name");
         nuclearExplosionReactor = config.getBoolean("nuclearExplosionReactor", "general", true, getName("config.nuclearExplosionReactor"), "config.nuclearExplosionReactor.name");
+        poweredCrystals = config.getBoolean("poweredCrystals", "general", true, getName("config.poweredCrystals"), "config.poweredCrystals.name");
+        randomChunkCharge = config.getBoolean("randomChunkCharge", "general", false, getName("config.randomChunkCharge"), "config.randomChunkCharge.name");
         //maxCapOfChunk = config.getInt("maxCapOfChunk", "general", 10000000, 100000, 100000000, getName("config.maxCapOfChunk"), "config.maxCapOfChunk.name");
         maxTeleportRadius = config.getInt("maxTeleportRadius", "general", 100, 1, 100, getName("config.maxTeleportRadius"), "config.maxTeleportRadius.name");
+
 
         enableGeneration = config.getBoolean("enableGeneration", "generation", true, getName("config.enableGeneration"), "config.enableGeneration.name");
         smallCristalOreSetting = new GenerationSetting("smallCristalOre",

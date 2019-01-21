@@ -30,7 +30,7 @@ public class Crystal extends Item {
         setUnlocalizedName(unlocName);
         setRegistryName(regName);
         setCreativeTab(ExtremeEnergy.tabExtremeEnergy);
-        setMaxStackSize(1);
+        //setMaxStackSize(1);
         this.maxCharge = maxCharge;
         this.power = power + 1;
     }

@@ -223,6 +223,10 @@ config.maxTeleportRadius.name=Maximum radius of teleportation
 config.maxTeleportRadius=Defines the maximum radius for teleportation by the field converter
 config.nuclearExplosionReactor.name=Nuclear explosion after reactor overheating
 config.nuclearExplosionReactor=Will there be a nuclear explosion when the nuclear reactor overheats
+config.poweredCrystals.name=Charged crystals
+config.poweredCrystals=Will the crystals be charged when they drop from the ore? If false, they will be stacked and will not cause damage to the player.
+config.randomChunkCharge.name=Random chunk charge
+config.randomChunkCharge=If true, then the charge of the chunk will be completely randomly generated, else it will be medium (standard false, so that there are no annoying lightning throughout the map)
 
 config.bigCristalOre_BlockCount=Number of blocks of red crystals in the cluster
 config.bigCristalOre_Chance=Chance of the spawning cluster of red crystal

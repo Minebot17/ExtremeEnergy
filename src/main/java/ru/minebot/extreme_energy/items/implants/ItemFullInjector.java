@@ -74,7 +74,7 @@ public class ItemFullInjector extends Item {
 
     public NBTTagCompound getImplantTag(int type){
         NBTTagCompound tag = new NBTTagCompound();
-        tag.setBoolean("isOn", false);
+        tag.setBoolean("isOn", true);
         tag.setByteArray("activesArray", new byte[(type + 1)*2]);
         tag.setInteger("voltage", 0);
         tag.setInteger("energy", 0);

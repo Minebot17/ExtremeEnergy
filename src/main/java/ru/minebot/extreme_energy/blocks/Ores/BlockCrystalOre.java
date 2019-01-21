@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import ru.minebot.extreme_energy.ExtremeEnergy;
 import ru.minebot.extreme_energy.Reference;
+import ru.minebot.extreme_energy.init.ModConfig;
 import ru.minebot.extreme_energy.init.ModItems;
 
 import java.util.Random;
@@ -24,7 +25,7 @@ public class BlockCrystalOre extends Block{
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
-        return ModItems.crystalActive;
+        return ModConfig.poweredCrystals ? ModItems.crystalActive : ModItems.crystal;
     }
 
     @Override

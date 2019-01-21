@@ -17,15 +17,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import ru.minebot.extreme_energy.blocks.BlockShield;
 import ru.minebot.extreme_energy.capability.IImplant;
 import ru.minebot.extreme_energy.capability.ImplantProvider;
@@ -48,6 +51,7 @@ import ru.minebot.extreme_energy.other.ChargeSaveData;
 import ru.minebot.extreme_energy.other.ImplantData;
 import ru.minebot.extreme_energy.other.InfectedSaveData;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -65,6 +69,16 @@ public class CommonEvents {
             new ChunkPos(1, -1),
             new ChunkPos(-1, 1),
     };*/
+
+    @SubscribeEvent
+    public void entityJoinWorld(EntityJoinWorldEvent e) {
+        if (FMLCommonHandler.instance().getEffectiveSide()== Side.CLIENT || !(e.getEntity() instanceof EntityPlayer))
+            return;
+
+        EntityPlayer player = (EntityPlayer) e.getEntity();
+        if (!player.world.isRemote && !new File(player.world.getSaveHandler().getWorldDirectory().getPath()+"/playerdata/"+player.getUniqueID().toString().toLowerCase()+".dat").exists())
+            player.addItemStackToInventory(new ItemStack(ModItems.tablet));
+    }
 
     @SubscribeEvent
     public void PlayerTickEvent(TickEvent.PlayerTickEvent e){
@@ -106,6 +120,12 @@ public class CommonEvents {
             if (checkedVoltage != voltage){
                 voltage = checkedVoltage;
                 iTag.setInteger("voltage", voltage);
+            }
+
+            if (modulesActive.length != stacks.size()) {
+                cap.removeImplant();
+                e.player.sendMessage(new TextComponentString("[Extreme Energy]: Error with implant. CommonEvents.PlayerTickEvent:127"));
+                return;
             }
 
 
@@ -423,7 +443,7 @@ public class CommonEvents {
 
         ChargeSaveData data = ChargeSaveData.getOrCreateData(e.getWorld());
         if (!data.map.containsKey(e.getChunk().getPos())){
-            data.map.put(e.getChunk().getPos(), ModUtils.random.nextInt(ModConfig.maxCapOfChunk));
+            data.map.put(e.getChunk().getPos(), ModUtils.random.nextInt(ModConfig.randomChunkCharge ? ModConfig.maxCapOfChunk : ((int)(ModConfig.maxCapOfChunk*0.5f)) + (int)(ModConfig.maxCapOfChunk*0.2f)));
             data.markDirty();
         }
     }

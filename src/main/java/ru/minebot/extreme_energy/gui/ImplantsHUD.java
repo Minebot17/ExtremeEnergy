@@ -3,6 +3,7 @@ package ru.minebot.extreme_energy.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -26,6 +27,7 @@ public class ImplantsHUD extends Gui{
             lastTick = mc.world.getTotalWorldTime();
         }
 
+        ScaledResolution res = new ScaledResolution(mc);
         GL11.glEnable(GL_BLEND);
         GL11.glColor4f(1,1 , 1, 0.75f);
         GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

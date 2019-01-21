@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import ru.minebot.extreme_energy.capability.ImplantProvider;
 import ru.minebot.extreme_energy.init.CommonEvents;
@@ -76,6 +77,8 @@ public class RenderHUD {
 
 
             if (data != null) {
+                glPushMatrix();
+                glScaled(2f/(float)res.getScaleFactor(), 2f/(float)res.getScaleFactor(), 1);
                 NBTTagCompound iTag = data.implant;
                 boolean isOn = iTag.getBoolean("isOn");
                 if (isOn) {
@@ -90,19 +93,25 @@ public class RenderHUD {
                             glPopMatrix();
                         }
                 }
+                glPopMatrix();
             }
 
             if (data != null && data.implant.getBoolean("isOn") && data.implant.getBoolean("isShowInfo")){
                 glPushMatrix();
                 int x = (res.getScaledWidth() - 109) / 8;
                 int y = (res.getScaledHeight() - 290) / 2;
-                glTranslated(x, y, 0);
+
+                glTranslated(x, y + 290/2, 0);
+                glScaled(2f/(float)res.getScaleFactor(), 2f/(float)res.getScaleFactor(), 1);
+                glTranslated(0, -290/2, 0);
                 implantsHUD.draw(mc, font, data.implant.getInteger("energy"), Implant.getMaxEnergy(data.type), data.implant.getInteger("voltage"));
                 glPopMatrix();
                 glPushMatrix();
-                int x1 = res.getScaledWidth() - 100;
-                int y1 = res.getScaledHeight() - 100;
-                glTranslated(x1, y1, 0);
+                float x1 = res.getScaledWidth() - 100 * 2f/(float)res.getScaleFactor();
+                float y1 = res.getScaledHeight() - 100 * 2f/(float)res.getScaleFactor();
+                glTranslated(x1, y1 + 47/2, 0);
+                glScaled(2f/(float)res.getScaleFactor(), 2f/(float)res.getScaleFactor(), 1);
+                glTranslated(0, -47/2, 0);
                 try{
                 implantsHUD.drawCharge(mc, font, ModUtils.clientChunkCharge.get(new ChunkPos(player.getPosition())));}
                 catch (Exception d){d.printStackTrace();}
