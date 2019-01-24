@@ -57,7 +57,7 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
                     IFieldReceiverEnergy block = (IFieldReceiverEnergy) te;
                     if (block.getLink() == null || getPos().equals(block.getLink()))
                         createLink(te.getPos());
-                    else if (block.getVoltage() < ConvertVoltage(voltage)) {
+                    else if (block.getVoltage() < getRealVoltage()) {
                         ((IFieldCreatorEnergy) world.getTileEntity(block.getLink())).brokeLink(te.getPos());
                         createLink(te.getPos());
                     }
@@ -70,28 +70,34 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
     public void update() {
         if (!isActive())
             return;
-        int convertedVoltage = ConvertVoltage(voltage);
+        int convertedVoltage = getRealVoltage();
 
         // Powered machines
+        List<BlockPos> toRemove = new ArrayList<>();
         for (int i = 0; i < links.size(); i++){
-            IFieldReceiverEnergy ifre = (IFieldReceiverEnergy)world.getTileEntity(links.get(i));
-            if (ifre == null){
-                links.remove(i);
-            }
-            else if (ifre.isActive()) {
-                int energy = (int)Math.sqrt(convertedVoltage);
-                extractEnergy(energy/4*3, false);
+            TileEntity tile = world.getTileEntity(links.get(i));
+            if (tile == null)
+                toRemove.add(links.get(i));
+            else if (tile instanceof IFieldCreatorEnergy) {
+                IFieldReceiverEnergy ifre = (IFieldReceiverEnergy) tile;
+                if (ifre.isActive()) {
+                    int energy = (int) Math.sqrt(convertedVoltage);
+                    extractEnergy(energy / 4 * 3, false);
 
-                if (!world.isRemote && world.getTotalWorldTime()%4==0){
-                    ChargeSaveData data = ChargeSaveData.getOrCreateData(world);
-                    Integer e = data.map.get(new ChunkPos(getPos()));
-                    data.map.put(new ChunkPos(getPos()), e+energy*4);
-                    data.markDirty();
+                    if (!world.isRemote && world.getTotalWorldTime() % 4 == 0) {
+                        ChargeSaveData data = ChargeSaveData.getOrCreateData(world);
+                        Integer e = data.map.get(new ChunkPos(getPos()));
+                        data.map.put(new ChunkPos(getPos()), e + energy * 4);
+                        data.markDirty();
+                    }
+
+                    ifre.onField();
                 }
-
-                ifre.onField();
             }
+            else
+                toRemove.add(links.get(i));
         }
+        links.removeAll(toRemove);
 
         // Powered implants
         List<EntityPlayer> players = ModUtils.radiusFilterPlayers(getPos(), world.playerEntities, getRadius());
@@ -209,7 +215,8 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
         return maxRadius;
     }
 
-    private int ConvertVoltage(int voltage){
+    @Override
+    public int getRealVoltage(){
         return voltage/(radius/(lossReduce + 1) + 1);
     }
 
@@ -229,7 +236,7 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
     public void createLink(BlockPos pos){
         IFieldReceiverEnergy receiverEnergy = ((IFieldReceiverEnergy)world.getTileEntity(pos));
         receiverEnergy.setLink(getPos());
-        receiverEnergy.setVoltage(ConvertVoltage(voltage));
+        receiverEnergy.setVoltage(getRealVoltage());
         links.add(pos);
         markDirty();
         markUpdate();

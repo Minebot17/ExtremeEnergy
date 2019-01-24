@@ -46,6 +46,7 @@ public class ModGuiHandler implements IGuiHandler {
     public static final int MARKER_SCREEN = 25;
     public static final int ENERGYBALANCER_GUI = 26;
     public static final int HAS_GUI = 27;
+    public static final int CAPACITOR_SCREEN = 28;
 
     @Nullable
     @Override
@@ -184,6 +185,8 @@ public class ModGuiHandler implements IGuiHandler {
             return new EnergyBalancerGui(world, player.inventory, player.inventory.getCurrentItem());
         else if (ID == HAS_GUI)
             return new HasGui(player, player.inventory, (TileEntityHAS) world.getTileEntity(pos));
+        else if (ID == CAPACITOR_SCREEN)
+            return new CapacitorScreen(player.inventory.getCurrentItem());
 
         return null;
     }

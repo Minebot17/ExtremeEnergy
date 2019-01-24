@@ -1,15 +1,22 @@
 package ru.minebot.extreme_energy.items.capacitors;
 
-import cofh.redstoneflux.api.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import org.lwjgl.util.vector.Vector3f;
+import ru.minebot.extreme_energy.ExtremeEnergy;
 import ru.minebot.extreme_energy.energy.ItemEnergyContainer;
+import ru.minebot.extreme_energy.init.ModGuiHandler;
 import ru.minebot.extreme_energy.init.ModUtils;
 
 import javax.annotation.Nullable;
@@ -25,6 +32,11 @@ public class Capacitor extends ItemEnergyContainer {
 
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected){
+        NBTTagCompound category = ModUtils.getNotNullCategory(stack);
+        if (!category.hasKey("state")){
+            category.setBoolean("state", false);
+            category.setInteger("frequency", 0);
+        }
         //try{
             //tagCompound(stack);
             //stack.setItemDamage(capacity - stack.getTagCompound().getInteger("Energy"));
@@ -33,10 +45,21 @@ public class Capacitor extends ItemEnergyContainer {
     }
 
     @Override
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        BlockPos pos = playerIn.getPosition();
+        playerIn.openGui(ExtremeEnergy.instance, ModGuiHandler.CAPACITOR_SCREEN, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        return super.onItemRightClick(worldIn, playerIn, handIn);
+    }
+
+    @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
         if (stack.hasTagCompound()){
             NBTTagCompound tag = ModUtils.getNotNullCategory(stack);
             tooltip.add(tag.getInteger("Energy") + "/" + capacity +" RF");
+            boolean charging = tag.getBoolean("state");
+            tooltip.add("Passive charging: " + (charging ? "on" : "off"));
+            if (charging)
+                tooltip.add("Frequency: " + tag.getInteger("frequency"));
         }
         else
             tooltip.add("0/" + capacity + " RF");

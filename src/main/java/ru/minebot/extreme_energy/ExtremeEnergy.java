@@ -68,6 +68,7 @@ public class ExtremeEnergy {
         MinecraftForge.EVENT_BUS.register(NetworkWrapper.instance);
         PacketRegister.register();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
+        MinecraftForge.EVENT_BUS.register(new CapacitorsEvents());
         ModSoundHandler.init();
         ForgeRegistries.POTIONS.register(PotionElectricShock.createPotion().setRegistryName(new ResourceLocation("meem:electricShock")));
     }

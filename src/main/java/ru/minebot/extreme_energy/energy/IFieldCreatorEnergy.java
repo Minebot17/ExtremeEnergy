@@ -11,4 +11,5 @@ public interface IFieldCreatorEnergy extends IVoltageHandler, IEnergyStorage, IS
     void brokeLinksAll();
     void createLink(BlockPos pos);
     List<BlockPos> getLinks();
+    int getRealVoltage();
 }

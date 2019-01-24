@@ -35,6 +35,7 @@ import ru.minebot.extreme_energy.capability.ImplantProvider;
 import ru.minebot.extreme_energy.energy.IFieldCreatorEnergy;
 import ru.minebot.extreme_energy.events.Events;
 import ru.minebot.extreme_energy.events.events_chunk.IEventChunk;
+import ru.minebot.extreme_energy.items.capacitors.Capacitor;
 import ru.minebot.extreme_energy.items.equipment.ItemEnergyArmor;
 import ru.minebot.extreme_energy.items.equipment.ItemHeavyArmor;
 import ru.minebot.extreme_energy.items.implants.Implant;
@@ -482,10 +483,28 @@ public class CommonEvents {
     }
 
     @SubscribeEvent
-
     public void attachCapability(AttachCapabilitiesEvent event) {
         if (event.getObject() instanceof EntityPlayer) {
             event.addCapability(new ResourceLocation("meem:implant"), new ImplantProvider());
+        }
+    }
+
+    @SubscribeEvent
+    public void craftEvent(PlayerEvent.ItemCraftedEvent e){
+        if (e.crafting.getItem() instanceof Capacitor){
+            ItemStack oldCapacitor = null;
+            for (int i = 0; i < e.craftMatrix.getSizeInventory(); i++)
+                if (!e.craftMatrix.getStackInSlot(i).isEmpty() && e.craftMatrix.getStackInSlot(i).getItem() instanceof Capacitor){
+                    oldCapacitor = e.craftMatrix.getStackInSlot(i);
+                    break;
+                }
+
+            if (oldCapacitor != null){
+                NBTTagCompound oldCategory = ModUtils.getNotNullCategory(oldCapacitor);
+                NBTTagCompound newCategory = ModUtils.getNotNullCategory(e.crafting);
+                newCategory.setBoolean("state", oldCategory.getBoolean("state"));
+                newCategory.setInteger("frequency", oldCategory.getInteger("frequency"));
+            }
         }
     }
 }

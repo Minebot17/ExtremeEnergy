@@ -103,9 +103,9 @@ public class ModCrafts {
                 shapeless(new ItemStack(ModItems.copperNugget, 9), getItem(ModItems.copperIngot)),
                 shapeless(new ItemStack(ModItems.copperIngot, 9), getItem(ModBlocks.copper)),
                 shapeless(new ItemStack(ModItems.heavyIngot, 4), getItem(ModBlocks.heavyMetal)),
-                shapeless("meem:nullableSmall" ,new ItemStack(ModItems.smallCapacitor), getItem(ModItems.smallCapacitor)),
-                shapeless("meem:nullableMedium" ,new ItemStack(ModItems.capacitor), getItem(ModItems.capacitor)),
-                shapeless("meem:nullableBig" ,new ItemStack(ModItems.bigCapacitor), getItem(ModItems.bigCapacitor))
+                shapeless("meem:nullableSmall", new ItemStack(ModItems.smallCapacitor), getItem(ModItems.smallCapacitor)),
+                shapeless("meem:nullableMedium", new ItemStack(ModItems.capacitor), getItem(ModItems.capacitor)),
+                shapeless("meem:nullableBig", new ItemStack(ModItems.bigCapacitor), getItem(ModItems.bigCapacitor))
         };
         // C - copper, H - heavy ingot, S - small crystal, M - crystal, B - big crystal, K - cable
         //<editor-fold desc="Smelt">

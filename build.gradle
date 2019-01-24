@@ -88,9 +88,17 @@ processResources {
     }
 }
 
+jar {
+    manifest {
+        attributes 'FMLCorePlugin': 'ru.minebot.extreme_energy.hook.HookRegister'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
+        attributes 'FMLAT': 'meem_at.cfg'
+    }
+}
+
 apply plugin: 'idea'
 idea {
-	module {
-		inheritOutputDirs=true
-	}
+    module {
+        inheritOutputDirs=true
+    }
 }

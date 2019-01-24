@@ -48,6 +48,8 @@ import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
@@ -67,6 +69,46 @@ public class ModUtils {
             new BlockPos(0, -1, 0),
             new BlockPos(-1, 0, 0)
     };
+
+    // Меняет местами keys и values
+    public static <V, K> Map<V, K> invert(Map<K, V> map) {
+        return map.entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getValue, c -> c.getKey()));
+    }
+
+    // Возвращает из листа первый элемент с true у предиката
+    public static <T> T find(List<T> list, java.util.function.Predicate<T> predicate){
+        for (T element : list)
+            if (predicate.test(element))
+                return element;
+        return null;
+    }
+
+    // Возвращает из листа индекс первого элемента с true у предиката
+    public static <T> int findIndex(List<T> list, java.util.function.Predicate<T> predicate){
+        for (int i = 0; i < list.size(); i++)
+            if (predicate.test(list.get(i)))
+                return i;
+        return -1;
+    }
+
+    // Оставляет в листе только те элементы, для которых предикат возвратил true
+    public static <T> List<T> filter(List<T> list, java.util.function.Predicate<T> predicate){
+        List<T> result = new ArrayList<>();
+        for (T element : list)
+            if (predicate.test(element))
+                result.add(element);
+        return result;
+    }
+
+    // Преобразует тип элементов в листе в другой, с помощью конвертера
+    public static <T, R> List<R> convert(Iterable<T> list, Function<T, R> converter){
+        List<R> result = new ArrayList<>();
+        for (T element : list)
+            result.add(converter.apply(element));
+        return result;
+    }
 
     public static void updateNetwork(World world, BlockPos pos, List<BlockPos> checked){
         TileEntity te = world.getTileEntity(pos);

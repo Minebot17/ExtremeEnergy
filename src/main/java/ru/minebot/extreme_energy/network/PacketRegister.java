@@ -35,7 +35,8 @@ public class PacketRegister {
             PacketModuleSync.class,
             PacketDoubleFrequency.class,
             PacketEB.class,
-            PacketSG.class
+            PacketSG.class,
+            PacketSwitchCapacitor.class
     };
 
     public static void register(){

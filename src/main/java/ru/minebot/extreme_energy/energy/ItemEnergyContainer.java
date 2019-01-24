@@ -106,8 +106,10 @@ public class ItemEnergyContainer extends Item implements IEnergyContainerItem {
 
 	@Override
 	public int getMaxEnergyStored(ItemStack container) {
-
 		return capacity;
 	}
 
+	public int getMaxReceive(){
+		return maxReceive;
+	}
 }
