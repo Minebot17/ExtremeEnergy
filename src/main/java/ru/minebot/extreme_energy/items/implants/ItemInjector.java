@@ -32,7 +32,10 @@ public class ItemInjector extends Item{
             IImplant cap = playerIn.getCapability(ImplantProvider.IMPLANT, null);
             ImplantData data = cap.getImplant();
             if (data != null){
-                NetworkWrapper.instance.sendToServer(new PacketNotifyModule(false));
+                try {
+                    NetworkWrapper.instance.sendToServer(new PacketNotifyModule(false));
+                }
+                catch (RuntimeException e){}
                 cap.removeImplant();
                 playerIn.inventory.removeStackFromSlot(playerIn.inventory.currentItem);
                 NBTTagCompound category = new NBTTagCompound();

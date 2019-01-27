@@ -58,7 +58,10 @@ public class ItemFullInjector extends Item {
             IImplant cap = playerIn.getCapability(ImplantProvider.IMPLANT, null);
             ImplantData data = cap.getImplant();
             if (data == null){
-                NetworkWrapper.instance.sendToServer(new PacketNotifyModule(true));
+                try {
+                    NetworkWrapper.instance.sendToServer(new PacketNotifyModule(true));
+                }
+                catch (RuntimeException e){}
                 NBTTagCompound module = ModUtils.getNotNullCategory(playerIn.inventory.getCurrentItem());
                 int type = module.getString("NIname").equals(new ItemStack(ModItems.baseImplant).getDisplayName()) ? 0 : module.getString("NIname").equals(new ItemStack(ModItems.advancedImplant).getDisplayName()) ? 1 : 2;
                 NBTTagCompound implant = module.hasKey("implant") ? module.getCompoundTag("implant") : getImplantTag(type);

@@ -39,6 +39,7 @@ import ru.minebot.extreme_energy.items.capacitors.Capacitor;
 import ru.minebot.extreme_energy.items.equipment.ItemEnergyArmor;
 import ru.minebot.extreme_energy.items.equipment.ItemHeavyArmor;
 import ru.minebot.extreme_energy.items.implants.Implant;
+import ru.minebot.extreme_energy.items.implants.ItemFullInjector;
 import ru.minebot.extreme_energy.modules.ChipArgs;
 import ru.minebot.extreme_energy.modules.IArmorCoreModule;
 import ru.minebot.extreme_energy.modules.IChip;
@@ -123,7 +124,7 @@ public class CommonEvents {
                 iTag.setInteger("voltage", voltage);
             }
 
-            if (modulesActive.length != stacks.size()) {
+            if (modulesActive.length < stacks.size()) {
                 cap.removeImplant();
                 e.player.sendMessage(new TextComponentString("[Extreme Energy]: Error with implant. CommonEvents.PlayerTickEvent:128. MA: " + modulesActive.length + " SS: " + stacks.size() + " Side: " + e.player.world.isRemote));
                 return;
