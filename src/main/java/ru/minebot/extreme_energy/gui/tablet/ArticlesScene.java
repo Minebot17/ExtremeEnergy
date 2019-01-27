@@ -1,10 +1,7 @@
 package ru.minebot.extreme_energy.gui.tablet;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.text.TextFormatting;
@@ -65,9 +62,6 @@ public class ArticlesScene implements IScene {
         rightSlider.draw(tes, buf, mouseX, mouseY);
         offsetButton = leftSlider.pageCount != 1 ? -(buttonPages.size()*0.1f-0.8f)/(leftSlider.height-leftSlider.height/leftSlider.pageCount)*leftSlider.thisPos : 0;
         offsetArticle = rightSlider.pageCount != 1 ? -(height-0.9f)/(rightSlider.height-rightSlider.height/rightSlider.pageCount)*rightSlider.thisPos : 0;
-
-        for(Element element : other)
-            element.draw(tes, buf, mouseX, mouseY);
 
         bit = MinecraftForgeClient.reserveStencilBit();
         int flag = 1 << bit;
@@ -132,6 +126,11 @@ public class ArticlesScene implements IScene {
 
         glDisable(GL_STENCIL_TEST);
         MinecraftForgeClient.releaseStencilBit(bit);
+
+        RenderHelper.disableStandardItemLighting();
+        glColor4f(1, 1, 1, 1);
+        for(Element element : other)
+            element.draw(tes, buf, mouseX, mouseY);
     }
 
     @Override

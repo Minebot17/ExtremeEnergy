@@ -30,6 +30,8 @@ public class RenderItem extends Element {
         if (align != Align.LEFT)
             localX = align == Align.CENTER ? posX - width/2 : posX - width;
 
+        RenderHelper.enableGUIStandardItemLighting();
+        glColor4f(1, 1, 1, 1);
         float scale = 0.005f * (width/0.08f);
         glPushMatrix();
         glTranslated(0, 0, -0.00001f);
@@ -38,6 +40,7 @@ public class RenderItem extends Element {
         mc.getRenderItem().renderItemIntoGUI(stack, (int)(localX*(1f/scale)), -(int)(posY*(1f/scale)));
         glDisable(GL_DEPTH_TEST);
         glPopMatrix();
+        RenderHelper.disableStandardItemLighting();
     }
 
     @Override

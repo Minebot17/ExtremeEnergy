@@ -46,8 +46,10 @@ public class Capacitor extends ItemEnergyContainer {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        BlockPos pos = playerIn.getPosition();
-        playerIn.openGui(ExtremeEnergy.instance, ModGuiHandler.CAPACITOR_SCREEN, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        if (!(this instanceof ItemCreativeCapacitor)) {
+            BlockPos pos = playerIn.getPosition();
+            playerIn.openGui(ExtremeEnergy.instance, ModGuiHandler.CAPACITOR_SCREEN, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
 

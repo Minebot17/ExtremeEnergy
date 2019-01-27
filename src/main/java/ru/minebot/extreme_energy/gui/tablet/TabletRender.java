@@ -129,8 +129,8 @@ public class TabletRender {
 
     public static void setArticle(String key){
         for (int i = 0; i < chapters.size(); i++)
-            for (int j= 0; j < chapters.get(i).getArticles().size(); j++)
-                if (chapters.get(i).getArticles().get(j).getKey().contains(key.toLowerCase())) {
+            for (int j = 0; j < chapters.get(i).getArticles().size(); j++)
+                if (Arrays.asList(chapters.get(i).getArticles().get(j).getKey().toLowerCase().split(", ")).contains(key.toLowerCase())) {
                     scene = new ArticlesScene(chapters.get(i).getArticles(), chapters.get(i).getName(), i, j);
                     articleBuffer.push(lastArticle);
                     lastArticle = new Integer[]{i,j};

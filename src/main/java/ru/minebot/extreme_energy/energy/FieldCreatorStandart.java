@@ -78,7 +78,7 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
             TileEntity tile = world.getTileEntity(links.get(i));
             if (tile == null)
                 toRemove.add(links.get(i));
-            else if (tile instanceof IFieldCreatorEnergy) {
+            else if (tile instanceof IFieldReceiverEnergy) {
                 IFieldReceiverEnergy ifre = (IFieldReceiverEnergy) tile;
                 if (ifre.isActive()) {
                     int energy = (int) Math.sqrt(convertedVoltage);
@@ -97,7 +97,8 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
             else
                 toRemove.add(links.get(i));
         }
-        links.removeAll(toRemove);
+        for (BlockPos pos : toRemove)
+            brokeLink(pos);
 
         // Powered implants
         List<EntityPlayer> players = ModUtils.radiusFilterPlayers(getPos(), world.playerEntities, getRadius());

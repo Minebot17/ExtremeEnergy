@@ -125,7 +125,7 @@ public class CommonEvents {
 
             if (modulesActive.length != stacks.size()) {
                 cap.removeImplant();
-                e.player.sendMessage(new TextComponentString("[Extreme Energy]: Error with implant. CommonEvents.PlayerTickEvent:127"));
+                e.player.sendMessage(new TextComponentString("[Extreme Energy]: Error with implant. CommonEvents.PlayerTickEvent:128. MA: " + modulesActive.length + " SS: " + stacks.size() + " Side: " + e.player.world.isRemote));
                 return;
             }
 
@@ -444,7 +444,10 @@ public class CommonEvents {
 
         ChargeSaveData data = ChargeSaveData.getOrCreateData(e.getWorld());
         if (!data.map.containsKey(e.getChunk().getPos())){
-            data.map.put(e.getChunk().getPos(), ModUtils.random.nextInt(ModConfig.randomChunkCharge ? ModConfig.maxCapOfChunk : ((int)(ModConfig.maxCapOfChunk*0.5f)) + (int)(ModConfig.maxCapOfChunk*0.2f)));
+            if (ModConfig.randomChunkCharge)
+                data.map.put(e.getChunk().getPos(), ModUtils.random.nextInt(ModConfig.maxCapOfChunk));
+            else
+                data.map.put(e.getChunk().getPos(), (int)(ModConfig.maxCapOfChunk*0.4f + ModUtils.random.nextInt((int)(ModConfig.maxCapOfChunk*0.2f))));
             data.markDirty();
         }
     }

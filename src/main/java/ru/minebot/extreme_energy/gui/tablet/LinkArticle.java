@@ -7,8 +7,8 @@ public class LinkArticle extends Link {
     public LinkArticle(float posX, float posY, String text, String url, Align align, float width) {
         super(posX, posY, text, url, align, width);
         String[] splited = url.split("/");
-        int chapter = Integer.parseInt(splited[0].substring(1));
-        int article = Integer.parseInt(splited[1].substring(1));
+        chapter = Integer.parseInt(splited[0].substring(1));
+        article = Integer.parseInt(splited[1].substring(1));
     }
 
     @Override

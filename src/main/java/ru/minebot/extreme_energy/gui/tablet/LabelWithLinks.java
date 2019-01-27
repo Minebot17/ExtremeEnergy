@@ -65,6 +65,14 @@ public class LabelWithLinks extends Label implements IClickable {
                 for (int i = 0; i < toRegion.size(); i++)
                     for (int h = 0; h < result.size(); h++)
                         if (result.get(h).contains(toRegion.get(i) + "j5j")){
+                            int preIndex = result.get(h).indexOf(toRegion.get(i) + "j5j")-1;
+                            if (preIndex == -1){
+                                if (h != 0 && result.get(h - 1).charAt(result.get(h - 1).length()-1) == ('-' | '_'))
+                                    continue;
+                            }
+                            else if (result.get(h).charAt(preIndex) != ' ')
+                                continue;
+
                             String[] splitted = result.get(h).split(toRegion.get(i) + "j5j");
                             if (splitted.length == 0)
                                 splitted = new String[]{""};
