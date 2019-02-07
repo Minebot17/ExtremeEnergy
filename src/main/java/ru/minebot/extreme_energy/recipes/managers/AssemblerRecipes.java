@@ -5,8 +5,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
+import ru.minebot.extreme_energy.ExtremeEnergy;
 import ru.minebot.extreme_energy.init.ModBlocks;
 import ru.minebot.extreme_energy.init.ModItems;
+import ru.minebot.extreme_energy.integration.crafttweaker.AssemblerRegister;
 import ru.minebot.extreme_energy.recipes.DoubleItem;
 
 import java.util.ArrayList;
@@ -15,19 +17,13 @@ import java.util.List;
 
 public class AssemblerRecipes {
 
-    public static List<FullRecipeAssembler> recipesList;
-    protected static ArrayList<RecipeAssemblerString> possibleOres;
-    protected static ArrayList<RecipeAssembler> halfDictionary;
-    protected static HashMap<DoubleItem, ItemStack> recipes;
-    protected static HashMap<DoubleItem, Integer> energy;
+    public static List<FullRecipeAssembler> recipesList = new ArrayList<>();
+    public static ArrayList<RecipeAssemblerString> possibleOres = new ArrayList<>();
+    public static ArrayList<RecipeAssembler> halfDictionary = new ArrayList<>();
+    protected static HashMap<DoubleItem, ItemStack> recipes = new HashMap<>();
+    protected static HashMap<DoubleItem, Integer> energy = new HashMap<>();
 
     public static void init() throws Exception {
-        recipes = new HashMap<>();
-        halfDictionary = new ArrayList<>();
-        possibleOres = new ArrayList<>();
-        energy = new HashMap<>();
-        recipesList = new ArrayList<>();
-
         halfDictionaryRecipes();
         halfDictionaryToRecipes();
         notOreDictionaryRecipes();
@@ -103,13 +99,17 @@ public class AssemblerRecipes {
         }
     }
 
-    protected static void putRecipe(ItemStack item1, ItemStack item2, ItemStack stack, int energy_){
+    public static void putRecipe(ItemStack item1, ItemStack item2, ItemStack stack, int energy_){
+        if (ExtremeEnergy.craftTweakerActive && AssemblerRegister.inIgnore(item1, item2))
+            return;
         recipes.put(new DoubleItem(item1, item2), stack);
         energy.put(new DoubleItem(item1, item2), energy_);
     }
     protected static void putRecipe(Item item1, Item item2, ItemStack stack, int energy_){
         ItemStack itemStack1 = new ItemStack(item1);
         ItemStack itemStack2 = new ItemStack(item2);
+        if (ExtremeEnergy.craftTweakerActive && AssemblerRegister.inIgnore(itemStack1, itemStack2))
+            return;
         recipes.put(new DoubleItem(itemStack1, itemStack2), stack);
         energy.put(new DoubleItem(itemStack1, itemStack2), energy_);
     }
@@ -151,7 +151,7 @@ public class AssemblerRecipes {
         return result;
     }
 
-    private static class RecipeAssembler {
+    public static class RecipeAssembler {
         private String nameFirst;
         private ItemStack itemSecond;
         private ItemStack stack;
@@ -174,7 +174,7 @@ public class AssemblerRecipes {
         public int getEnergy(){ return energy; }
     }
 
-    private static class RecipeAssemblerString {
+    public static class RecipeAssemblerString {
         private String nameFirst;
         private String nameSecond;
         private ItemStack stack;

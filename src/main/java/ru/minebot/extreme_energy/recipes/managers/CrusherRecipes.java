@@ -6,7 +6,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
+import ru.minebot.extreme_energy.ExtremeEnergy;
 import ru.minebot.extreme_energy.init.ModItems;
+import ru.minebot.extreme_energy.integration.crafttweaker.CrusherRegister;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,19 +18,13 @@ import java.util.function.BiFunction;
 
 public class CrusherRecipes {
 
-    public static List<FullRecipeCrusher> recipesList;
-    protected static ArrayList<RecipeCrusherString> possibleOres;
-    protected static ArrayList<RecipeCrusher> ores;
-    protected static HashMap<ItemStack, ItemStack> recipes;
-    protected static HashMap<ItemStack, Integer> energy;
+    public static List<FullRecipeCrusher> recipesList = new ArrayList<>();
+    public static ArrayList<RecipeCrusherString> possibleOres = new ArrayList<>();
+    public static ArrayList<RecipeCrusher> ores = new ArrayList<>();
+    protected static HashMap<ItemStack, ItemStack> recipes = new HashMap<>();
+    protected static HashMap<ItemStack, Integer> energy = new HashMap<>();
 
     public static void init() throws Exception {
-        recipes = new HashMap<>();
-        ores = new ArrayList<>();
-        possibleOres = new ArrayList<>();
-        energy = new HashMap<>();
-        recipesList = new ArrayList<>();
-
         OreDictionaryRecipes();
         oresToRecipes();
         NotOreDictionaryRecipes();
@@ -153,13 +149,17 @@ public class CrusherRecipes {
             }
     }
 
-    protected static void putRecipe(ItemStack item, ItemStack stack, int energy_){
+    public static void putRecipe(ItemStack item, ItemStack stack, int energy_){
+        if (ExtremeEnergy.craftTweakerActive && CrusherRegister.inIgnore(item))
+            return;
         recipes.put(item, stack);
         energy.put(item, energy_);
     }
 
     protected static void putRecipe(Item item, ItemStack stack, int energy_){
         ItemStack itemStack = new ItemStack(item);
+        if (ExtremeEnergy.craftTweakerActive && CrusherRegister.inIgnore(itemStack))
+            return;
         recipes.put(itemStack, stack);
         energy.put(itemStack, energy_);
     }
@@ -238,7 +238,7 @@ public class CrusherRecipes {
         public int getCount(){ return count; }
     }
 
-    private static class RecipeCrusher {
+    public static class RecipeCrusher {
         private String name;
         private ItemStack stack;
         private int energy;

@@ -1,11 +1,13 @@
 package ru.minebot.extreme_energy;
 
 import cofh.redstoneflux.RedstoneFluxProps;
+import crafttweaker.CraftTweakerAPI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -21,6 +23,7 @@ import ru.minebot.extreme_energy.capability.ImplantHandler;
 import ru.minebot.extreme_energy.capability.ImplantStorage;
 import ru.minebot.extreme_energy.effects.PotionElectricShock;
 import ru.minebot.extreme_energy.init.*;
+import ru.minebot.extreme_energy.integration.crafttweaker.AssemblerRegister;
 import ru.minebot.extreme_energy.network.NetworkWrapper;
 import ru.minebot.extreme_energy.network.PacketRegister;
 import ru.minebot.extreme_energy.proxy.CommonProxy;
@@ -40,6 +43,7 @@ public class ExtremeEnergy {
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;
+    public static boolean craftTweakerActive;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) throws Exception {
@@ -58,6 +62,7 @@ public class ExtremeEnergy {
     @EventHandler
     public void Init(FMLInitializationEvent event) throws Exception {
         proxy.init(event);
+        craftTweakerActive = net.minecraftforge.fml.common.Loader.isModLoaded("crafttweaker");
         ModCrafts.register();
         CrusherRecipes.init();
         AssemblerRecipes.init();

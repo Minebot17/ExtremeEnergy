@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
+import ru.minebot.extreme_energy.ExtremeEnergy;
+import ru.minebot.extreme_energy.integration.crafttweaker.SawmillRegister;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,19 +15,13 @@ import java.util.List;
 
 public class SawmillRecipes {
 
-    public static List<FullRecipeSawmill> recipesList;
-    protected static ArrayList<RecipeSawmillString> possibleOres;
-    protected static ArrayList<RecipeSawmill> ores;
-    protected static HashMap<Item, ItemStack> recipes;
-    protected static HashMap<Item, Integer> energy;
+    public static List<FullRecipeSawmill> recipesList = new ArrayList<>();
+    public static ArrayList<RecipeSawmillString> possibleOres = new ArrayList<>();
+    public static ArrayList<RecipeSawmill> ores = new ArrayList<>();
+    protected static HashMap<Item, ItemStack> recipes = new HashMap<>();
+    protected static HashMap<Item, Integer> energy = new HashMap<>();
 
     public static void init() throws Exception {
-        recipes = new HashMap<>();
-        ores = new ArrayList<>();
-        possibleOres = new ArrayList<>();
-        energy = new HashMap<>();
-        recipesList = new ArrayList<>();
-
         OreDictionaryRecipes();
         oresToRecipes();
         NotOreDictionaryRecipes();
@@ -134,7 +130,9 @@ public class SawmillRecipes {
             }
     }
 
-    protected static void putRecipe(Item item, ItemStack stack, int energy_){
+    public static void putRecipe(Item item, ItemStack stack, int energy_){
+        if (ExtremeEnergy.craftTweakerActive && SawmillRegister.inIgnore(new ItemStack(item)))
+            return;
         recipes.put(item, stack);
         energy.put(item, energy_);
     }
@@ -206,7 +204,7 @@ public class SawmillRecipes {
         public int getCount(){ return count; }
     }
 
-    private static class RecipeSawmill {
+    public static class RecipeSawmill {
         private String name;
         private ItemStack stack;
         private int energy;

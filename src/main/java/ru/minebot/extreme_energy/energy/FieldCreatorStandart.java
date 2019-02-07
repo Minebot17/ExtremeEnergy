@@ -225,7 +225,9 @@ public class FieldCreatorStandart extends TileEntity implements IFieldCreatorEne
     public void brokeLink(BlockPos pos){
         for (int i = 0; i < links.size(); i++)
             if (links.get(i).equals(pos)){
-                ((IFieldReceiverEnergy)world.getTileEntity(links.get(i))).setLink(null);
+                TileEntity tile = world.getTileEntity(links.get(i));
+                if (tile != null)
+                    ((IFieldReceiverEnergy)tile).setLink(null);
                 links.remove(i);
                 break;
             }

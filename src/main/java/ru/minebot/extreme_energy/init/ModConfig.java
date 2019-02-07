@@ -10,6 +10,7 @@ public class ModConfig {
     public static boolean isClient;
     public static Configuration config;
     public static int portalParticleID;
+    public static boolean showFrequencyWaila;
     public static boolean explodeMachines;
     public static boolean nuclearExplosionReactor;
     public static boolean poweredCrystals;
@@ -30,6 +31,7 @@ public class ModConfig {
         config.load();
 
         portalParticleID = config.getInt("portalParticleID", "ids", 203, 1, 256, getName("config.portalParticleID"), "config.portalParticleID.name");
+        showFrequencyWaila = config.getBoolean("showFrequencyWaila", "general", true, getName("config.showFrequencyWaila"), "config.showFrequencyWaila.name");
         explodeMachines = config.getBoolean("explodeMachines", "general", true, getName("config.explodeMachines"), "config.explodeMachines.name");
         nuclearExplosionReactor = config.getBoolean("nuclearExplosionReactor", "general", true, getName("config.nuclearExplosionReactor"), "config.nuclearExplosionReactor.name");
         poweredCrystals = config.getBoolean("poweredCrystals", "general", true, getName("config.poweredCrystals"), "config.poweredCrystals.name");
