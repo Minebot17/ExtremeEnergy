@@ -338,7 +338,7 @@ public class CommonEvents {
             Block block = e.getState().getBlock();
             TileEntity te = e.getWorld().getTileEntity(e.getPos());
             if (block == ModBlocks.cable || (te != null && te instanceof IEnergyReceiver)){
-                e.getPlayer().world.setBlockToAir(e.getPos());
+                //e.getPlayer().world.setBlockToAir(e.getPos());
                 ModUtils.updateNetwork(e.getWorld(), e.getPos(), new ArrayList<>());
             }
         }
