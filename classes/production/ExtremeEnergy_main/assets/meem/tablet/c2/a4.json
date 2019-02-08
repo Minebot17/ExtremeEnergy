@@ -1,0 +1,14 @@
+{
+	"elements": 
+	[
+		{ "type": "image", "url": "image0.png", "width": 0.36, "height": 0.36 },
+		{ "type": "label", "text": "key0" },
+		{ "type": "craft", "style": "w", "item": "ItemSmallCapacitor" },
+		{ "type": "label", "text": "key1", "align": "c" },
+		{ "type": "craft", "style": "w", "item": "ItemCapacitor" },
+		{ "type": "label", "text": "key2", "align": "c" },
+		{ "type": "craft", "style": "w", "item": "ItemBigCapacitor" },
+		{ "type": "label", "text": "key3", "align": "c" }
+	],
+	"key": "ItemSmallCapacitor, ItemCapacitor, ItemBigCapacitor"
+}

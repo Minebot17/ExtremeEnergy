@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "BlockEarthingElectrode", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "w", "item": "BlockEarthingElectrode" }
+	],
+	"key": "BlockEarthingElectrode"
+}

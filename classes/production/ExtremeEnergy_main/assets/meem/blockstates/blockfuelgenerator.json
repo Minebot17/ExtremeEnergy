@@ -1,0 +1,14 @@
+{
+  "variants": {
+    "normal": {"model": "meem:blockfuelgenerator" },
+    "active=false,facing=north": { "model": "meem:blockfuelgenerator" },
+    "active=false,facing=south": { "model": "meem:blockfuelgenerator", "y": 180 },
+    "active=false,facing=west":  { "model": "meem:blockfuelgenerator", "y": 270 },
+    "active=false,facing=east":  { "model": "meem:blockfuelgenerator", "y": 90 },
+
+    "active=true,facing=north": { "model": "meem:blockfuelgenerator_active" },
+    "active=true,facing=south": { "model": "meem:blockfuelgenerator_active", "y": 180 },
+    "active=true,facing=west":  { "model": "meem:blockfuelgenerator_active", "y": 270 },
+    "active=true,facing=east":  { "model": "meem:blockfuelgenerator_active", "y": 90 }
+  }
+}

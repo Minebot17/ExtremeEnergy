@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "normal": {
+      "model": "meem:blockshield" },
+    "isfc=false": {"model": "meem:blockshield"},
+    "isfc=true": {"model": "meem:blockshield"}
+  }
+}

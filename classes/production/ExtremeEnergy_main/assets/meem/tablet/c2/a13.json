@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemCopperWires", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "a", "item": "ItemCopperWires" }
+	],
+	"key": "ItemCopperWires"
+}

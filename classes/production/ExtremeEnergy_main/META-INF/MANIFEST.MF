@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+FMLCorePlugin: ru.minebot.extreme_energy.hook.HookRegister
+FMLCorePluginContainsFMLMod: true
+Created-By: 1.7.0 (Oracle Corporation)

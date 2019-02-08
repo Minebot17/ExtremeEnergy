@@ -1,0 +1,7 @@
+Water
+Water Module
+key0=Functional module of the second level. Can synthesize and change water molecules
+key1=Implant
+key2=There are 2 modes. The first one allows you to walk on the water, turning everything under your feet into ice. Requires 10 RF for one frozen water. The second mode allows you to breathe underwater. Consumes 10 RF in a tick. Also, if you press the specified button, the player will eject water from the mouth, which can extinguish the fire. Each particle will cost 10 RF
+key3=Field Converter
+key4=In this block, the module can synthesize 3x3 block water below itself, but only if there is air. The rate of synthesis depends on the voltage

@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemElectricCarver", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "a", "item": "ItemElectricCarver" }
+	],
+	"key": "ItemElectricCarver"
+}

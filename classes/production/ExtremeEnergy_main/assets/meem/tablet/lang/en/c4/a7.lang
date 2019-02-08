@@ -1,0 +1,11 @@
+Life
+Life Module
+key0=This is a functional module of the first level. Is able to convert energy so as to better treat human damage
+key1=Implant
+key2=Gives you regeneration. The strength of this effect depends on the strength indicator, which you set in the module settings. Each tick requires (power * 10) RF
+key3=Field Converter
+key4=Gives regeneration to all around. The strength of the recovery depends on the voltage, radius and {"ItemLossReductionModule"path_search_boards}
+key5=Exoskeleton
+key6=If you are struck with this module, then the exoskeleton will begin to drain the life of the enemy. The greater the force, the stronger the drain, but the more energy will be spent
+key7=Energy Sword
+key8=If you hit a creature, the damaged enemy material will be transformed and involved in the healing of your wounds. For every hit requires 100 RF

@@ -1,0 +1,10 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemToughIronRod", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "a", "item": "ItemIronRod" },
+		{ "type": "craft", "style": "a", "item": "ItemToughIronRod" }
+	],
+	"key": "ItemToughIronRod, ItemIronRod"
+}

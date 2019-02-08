@@ -1,0 +1,3 @@
+Bomb
+Nuclear Bomb
+key0=Very dangerous block. Activated by a signal of red stone. After activation, there is a 10 second delay, and then a big explosion. The closer the entity to the epicenter of the explosion, the more damage it gets and the more it toss. The place of the explosion will be contaminated with radiation, which will disappear only after 3 game days. After the explosion in the epicenter will appear from 1 to 3 {"ItemCalifornium"californium}. The explosion can be suppressed with the help of an {"ItemPowerSuppressor"energy_suppressor}

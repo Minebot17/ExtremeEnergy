@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "ItemChunkEnergyModule", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "w", "item": "ItemChunkEnergyModule" }
+	],
+	"key": "ItemChunkEnergyModule"
+}

@@ -1,0 +1,8 @@
+{
+	"elements": 
+	[
+		{ "type": "image", "url": "image2.png", "width": 0.48, "height": 0.128 },
+		{ "type": "label", "text": "key0"}
+	],
+	"key": "PotionElectricShock"
+}

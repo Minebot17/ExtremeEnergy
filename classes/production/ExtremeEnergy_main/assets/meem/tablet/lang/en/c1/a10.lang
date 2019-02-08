@@ -1,0 +1,3 @@
+Static g.
+Static Energy Generator
+key0=This block discharges the {"chunks"chunk} in which it stay. The speed of energy drain can be set in the interface. The more he drains energy, the more he heats up. When overheating, the internal energy is released, because of which anything can happen. To cool the block, it is necessary to put the {"ItemFullCapsule"refrigerant} in a special cell. If you destroy this block, when it is heated, it will break, and only 2 {"ItemVoltageModule"copper_coils} fall out

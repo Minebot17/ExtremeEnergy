@@ -1,0 +1,11 @@
+Strange
+Strange Module
+key0=This module is so strange that we do not know how it works, but we know that it is functional and the first level
+key1=Implant
+key2=This module can work in 2 modes. With the first mode you can see in the dark, with the second you will be invisible. Scientists think that the module somehow can control light beams, but no one knows exactly how it does it. For each tick the module spend 30 RF
+key3=Field Converter
+key4=Gives night vision and invisibility to everyone around
+key5=Exoskeleton
+key6=If you are struck by some entity with this module in the exoskeleton, it will start to glow. Its light will pass even through dense matter. The duration of the glow depends on the power. For the illumination, the exoskeleton needs (power * 750) RF
+key7=Energy Sword
+key8=When the sword hit with this module, the target stops taking photons. Each hit spends 100 RF

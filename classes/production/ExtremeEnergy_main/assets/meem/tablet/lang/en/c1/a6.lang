@@ -1,0 +1,3 @@
+Transducer
+Field Transducer
+key0=This block converts the incoming field back to RF. Needed for fast wireless RF transmission over long distances

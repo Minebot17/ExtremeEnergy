@@ -28,10 +28,10 @@ public class SawmillRegister {
     public static void addRecipe(IIngredient input, IItemStack output, @Optional Integer energy) {
         CraftTweakerAPI.apply(new RecipeAction("Add Sawmill recipe for " + output.getDisplayName(), () -> {
             if (input instanceof IOreDictEntry){
-                SawmillRecipes.ores.add(new SawmillRecipes.RecipeSawmill(((IOreDictEntry) input).getName(), RecipeAction.convert(output), energy));
+                SawmillRecipes.ores.add(new SawmillRecipes.RecipeSawmill(((IOreDictEntry) input).getName(), RecipeAction.convert(output), energy == null ? 2000 : energy));
             }
             else {
-                SawmillRecipes.putRecipe(RecipeAction.convert((IItemStack) input).getItem(), RecipeAction.convert(output), energy);
+                SawmillRecipes.putRecipe(RecipeAction.convert((IItemStack) input).getItem(), RecipeAction.convert(output), energy == null ? 2000 : energy);
             }
         }));
     }

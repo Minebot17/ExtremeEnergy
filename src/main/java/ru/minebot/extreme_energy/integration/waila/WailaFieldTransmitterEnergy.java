@@ -28,16 +28,17 @@ public class WailaFieldTransmitterEnergy implements IWailaDataProvider {
     }
 
     public List<String> getWailaBody(ItemStack itemStack, List<String> list, IWailaDataAccessor iWailaDataAccessor, IWailaConfigHandler iWailaConfigHandler) {
+        List<String> list1 = new ArrayList<>();
         FieldTransmitterStandart te = (FieldTransmitterStandart)iWailaDataAccessor.getTileEntity();
-        list.add("Receive voltage: " + te.getVoltageReceive());
-        list.add("Voltage: " + te.getVoltage());
-        list.add("Radius: " + te.getRadius());
+        list1.add("Receive voltage: " + te.getVoltageReceive());
+        list1.add("Voltage: " + te.getVoltage());
+        list1.add("Radius: " + te.getRadius());
         if (ModConfig.showFrequencyWaila) {
-            list.add("Frequency: " + te.getFrequencyReceive());
-            list.add("Convert to frequency: " + te.getFrequency());
+            list1.add("Frequency: " + te.getFrequencyReceive());
+            list1.add("Convert to frequency: " + te.getFrequency());
         }
 
-        return list;
+        return list1;
     }
 
     public List<String> getWailaTail(ItemStack itemStack, List<String> list, IWailaDataAccessor iWailaDataAccessor, IWailaConfigHandler iWailaConfigHandler) {

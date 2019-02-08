@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "north": "meem:blocks/hpc/active/hpc_center_active",
+    "south": "meem:blocks/hpc/hpc_back",
+    "west": "meem:blocks/hpc/hpc_right",
+    "east": "meem:blocks/hpc/hpc_left",
+    "up": "meem:blocks/hpc/active/hpc_top_active",
+    "down": "meem:blocks/hpc/hpc_bottom",
+    "particle": "meem:blocks/hpc/active/hpc_top_active"
+  }
+}

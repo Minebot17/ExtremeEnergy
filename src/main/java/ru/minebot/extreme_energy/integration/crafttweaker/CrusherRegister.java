@@ -30,10 +30,10 @@ public class CrusherRegister {
     public static void addRecipe(IIngredient input, IItemStack output, @Optional Integer energy) {
         CraftTweakerAPI.apply(new RecipeAction("Add Crusher recipe for " + output.getDisplayName(), () -> {
             if (input instanceof IOreDictEntry){
-                CrusherRecipes.ores.add(new CrusherRecipes.RecipeCrusher(((IOreDictEntry) input).getName(), RecipeAction.convert(output), energy));
+                CrusherRecipes.ores.add(new CrusherRecipes.RecipeCrusher(((IOreDictEntry) input).getName(), RecipeAction.convert(output), energy == null ? 2000 : energy));
             }
             else {
-                CrusherRecipes.putRecipe(RecipeAction.convert((IItemStack) input), RecipeAction.convert(output), energy);
+                CrusherRecipes.putRecipe(RecipeAction.convert((IItemStack) input), RecipeAction.convert(output), energy == null ? 2000 : energy);
             }
         }));
     }

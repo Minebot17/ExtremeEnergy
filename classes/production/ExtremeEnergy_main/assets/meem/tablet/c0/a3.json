@@ -1,0 +1,11 @@
+{
+	"elements": 
+	[
+		{ "type": "image", "url": "image3.png", "width": 0.64, "height": 0.32 },
+		{ "type": "label", "text": "key0" },
+		{ "type": "image", "url": "image3a.png", "width": 0.4, "height": 0.106 },
+		{ "type": "label", "text": "key1", "align": "c", "width": 0.6 },
+		{ "type": "label", "text": "key2" }
+	],
+	"key": "field"
+}

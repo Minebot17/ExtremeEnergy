@@ -1,0 +1,9 @@
+{
+	"elements": 
+	[
+		{ "type": "render", "item": "BlockUraniumOre", "width": 0.3 },
+		{ "type": "label", "text": "key0"},
+		{ "type": "craft", "style": "c", "item": "ItemUraniumDust" }
+	],
+	"key": "BlockUraniumOre, ItemUraniumDust"
+}

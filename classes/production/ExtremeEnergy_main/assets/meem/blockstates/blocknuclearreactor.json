@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": { "model": "meem:blocknuclearreactor" },
+    "active=false": { "model": "meem:blocknuclearreactor" },
+    "active=true": { "model": "meem:blocknuclearreactor_active" }
+  }
+}

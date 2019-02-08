@@ -1,0 +1,11 @@
+Wind
+Wind Module
+key0=Functional module of the third level. Is able to exert force on objects
+key1=Implant
+key2=With this module you get less damage from falling. Repaying damage depends on power. The module can perform 2 actions. The first is a lerp, by clicking on the specified button, you are pushed to the place of your look with the indicated power. The second action is a fall, if you are at a fairly low altitude, you can make a very rapid lerp upright down, followed by an explosion after landing. The first action is a trubet (force*500) RF, and the second is 2 times larger
+key3=Field Converter
+key4=Raises everyone in the air in a radius. The duration of the hovering depends on the voltage and radius
+key5=Exoskeleton
+key6=If someone hits you, then it will fly away from you with no less force. The more power, the more repulsion. Requires (power * 200) RF
+key7=Energy Sword
+key8=On hit, it starts a stream of compressed hot air along the impact vector. Speed, range and damage depend on power. Consumes (power*200) RF

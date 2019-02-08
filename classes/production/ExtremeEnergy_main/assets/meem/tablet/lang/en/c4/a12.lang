@@ -1,0 +1,3 @@
+Security
+Security Module
+key0=This is a unique module, as it is not included in any of the 5 types. This module can be put into the {"BlockHighVoltageGenerator"generator} or the {"BlockFieldTransmitter"transmitter} of the field, and then their field will stop badly affecting everything around. Also, this module can be installed in an exoskeleton to completely ignore the damage from all lightning, but when absorbing damage, the exoskeleton will consume some energy. All surplus energy with absorption will be ejected into {"chunks"chunk}

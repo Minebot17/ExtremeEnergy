@@ -1,0 +1,3 @@
+Visualizer
+Field visualizer
+key0=Module of visualization of the first level. Spends 6 RF in a tick. It traces the radius of the machines and shows their connections through {"filed"fields}. Each frequency has its own color. In the module settings, you can separately enable / disable the display of frames or connections

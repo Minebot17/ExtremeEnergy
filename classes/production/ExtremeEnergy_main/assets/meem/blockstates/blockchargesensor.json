@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "normal": { "model": "meem:blockchargesensor" },
+    "active=false": { "model": "meem:blockchargesensor" },
+    "active=true": { "model": "meem:blockchargesensor_active" }
+  }
+}
