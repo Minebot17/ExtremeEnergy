@@ -1,9 +1,0 @@
-{
-	"elements": 
-	[
-		{ "type": "render", "item": "ItemFullCapsule", "width": 0.3 },
-		{ "type": "label", "text": "key0"},
-		{ "type": "craft", "style": "w", "item": "ItemFullCapsule" }
-	],
-	"key": "ItemFullCapsule"
-}

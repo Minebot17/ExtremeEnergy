@@ -1,3 +1,0 @@
-Navigation
-Navigation Module
-key0=Module of visualization of the second level. With this module, you can set points. When you press the specified key, a menu opens where you can specify the name of the points, its color and coordinates. If you click on the already created point and press the same key, it can be edited or deleted. Consumes 10 RF in a tick

@@ -1,3 +1,0 @@
-Board
-Path Search Board
-key0=This is an additional module. Stacks on 4. If the module is put into a {"BlockHighVoltageGenerator"generator} or a {"BlockFieldTransmitter"field_transmitter}, then it will reduce the voltage loss due to the radius. In a {"BlockStaticGenerator"static_generator} and {"BlockNuclearReactor"nuclear_reactor}, this module will increase the cooling rate when the block is turned off. In a {"BlockThermalGenerator"thermo-generator} and a {"BlockFuelGenerator"solid-fuel_generator}, this module will increase the efficiency of energy production. If the module is in the {"BlockFieldConverter"field_converter}, then the board only affects the functional module in it, increasing its efficiency

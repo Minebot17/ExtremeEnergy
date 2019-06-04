@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "normal": { "model": "meem:blockfieldtransmitter" },
-    "active=false": { "model": "meem:blockfieldtransmitter" },
-    "active=true": { "model": "meem:blockfieldtransmitter_active" }
-  }
-}

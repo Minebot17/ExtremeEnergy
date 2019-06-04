@@ -1,3 +1,0 @@
-Nuclear r.
-Nuclear Reactor
-key0=This block is capable of releasing some of the strong interaction from uranium nuclei. In order for the reactor to work, it is necessary to fill it with {"ItemNuclearFuel"nuclear_fuel}, but the energy losses will heat the reactor. When overheating, a nuclear explosion occurs. To cool the reactor, it is necessary to put the {"ItemFullCapsule"refrigerant} in a special slot. If you destroy this block, when it is heated, it will break, and only 2 {"ItemHeatModule"radiators} will fall out

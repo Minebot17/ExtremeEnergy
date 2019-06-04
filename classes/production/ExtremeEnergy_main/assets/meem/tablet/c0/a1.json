@@ -1,7 +1,0 @@
-{
-	"elements": 
-	[
-		{ "type": "image", "url": "image1.png", "width": 0.5, "height": 0.25 },
-		{ "type": "label", "text": "key0" }
-	]
-}

@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "normal": { "model": "meem:blockhighvoltagegenerator" },
-    "active=false": { "model": "meem:blockhighvoltagegenerator" },
-    "active=true": { "model": "meem:blockhighvoltagegenerator_active" }
-  }
-}
