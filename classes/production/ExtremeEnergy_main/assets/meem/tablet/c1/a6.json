@@ -1,9 +1,0 @@
-{
-	"elements": 
-	[
-		{ "type": "render", "item": "BlockFieldTransducer", "width": 0.3 },
-		{ "type": "label", "text": "key0"},
-		{ "type": "craft", "style": "w", "item": "BlockFieldTransducer" }
-	],
-	"key": "BlockFieldTransducer"
-}

@@ -1,9 +1,0 @@
-{
-	"elements": 
-	[
-		{ "type": "render", "item": "BlockHighPrecisionAssembler", "width": 0.3 },
-		{ "type": "label", "text": "key0"},
-		{ "type": "craft", "style": "w", "item": "BlockHighPrecisionAssembler" }
-	],
-	"key": "BlockHighPrecisionAssembler"
-}

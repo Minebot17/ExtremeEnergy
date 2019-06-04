@@ -1,7 +1,0 @@
-Plant
-Plant Module
-key0=This is a functional module of the second level. It is able to extract the structure of plants using external energy and information from their genes
-key1=Implant
-key2=Cultivates flowers and grass around the player at the specified radius. For each grown plant requires 10 RF
-key3=Field Converter
-key4=It contributes to the growth of all crops, except for grass and flowers. The growth rate depends on the radius and voltage

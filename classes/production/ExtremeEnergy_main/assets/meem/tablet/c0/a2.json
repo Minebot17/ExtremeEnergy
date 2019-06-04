@@ -1,9 +1,0 @@
-{
-	"elements": 
-	[
-		{ "type": "image", "url": "image2.png", "width": 0.6, "height": 0.34 },
-		{ "type": "label", "text": "key0" },
-		{ "type": "craft", "style": "w", "item": "ItemInjector" },
-		{ "type": "label", "text": "key1" }
-	]
-}

@@ -1,7 +1,0 @@
-Modules
-Modules
-key0=Modules are items that can change the functionality of many things in mod. There are 4 types of modules: additional, functional, generators and visualization modules
-key1=Additional modules are placed only in blocks, because they change their characteristics or maximum indicators. Each kind of such modules stacks in its own way. Machines are not able to accept more than one stack of any identical modules
-key2=Functional modules are much more interesting. They set the algorithm for converting energy for different objects in mod. Accordingly, such modules behave differently in different subjects, but not every module can be put into all subjects. Due to the fact that the algorithms are based on different crystals, such modules have 3 levels. The higher the level, the better the module. Functional modules accept: implant, energy sword, exoskeleton and field converter
-key3=Generators can only be placed in implants. They generate energy wherever you are. Different modules are different ways of generating energy. They, as well as functional modules, have levels
-key4=Modules of visualization as well as generators can be placed only in implants. They scan everything around to get this information in a way convenient for you - they visualize the picture directly to you in the brain. Also have levels

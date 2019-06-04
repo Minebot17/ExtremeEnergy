@@ -1,9 +1,0 @@
-{
-	"elements": 
-	[
-		{ "type": "render", "item": "ItemHeatModule", "width": 0.3 },
-		{ "type": "label", "text": "key0"},
-		{ "type": "craft", "style": "a", "item": "ItemHeatModule" }
-	],
-	"key": "ItemHeatModule"
-}

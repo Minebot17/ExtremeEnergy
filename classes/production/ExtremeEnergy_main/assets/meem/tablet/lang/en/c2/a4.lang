@@ -1,6 +1,0 @@
-Capacitors
-Capacitors
-key0=Using capacitors, it is possible to store and transmit RF without any blocks. Unlike capacitors from other mods, these can be charged from the {"chunks"chunk} or from the {"field"field}. To do this, open their interface on the RMB, set the field frequency and turn it on. If the capacitor does not find the field with the specified frequency and is turned on, it will be charged from the chunk in which it is located. There are 4 types. They differ in the amount of storage and the speed of RF transmission. One of the types is the creative capacitor. It has an infinite amount of RF and very quickly transfers it. It can not be obtained in the mode of survival, in contrast to the following types:
-key1=The very first capacitor stores 250000 RF and transmits it at a speed of 2000 RF/sec
-key2=An average capacitor that can contain 1500000 RF. Its transfer rate is 40000 RF/sec
-key3=The largest capacitor that can be obtained in survival. Can store up to 5000000 RF and transmit it at a speed of 400000 RF/sec
